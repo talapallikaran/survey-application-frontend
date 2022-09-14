@@ -1,26 +1,19 @@
 import React, { useState } from 'react';
+import './style.css'
 
 const Accordion = () => {
-  const mystyle = {
-    color: 'white',
-    height: 40,
-    width: 80,
-    marginLeft: 1350,
-    backgroundColor: 'green',
-    borderRadius: 12,
-  }
+
   
   const [isActive, setIsActive] = useState(1);
 
   const openSurveyBox = (id) => {
       setIsActive(id)
-      
     }
 
   return (
     <div className="accordion-item">
 
-      <div className='survey-1' onClick={() => openSurveyBox(1)}>Survey 1 <button style={mystyle}>Save</button></div>
+      <div className='survey-1' onClick={() => openSurveyBox(1)}>Survey 1 <button className='buttonforsave'>Save</button></div>
       {isActive === 1 ? 
       <div className='accordion-content'>
           <div className="Servey1" id='tabid1'  >
@@ -166,7 +159,7 @@ const Accordion = () => {
       </div>
       : ''}
 
-      <div className='survey-1' onClick={() => openSurveyBox(2)}>Survey 2 <button style={mystyle}>Save</button></div>
+      <div className='survey-1' onClick={() => openSurveyBox(2)}>Survey 2 <button className='buttonforsave' >Save</button></div>
       {isActive === 2 ? 
       <div className='accordion-content'>
          <div className="Servey2" id='tabid2'  >
@@ -313,7 +306,7 @@ const Accordion = () => {
       
        : ''}
 
-      <div className='survey-1' onClick={() => openSurveyBox(3)}>Survey 3 <button style={mystyle}>Save</button></div>
+      <div className='survey-1' onClick={() => openSurveyBox(3)}>Survey 3 <button className='buttonforsave'>Save</button></div>
       {isActive === 3 ? 
       <div className='accordion-content'>
           <div className="Servey3" id='tabid3'  >

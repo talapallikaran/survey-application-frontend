@@ -99,3 +99,13 @@
     color: #fff;
   }
 
+  .buttonforsave{
+    color: white;
+    height: 40px;
+    position:absolute;
+    width: 50px;
+    margin-top: 15px;
+    margin-left: 1400px;
+    background-color: green;
+    border-radius: 12px;
+  }
