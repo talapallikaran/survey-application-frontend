@@ -10,9 +10,9 @@ const App = () => {
       <Header />
       <div className="accordion">
 
-        {accordionData.map(({ title, content }) => (
-          <Accordion1  key={title} title={title} content={content} />  
-        ))}
+        {/* {accordionData.map(({ title, content }) => ( */}
+          <Accordion1 />  
+        {/* ))} */}
         
 
       </div>
