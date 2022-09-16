@@ -1,0 +1,26 @@
+.main {
+    background-color: rgb(89, 146, 220);
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1%;
+}
+.main2{
+    display: flex;
+    justify-content:flex-start;
+}
+.pre {
+    padding:10%;
+    margin-left: 20%;
+}
+.hh {
+    color: white;
+    padding-left: 10%;
+}
+.main3 {
+    padding-right: 5%;
+}
+img{
+height: 60px;
+border-radius: 50%;
+margin-top: 13%;
+}

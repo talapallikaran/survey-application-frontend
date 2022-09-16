@@ -1,0 +1,37 @@
+.pres21 {
+    width: 50%;
+    border-radius: 5px;
+    height:715px;
+    margin-left: 25%;
+    background-color: rgba(245, 241, 241, 0.891);
+    margin-top: -3%;
+    border-radius: 0px 0px 15px 15px;
+    box-shadow: 4px 4px 4px rgba(156, 153, 153, 0.891);
+}
+.pres22 {
+    padding-top: 4%;
+}
+.aria {
+    border: 1px solid black;
+    background-color: rgba(245, 241, 241, 0.891);
+    height: 90px;
+    width: 350px;
+    border-radius: 10px;
+}
+.bolt {
+    border: 1px solid rgb(202, 198, 198);
+    padding: 4px;
+}
+.radio {
+    width: 3%;
+    height: 2em;
+   /*  visibility: hidden; */
+    /* -webkit-appearance:none; */
+}
+.number{
+    font-size: 18px;
+}
+.radio-list {
+    display: flex;
+    justify-content: center; 
+}
