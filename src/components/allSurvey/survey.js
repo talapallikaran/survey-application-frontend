@@ -1,51 +1,69 @@
 import React, { useState } from 'react';
 import './allSurvey.css';
-import { QuestionSurvey1, SurveyData1 } from './data'
+import { answers } from './data';
 
-const Survey = () => {
-  const [color1, setColor1] = useState(false);
+const Survey = (props) => {
+  const { title, questions, uid } = props;
 
+  const [isActive, setIsActive] = useState(1);
 
-  const showId = (id) => {
-
-    const weak = [1, 2, 3, 4];
-
-    id = weak ? setColor1(true) : null;
-
-    console.log(id)
+  const [ansData, setAnsData] = useState([]);
+  
+  const allData =(qId, qAns)=>{
+    let newAns = ansData.length === 0 ? setAnsData([{qid: qId, ans: qAns}]) : setAnsData(ansData => [...ansData, {qid: qId, ans: qAns}])
+    ;
   }
-
+  
+  const handleClick = (id) => {
+   // console.log("uid-------------------", id)
+  }
+  
+  console.log("Answers", ansData);
   return (
-    <div className='pres21'>
-      <div className='pres22'>
-
-        {
-          QuestionSurvey1.map((e, i) => {
-            return (
-              <div key={i}>
-                <p>{e.question}</p>
-                <div className='radio-list'>
-                  {
-                    SurveyData1.map((e, id) => {
-                      return (
-                        <div key={id} className='bolt' htmlFor={e.value} onClick={() => showId(id)}
-                          style={color1 ? { backgroundColor: `${e.color1}` } : { backgroundColor: 'rgba(245, 241, 241, 0.891)' }}>
-                          <input className='radio' type="radio" value={e.value} name="radio" id="radio1" /><b>{e.radio}</b>
-                        </div>
-                      )
-                    }
-                    )
-                  }
-                </div>
+    <div >
+      <div className='mains20' >
+        <div className='mains21'>
+          <div className='mains2' >
+            <div className='mains22'>
+              <div className='mains23'>
+                <p className='ps21'><b>✔</b></p>
+                <p className='ps22'><b>{title}</b></p>
               </div>
-            )
-          })
-        }
+              <div className='btn22'>
+                <button className='btn21' onClick={() => handleClick(uid)}><b>save</b></button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <p>Your Review</p>
-      <textarea className='aria'
-        name="textarea"
-      />
+      <div className='pres21'>
+        <div className='pres22'>
+          {
+            questions.map((question, id) => {
+              return (
+                <div key={id}>
+                  <p>{question.question}</p>
+                  <div className='bolt1'>
+                    {
+                      answers.map((e, ansId) => {
+                        return (
+                          <div key={ansId} className={`bolt btn${e.color} `} onClick={() => allData(question.id, ansId + 1)}>
+                            <input  className="radio" type="radio" value="1" name={`radio_${question.id}`} id="radio1" /><b>{e.radio}</b>
+                          </div>
+                        )
+                      })
+                    }
+                  </div>
+                </div>
+              )
+            })
+          }
+        </div>
+        <p>Your Review</p>
+        <textarea className='aria'
+          name="textarea"
+        />
+      </div>
     </div>
   )
 };

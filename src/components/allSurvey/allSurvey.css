@@ -35,3 +35,16 @@
     display: flex;
     justify-content: center; 
 }
+.bolt1 {
+    display: flex;
+    justify-content: center;
+}
+.btnRed.active{
+    background: #da1414;
+}
+.btnOrange.active{
+    background: #f2970d;
+}
+.btnGreen.active{
+    background: #11963e;
+}
