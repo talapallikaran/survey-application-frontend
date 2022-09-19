@@ -1,4 +1,4 @@
-.pres21 {
+.radio-main{
     width: 50%;
     border-radius: 5px;
     height:715px;
@@ -8,43 +8,54 @@
     border-radius: 0px 0px 15px 15px;
     box-shadow: 4px 4px 4px rgba(156, 153, 153, 0.891);
 }
-.pres22 {
+.radio-question {
     padding-top: 4%;
 }
-.aria {
-    border: 1px solid black;
-    background-color: rgba(245, 241, 241, 0.891);
-    height: 90px;
-    width: 350px;
-    border-radius: 10px;
+
+.survey-main {
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
-.bolt {
-    border: 1px solid rgb(202, 198, 198);
-    padding: 4px;
+.survey-container {
+  display: flex;
+  justify-content: center;
 }
-.radio {
-    width: 3%;
-    height: 2em;
-   /*  visibility: hidden; */
-    /* -webkit-appearance:none; */
+.survey-container-color{
+  background-color:#1a1a1a;
+  height: 50px;
+  width: 50%;
+  border-radius: 5px;
+  border-radius: 15px;
 }
-.number{
-    font-size: 18px;
+.survey-container-title1{
+  display: flex;
+  justify-content:space-between;
 }
-.radio-list {
-    display: flex;
-    justify-content: center; 
+.survey-container-title2 {
+  display: flex;
+  justify-content: flex-start;
 }
-.bolt1 {
-    display: flex;
-    justify-content: center;
+.survey-title1{
+  color: white;
+  padding-left: 45%;
 }
-.btnRed.active{
-    background: #da1414;
+.survey-title2{
+  color: white;
+  padding-left: 15%;
 }
-.btnOrange.active{
-    background: #f2970d;
+.survey-button-main {
+  margin-right: 3%;
 }
-.btnGreen.active{
-    background: #11963e;
+
+.red.active{
+  background-color: #;
+  color:#fff;
+}
+.orange.active{
+  background-color: orange;
+  color:#fff;
+}
+.green.active{
+  background-color: green;
+  color:#fff;
 }

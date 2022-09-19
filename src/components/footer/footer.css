@@ -1,4 +1,4 @@
-.mainf {
+.footer-main {
     position: fixed;
     left: 0;
     bottom: 10px;
@@ -9,16 +9,4 @@
     height: 50px;
     display: flex;
     justify-content:right;
-}
-.btn {
-    border-radius: 5px;
-    border: none;
-    background-color: rgb(160, 220, 160);
-    width: 120px;
-    margin: 9px;
-    color: white;
-    margin-right: 5%;
-}
-.btn:hover {
-    background-color: green;
 }

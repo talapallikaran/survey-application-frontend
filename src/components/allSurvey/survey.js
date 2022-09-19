@@ -1,69 +1,89 @@
 import React, { useState } from 'react';
 import './allSurvey.css';
+import '../../global.css';
 import { answers } from './data';
 
 const Survey = (props) => {
-  const { title, questions, uid } = props;
-
-  const [isActive, setIsActive] = useState(1);
-
+  const { title, questions, setTab, tabId, isActive } = props;
   const [ansData, setAnsData] = useState([]);
-  
-  const allData =(qId, qAns)=>{
-    let newAns = ansData.length === 0 ? setAnsData([{qid: qId, ans: qAns}]) : setAnsData(ansData => [...ansData, {qid: qId, ans: qAns}])
-    ;
+  const [changeBtnAndBgColor, setChangeBtnAndBgColor] = useState(false);
+
+  const openSurveyBox = () => {
+    setTab(tabId)
   }
-  
-  const handleClick = (id) => {
-   // console.log("uid-------------------", id)
+  const showSurveyData1 = () => {
+    setChangeBtnAndBgColor(!changeBtnAndBgColor);
+  };
+
+  const setAnsId = (qId, qAns) => {
+    let existingAns = ansData.filter((ans) => ans.qid === qId);
+    if (existingAns.length > 0) {
+      existingAns.forEach((f) => {
+        let ansDataInd = ansData.findIndex(e => e.qid === f.qid);
+        ansData[ansDataInd].ans = qAns + 1;
+      });
+      setAnsData([...ansData]);
+    } else {
+      ansData.length === 0 ? setAnsData([{ qid: qId, ans: qAns + 1 }]) :
+        setAnsData(ansData => [...ansData, { qid: qId, ans: qAns + 1 }]);
+    }
   }
-  
-  console.log("Answers", ansData);
+
   return (
     <div >
-      <div className='mains20' >
-        <div className='mains21'>
-          <div className='mains2' >
-            <div className='mains22'>
-              <div className='mains23'>
-                <p className='ps21'><b>✔</b></p>
-                <p className='ps22'><b>{title}</b></p>
+      <div className='survey-main' onClick={() => openSurveyBox()} >
+        <div className='survey-container'>
+          <div className='survey-container-color' style={changeBtnAndBgColor ? { backgroundColor: '#11963e' } :
+            { backgroundColor: '#1a1a1a' }}>
+            <div className='survey-container-title1'>
+              <div className='survey-container-title2'>
+                <p className='survey-title1'><b>✔</b></p>
+                <p className='survey-title2'><b>{title}</b></p>
               </div>
-              <div className='btn22'>
-                <button className='btn21' onClick={() => handleClick(uid)}><b>save</b></button>
+              <div className='survey-button-main'>
+                <button className='survey-button-save_saved' onClick={showSurveyData1}><b>{changeBtnAndBgColor ? "saved" : "save"}
+                </b></button>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className='pres21'>
-        <div className='pres22'>
-          {
-            questions.map((question, id) => {
-              return (
-                <div key={id}>
-                  <p>{question.question}</p>
-                  <div className='bolt1'>
-                    {
-                      answers.map((e, ansId) => {
-                        return (
-                          <div key={ansId} className={`bolt btn${e.color} `} onClick={() => allData(question.id, ansId + 1)}>
-                            <input  className="radio" type="radio" value="1" name={`radio_${question.id}`} id="radio1" /><b>{e.radio}</b>
-                          </div>
-                        )
-                      })
-                    }
+      { isActive?
+        <div className='radio-main'>
+          <div className='radio-question'>
+            {
+              questions.map((question, id) => {
+                return (
+                  <div key={id}>
+                    <p>{question.question}</p>
+                    <div className='radio-border'>
+                      {
+                        answers.map((e, ansId) => {
+                          let isActive = ansData.filter(qa => qa.qid === question.id);
+                          let btnActive = '';
+                          if (isActive.length > 0) {
+                            btnActive = ansId + 1 <= isActive[0].ans ? 'active' : '';
+                          }
+                          return (
+                            <div key={ansId} className={`radio ${ansId + 1 <= 4 ? `red` : ansId + 1 > 4 && ansId + 1 <= 7 ? `orange` : 'green'} ${btnActive}`} onClick={() => setAnsId(question.id, ansId)}>
+                              <input type="radio"  />
+                              <b>{e.radio}</b>
+                            </div>
+                          )
+                        })
+                      }
+                    </div>
                   </div>
-                </div>
-              )
-            })
-          }
+                )
+              })
+            }
+          </div>
+          <p>Your Review</p>
+          <textarea
+            name="textarea"
+          />
         </div>
-        <p>Your Review</p>
-        <textarea className='aria'
-          name="textarea"
-        />
-      </div>
+        : null}
     </div>
   )
 };

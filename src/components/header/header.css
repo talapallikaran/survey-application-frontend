@@ -1,26 +1,21 @@
-.main {
+.header-main {
     background-color: #6d72f2;
     display: flex;
     justify-content: space-between;
     margin-top: 1%;
 }
-.main2{
+.header-main-second{
     display: flex;
     justify-content:flex-start;
 }
-.pre {
+.title-logo {
     padding:10%;
     margin-left: 20%;
 }
-.hh {
+.title {
     color: white;
     padding-left: 10%;
 }
-.main3 {
+.header-img {
     padding-right: 5%;
-}
-img{
-height: 60px;
-border-radius: 50%;
-margin-top: 13%;
 }
