@@ -1,11 +1,17 @@
-import React from 'react';
-import './App.css';
+import React, { useState } from 'react';
 import Footer from './Accordion/footer';
 import Header from './Accordion/header';
 import { Surveys } from './Accordion/data'
 import Survey from './Accordion/accordion';
 
 const App = () => {
+
+  const [tabActive, setTabActive] = useState(0);
+
+  const setTab = (tabId) => {
+    setTabActive(tabId + 1)
+  }
+
   return (
     <div>
       <Header />
@@ -17,7 +23,9 @@ const App = () => {
                 <Survey
                   title={surveyData.title}
                   questions={surveyData.questions}
-                  uid={id}
+                  tabId={id}
+                  setTab={() => setTab(id)}
+                  isActive={tabActive === id}
                 />
               </div>
             )

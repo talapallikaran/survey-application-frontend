@@ -1,12 +1,12 @@
 import React from "react";
 import './style.css'
 
-function Textarea(){
+function Textarea() {
 
-    return(
+    return (
         <div>
-             <p>Your Review</p>
-            <textarea className='Review' name="textarea" />
+            <p>Your Review</p>
+            <textarea className='textareaReview' name="textarea" />
         </div>
 
     )
