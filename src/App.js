@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
@@ -9,7 +9,7 @@ function App() {
 
   const [tabActive, setTabActive] = useState(0);
   const setTab = (tabId) => {
-    setTabActive(tabId)
+    setTabActive(tabId + 1)
   }
 
   return (
@@ -25,8 +25,7 @@ function App() {
                     tabId={id}
                     title={surveyData.title}
                     questions={surveyData.questions}
-                    uid = {surveyData.id}
-                    setTab={() => setTab(id)}
+                    setTab={(id) => setTab(id)}
                     isActive={tabActive === id}
                   />
                 </div>

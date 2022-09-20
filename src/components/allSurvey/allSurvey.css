@@ -15,23 +15,20 @@
 .survey-main {
   margin-top: 2%;
   margin-bottom: 2%;
-}
-.survey-container {
   display: flex;
   justify-content: center;
 }
-.survey-container-color{
+
+.survey-container{
   background-color:#1a1a1a;
   height: 50px;
   width: 50%;
   border-radius: 5px;
   border-radius: 15px;
-}
-.survey-container-title1{
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
 }
-.survey-container-title2 {
+.survey-container-title {
   display: flex;
   justify-content: flex-start;
 }
