@@ -37,3 +37,51 @@
   }
 }
 
+.mainDiv1 {
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.mainDiv2 {
+  display: flex;
+  justify-content: center;
+}
+
+.mainDiv3 {
+  background-color: #1599b9;
+  height: 70px;
+  width: 85%;
+  border-radius: 5px;
+  border-radius: 15px;
+}
+
+.mainDiv4 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ClassForTitle {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.TitleName {
+  color: rgb(12, 1, 1);
+  padding-left: 20px;
+  padding-top: 18px;
+}
+
+.SaveButton {
+  color: white;
+  height: 50px;
+  position: absolute;
+  width: 70px;
+  margin-top: 6px;
+  margin-left: 1100px;
+  background-color: green;
+  border-radius: 12px;
+}
+
+.button {
+  margin-right: 3%;
+}
