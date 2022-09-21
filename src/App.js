@@ -12,8 +12,9 @@ function App() {
     setTabActive(tabId + 1)
   }
 
+const App = () => {
   return (
-    <div className="App">
+    <div>
       <Header />
       <div>
         <div>
@@ -34,8 +35,7 @@ function App() {
           }
         </div>
       </div>
-      <Footer
-      />
+      <Footer />
     </div>
   );
 };
