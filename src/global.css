@@ -1,0 +1,61 @@
+img{
+    height: 60px;
+    border-radius: 50%;
+    margin-top: 13%;
+    }
+input {
+     display: none;
+  }
+textarea {
+    border: 1px solid black;
+    background-color: rgba(245, 241, 241, 0.891);
+    height: 90px;
+    width: 350px;
+    border-radius: 10px;
+  }
+.survey-button-save_saved {
+    margin: 10%;
+    border: none;
+    border-radius: 5px;
+    width: 100px;
+    height: 30px;
+  }
+  
+.footer-btn {
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(160, 220, 160);
+    width: 120px;
+    margin: 9px;
+    color: white;
+    margin-right: 5%;
+}
+.footer-btn:hover {
+    background-color: green;
+}
+
+.number{
+    font-size: 18px;
+}
+.radio-border {
+    display: flex;
+    justify-content: center;
+}
+.radio{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    border-left: none;
+    padding:10px 15px;
+    cursor: pointer;
+}
+
+.radio:first-child{
+    border-left: 1px solid #ddd;
+}
+
+.radio-list {
+    border: 1px solid rgb(202, 198, 198);
+    padding: 4px;
+}

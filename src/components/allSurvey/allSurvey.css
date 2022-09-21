@@ -1,0 +1,61 @@
+.radio-main{
+    width: 50%;
+    border-radius: 5px;
+    height:715px;
+    margin-left: 25%;
+    background-color: rgba(245, 241, 241, 0.891);
+    margin-top: -3%;
+    border-radius: 0px 0px 15px 15px;
+    box-shadow: 4px 4px 4px rgba(156, 153, 153, 0.891);
+}
+.radio-question {
+    padding-top: 4%;
+}
+
+.survey-main {
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+.survey-container {
+  display: flex;
+  justify-content: center;
+}
+.survey-container-color{
+  background-color:#1a1a1a;
+  height: 50px;
+  width: 50%;
+  border-radius: 5px;
+  border-radius: 15px;
+}
+.survey-container-title1{
+  display: flex;
+  justify-content:space-between;
+}
+.survey-container-title2 {
+  display: flex;
+  justify-content: flex-start;
+}
+.survey-title1{
+  color: white;
+  padding-left: 45%;
+}
+.survey-title2{
+  color: white;
+  padding-left: 15%;
+}
+.survey-button-main {
+  margin-right: 3%;
+}
+
+.red.active{
+  background-color: #da1414;
+  color:#fff;
+}
+.orange.active{
+  background-color: orange;
+  color:#fff;
+}
+.green.active{
+  background-color: green;
+  color:#fff;
+}
