@@ -9,28 +9,121 @@ const Survey = (props) => {
   const { title, questions, setTab, tabId, isActive } = props;
   const [ansData, setAnsData] = useState([]);
   const [changeBtnAndBgColor, setChangeBtnAndBgColor] = useState(false);
+  const [surveyId1, setSurveyId1] = useState(tabId + 1)
+  // const [surveyData, setSurveyData] = useState([])
   const [values, setValues] = useState({
-    textarea: '',
-  });
-  
+    ansData: [
+      {
+        qid: 1,
+        ans: 0
+      },
+      {
+        qid: 2,
+        ans: 0
+      },
+      {
+        qid: 3,
+        ans: 0
+      },
+      {
+        qid: 4,
+        ans: 0
+      },
+      {
+        qid: 5,
+        ans: 0
+      }
+    ],
+    review: '',
+    surveyId: ""
+  })
 
+  const handleChange = (event) => {
+    const question = event.target.name;
+    // const ans = event.target.value;
+    const SurveyNumber = tabId
+    let q1, q2,q3,q4,q5,review,surveyId;
 
-  const handleChange =
-    (prop) => (event) => {
-      setValues({ ...values, [prop]: event.target.value });
-    };
+    
+    if (question == 1) {
+      q1 = event.target.value
+      console.log("q1----", q1);
+    }
+    if (question == 2) {
+      q2 = event.target.value
+      q1 = event.target.value
+      console.log("q1----", q2,q1);
+    }
+    if (question == 3) {
+      q3 = event.target.value;
+      q2 = event.target.value
+      q1 = event.target.value
+      console.log("q1----", q3,q2,q1);
+    }
+    if (question == 4) {
+      q4 = event.target.value;
+      q3 = event.target.value;
+      q2 = event.target.value
+      q1 = event.target.value
+      console.log("q1----", q4,q3,q2,q1);
+    }
+    if (question == 5) {
+      q4 = event.target.value;
+      q3 = event.target.value;
+      q2 = event.target.value
+      q1 = event.target.value
+      q5 = event.target.value;
+      console.log("q1----", q5,q4,q3,q2,q1);
+    }
+    if (question == review) {
+      console.log(review);
+      review = event.target.value;
+      console.log("q1----", review);
+    }
+    if (question == SurveyNumber) {
+      surveyId = SurveyNumber
+      console.log("q1----", surveyId);
+    }
+    console.log('ans-------', q1,q2,q3,q4,q5, review);
+    setValues({
+      ansData: [
+        {
+          qid: 1,
+          ans: q1
+        },
+        {
+          qid: 2,
+          ans: q2
+        },
+        {
+          qid: 3,
+          ans: q3
+        },
+        {
+          qid: 4,
+          ans: q4
+        },
+        {
+          qid: 5,
+          ans: q5
+        },
+      ]
+    })
+  }
+
 
   const openSurveyBox = () => {
+    setSurveyId1(surveyId1)
     setTab(tabId)
     setChangeBtnAndBgColor(!changeBtnAndBgColor);
-
+    //console.log(values, { SurveyId: surveyId1 });
   }
 
 
   const setAnsId = (qId, qAns) => {
     let existingAns = ansData.filter((ans) => ans.qid === qId);
     if (existingAns.length > 0) {
-      existingAns.filter((f) => {
+      existingAns.forEach((f) => {
         let ansDataInd = ansData.findIndex(e => e.qid === f.qid);
         ansData[ansDataInd].ans = qAns + 1;
       });
@@ -40,6 +133,8 @@ const Survey = (props) => {
         setAnsData(ansData => [...ansData, { qid: qId, ans: qAns + 1 }]);
     }
   }
+
+ // console.log('values-------', values);
 
   return (
     <div >
@@ -51,10 +146,10 @@ const Survey = (props) => {
             <p className='survey-title2'><b>{title}</b></p>
           </div>
           <div className='survey-button-main'>
-            <button className='survey-button-save_saved' onClick={() => openSurveyBox()} disabled={!values.textarea}><b>{changeBtnAndBgColor ? "saved" : "save"}
-            </b></button>
 
-
+            {
+              changeBtnAndBgColor ? <button className='survey-button-save_saved' onClick={() => openSurveyBox()} disabled={values.review}><b>Saved</b></button> : <button className='survey-button-save_saved' onClick={() => openSurveyBox()} disabled={!values.review}><b>Save</b></button>
+            }
           </div>
         </div>
       </div>
@@ -76,12 +171,12 @@ const Survey = (props) => {
                             btnActive = ansId + 1 <= isActive[0].ans ? 'active' : '';
                           }
                           return (
-                            <div key={ansId} className={`radio ${ansId + 1 <= 4 ? `red` : ansId + 1 > 4 && ansId + 1 <= 7 ? `orange` : 'green'} ${btnActive}`} onClick={() => setAnsId(question.id, ansId)}>
+                            <div key={ansId} className={`radio ${ansId + 1 <= 4 ? `red` : ansId + 1 > 4 && ansId + 1 <= 7 ? `orange` : 'green'} ${btnActive}`} name={e.radio} onClick={() => setAnsId(question.id, ansId)} >
                               <input
                                 type="radio"
-                                name={e.radio}
+                                name={question.id}
                                 value={e.value}
-                                
+                                onChange={handleChange}
                               />
                               <b>{e.radio}</b>
                             </div>
@@ -96,9 +191,10 @@ const Survey = (props) => {
           </div>
           <p>Your Review</p>
           <textarea
-            value={values.textarea}
-            onChange={handleChange('textarea')}
             type="textarea"
+            value={values.review}
+            name="review"
+            onChange={handleChange}
           />
 
         </div>
