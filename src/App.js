@@ -5,14 +5,14 @@ import Footer from './components/footer/footer';
 import Survey from './components/allSurvey/survey';
 import { Surveys } from './components/allSurvey/data'
 
-function App() {
+
+const App = () => {
 
   const [tabActive, setTabActive] = useState(0);
   const setTab = (tabId) => {
     setTabActive(tabId + 1)
   }
 
-const App = () => {
   return (
     <div>
       <Header />

@@ -1,36 +1,41 @@
-img{
+img {
     height: 60px;
     border-radius: 50%;
     margin-top: 13%;
-    }
+}
+
 input {
-    /*  display:none; */
-    padding: 20px;
-    border: none;
-    border-style: none;
-  }
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    opacity: 0;
+    cursor: pointer;
+}
+
 textarea {
     border: 1px solid black;
     background-color: rgba(245, 241, 241, 0.891);
     height: 90px;
     width: 350px;
     border-radius: 10px;
-  }
+}
+
 .survey-button-save_saved {
     margin: 10%;
     border: none;
     border-radius: 5px;
     width: 100px;
     height: 30px;
-  }
-button:disabled,
-button[disabled]{
-  border: 1px solid #999999;
-  background-color: #cccccc;
-  color: #666666;
-  cursor: not-allowed;
 }
-  
+
+button:disabled,
+button[disabled] {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+}
+
 .footer-btn {
     border-radius: 5px;
     border: none;
@@ -40,28 +45,32 @@ button[disabled]{
     color: white;
     margin-right: 5%;
 }
+
 .footer-btn:hover {
     background-color: green;
 }
 
-.number{
+.number {
     font-size: 18px;
 }
+
 .radio-border {
     display: flex;
     justify-content: center;
 }
-.radio{
+
+.radio {
     display: flex;
     align-items: center;
     justify-content: center;
     border: 1px solid #ddd;
     border-left: none;
-    padding:10px 15px;
-    cursor: pointer;
+    position: relative;
+    padding: 10px 15px;
+
 }
 
-.radio:first-child{
+.radio:first-child {
     border-left: 1px solid #ddd;
 }
 

@@ -3,112 +3,32 @@ import './allSurvey.css';
 import '../../global.css';
 import { answers } from './data';
 
-
-
 const Survey = (props) => {
   const { title, questions, setTab, tabId, isActive } = props;
   const [ansData, setAnsData] = useState([]);
   const [changeBtnAndBgColor, setChangeBtnAndBgColor] = useState(false);
   const [surveyId1, setSurveyId1] = useState(tabId + 1)
-  // const [surveyData, setSurveyData] = useState([])
+  const [radioValue, setRadioValue] = useState([])
+  const [surveyAllData, setSurveyAllData] = useState({})
   const [values, setValues] = useState({
     ansData: [
       {
-        qid: 1,
-        ans: 0
-      },
-      {
-        qid: 2,
-        ans: 0
-      },
-      {
-        qid: 3,
-        ans: 0
-      },
-      {
-        qid: 4,
-        ans: 0
-      },
-      {
-        qid: 5,
+        qid: 0,
         ans: 0
       }
     ],
     review: '',
-    surveyId: ""
   })
+  const handleChange =
+    (name) => (event) => {
+      setValues({ ...values, [name]: event.target.value });
+    };
 
-  const handleChange = (event) => {
+  const handleRadioChange = (event) => {
     const question = event.target.name;
-    // const ans = event.target.value;
-    const SurveyNumber = tabId
-    let q1, q2,q3,q4,q5,review,surveyId;
-
-    
-    if (question == 1) {
-      q1 = event.target.value
-      console.log("q1----", q1);
-    }
-    if (question == 2) {
-      q2 = event.target.value
-      q1 = event.target.value
-      console.log("q1----", q2,q1);
-    }
-    if (question == 3) {
-      q3 = event.target.value;
-      q2 = event.target.value
-      q1 = event.target.value
-      console.log("q1----", q3,q2,q1);
-    }
-    if (question == 4) {
-      q4 = event.target.value;
-      q3 = event.target.value;
-      q2 = event.target.value
-      q1 = event.target.value
-      console.log("q1----", q4,q3,q2,q1);
-    }
-    if (question == 5) {
-      q4 = event.target.value;
-      q3 = event.target.value;
-      q2 = event.target.value
-      q1 = event.target.value
-      q5 = event.target.value;
-      console.log("q1----", q5,q4,q3,q2,q1);
-    }
-    if (question == review) {
-      console.log(review);
-      review = event.target.value;
-      console.log("q1----", review);
-    }
-    if (question == SurveyNumber) {
-      surveyId = SurveyNumber
-      console.log("q1----", surveyId);
-    }
-    console.log('ans-------', q1,q2,q3,q4,q5, review);
-    setValues({
-      ansData: [
-        {
-          qid: 1,
-          ans: q1
-        },
-        {
-          qid: 2,
-          ans: q2
-        },
-        {
-          qid: 3,
-          ans: q3
-        },
-        {
-          qid: 4,
-          ans: q4
-        },
-        {
-          qid: 5,
-          ans: q5
-        },
-      ]
-    })
+    const ans = event.target.value;
+    setValues({ qId: question, ans: ans })
+    setRadioValue(ansData => [...ansData, { qId: question, ans: ans }]);
   }
 
 
@@ -116,9 +36,9 @@ const Survey = (props) => {
     setSurveyId1(surveyId1)
     setTab(tabId)
     setChangeBtnAndBgColor(!changeBtnAndBgColor);
-    //console.log(values, { SurveyId: surveyId1 });
+    setSurveyAllData({ radio: radioValue, SurveyId: surveyId1, review: values.review });
   }
-
+  console.log(surveyAllData);
 
   const setAnsId = (qId, qAns) => {
     let existingAns = ansData.filter((ans) => ans.qid === qId);
@@ -133,8 +53,6 @@ const Survey = (props) => {
         setAnsData(ansData => [...ansData, { qid: qId, ans: qAns + 1 }]);
     }
   }
-
- // console.log('values-------', values);
 
   return (
     <div >
@@ -171,12 +89,14 @@ const Survey = (props) => {
                             btnActive = ansId + 1 <= isActive[0].ans ? 'active' : '';
                           }
                           return (
-                            <div key={ansId} className={`radio ${ansId + 1 <= 4 ? `red` : ansId + 1 > 4 && ansId + 1 <= 7 ? `orange` : 'green'} ${btnActive}`} name={e.radio} onClick={() => setAnsId(question.id, ansId)} >
+                            <div key={ansId} className={`radio ${ansId + 1 <= 4 ? `red` : ansId + 1 > 4 && ansId + 1 <= 7 ? `orange` : 'green'} ${btnActive}`}
+                              name={question.id} onClick={() => setAnsId(question.id, ansId)} htmlFor='radio1'>
                               <input
+                                id='radio1'
                                 type="radio"
                                 name={question.id}
                                 value={e.value}
-                                onChange={handleChange}
+                                onChange={handleRadioChange}
                               />
                               <b>{e.radio}</b>
                             </div>
@@ -189,12 +109,12 @@ const Survey = (props) => {
               })
             }
           </div>
-          <p>Your Review</p>
+          <p >Your Review</p>
           <textarea
-            type="textarea"
             value={values.review}
+            onChange={handleChange("review")}
+            type="textarea"
             name="review"
-            onChange={handleChange}
           />
 
         </div>
