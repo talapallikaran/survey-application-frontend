@@ -8,9 +8,9 @@
     display: flex;
     justify-content:flex-start;
 }
-.title-logo {
-    padding:10%;
+.title-Img {
     margin-left: 20%;
+    margin-top: 6px;
 }
 .title {
     color: white;

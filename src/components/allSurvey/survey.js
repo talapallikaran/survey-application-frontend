@@ -145,7 +145,7 @@ const Survey = (props) => {
             <p className='survey-title1'><b>✔</b></p>
             <p className='survey-title2'><b>{title}</b></p>
           </div>
-          <div className='survey-button-main'>
+          <div className='survey-button-main'>                                                                                        
 
             {
               changeBtnAndBgColor ? <button className='survey-button-save_saved' onClick={() => openSurveyBox()} disabled={values.review}><b>Saved</b></button> : <button className='survey-button-save_saved' onClick={() => openSurveyBox()} disabled={!values.review}><b>Save</b></button>
