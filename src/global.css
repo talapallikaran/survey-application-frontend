@@ -18,6 +18,7 @@ textarea {
     height: 90px;
     width: 350px;
     border-radius: 10px;
+    margin-right: 500px;
 }
 
 .survey-button-save_saved {
@@ -57,6 +58,7 @@ button[disabled] {
 .radio-border {
     display: flex;
     justify-content: center;
+    margin-right: 480px;
 }
 
 .radio {
@@ -77,4 +79,8 @@ button[disabled] {
 .radio-list {
     border: 1px solid rgb(202, 198, 198);
     padding: 4px;
+}
+
+.review-text {
+    margin-right: 780px;
 }

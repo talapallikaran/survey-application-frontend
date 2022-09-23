@@ -2,20 +2,25 @@
     background-color: #6d72f2;
     display: flex;
     justify-content: space-between;
-    margin-top: 1%;
+    position: fixed;
+    padding-right: 1750px;
 }
-.header-main-second{
+
+.header-main-second {
     display: flex;
-    justify-content:flex-start;
+    justify-content: flex-start;
 }
+
 .title-logo {
-    padding:10%;
+    padding: 10%;
     margin-left: 20%;
 }
+
 .title {
     color: white;
     padding-left: 10%;
 }
+
 .header-img {
-    padding-right: 5%;
+    padding-left: 1700px;
 }

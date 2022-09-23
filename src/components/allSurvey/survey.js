@@ -10,6 +10,8 @@ const Survey = (props) => {
   const [surveyId1, setSurveyId1] = useState(tabId + 1)
   const [radioValue, setRadioValue] = useState([])
   const [surveyAllData, setSurveyAllData] = useState({})
+  const [errormsg, setErrormsg] = useState('');
+
   const [values, setValues] = useState({
     ansData: [
       {
@@ -19,6 +21,7 @@ const Survey = (props) => {
     ],
     review: '',
   })
+
   const handleChange =
     (name) => (event) => {
       setValues({ ...values, [name]: event.target.value });
@@ -31,14 +34,16 @@ const Survey = (props) => {
     setRadioValue(ansData => [...ansData, { qId: question, ans: ans }]);
   }
 
-
   const openSurveyBox = () => {
     setSurveyId1(surveyId1)
     setTab(tabId)
     setChangeBtnAndBgColor(!changeBtnAndBgColor);
     setSurveyAllData({ radio: radioValue, SurveyId: surveyId1, review: values.review });
+
   }
+
   console.log(surveyAllData);
+
 
   const setAnsId = (qId, qAns) => {
     let existingAns = ansData.filter((ans) => ans.qid === qId);
@@ -55,7 +60,7 @@ const Survey = (props) => {
   }
 
   return (
-    <div >
+    <div>
       <div className='survey-main'>
         <div className='survey-container' style={changeBtnAndBgColor ? { backgroundColor: '#11963e' } :
           { backgroundColor: '#1a1a1a' }}>
@@ -66,7 +71,8 @@ const Survey = (props) => {
           <div className='survey-button-main'>
 
             {
-              changeBtnAndBgColor ? <button className='survey-button-save_saved' onClick={() => openSurveyBox()} disabled={values.review}><b>Saved</b></button> : <button className='survey-button-save_saved' onClick={() => openSurveyBox()} disabled={!values.review}><b>Save</b></button>
+              changeBtnAndBgColor ? <button className='survey-button-save_saved' onClick={() => openSurveyBox()} disabled={values.review || values.ansData}><b>Saved</b></button>
+                : <button className='survey-button-save_saved' onClick={() => openSurveyBox()} disabled={!values.review || values.ansData}><b>Save</b></button>
             }
           </div>
         </div>
@@ -97,6 +103,7 @@ const Survey = (props) => {
                                 name={question.id}
                                 value={e.value}
                                 onChange={handleRadioChange}
+                                required
                               />
                               <b>{e.radio}</b>
                             </div>
@@ -109,7 +116,8 @@ const Survey = (props) => {
               })
             }
           </div>
-          <p >Your Review</p>
+          <p className='review-text'>Your Review</p>
+
           <textarea
             value={values.review}
             onChange={handleChange("review")}
