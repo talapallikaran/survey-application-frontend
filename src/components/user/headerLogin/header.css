@@ -1,0 +1,21 @@
+.header-main {
+    background-color: #6d72f2;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1%;
+}
+.header-main-second{
+    display: flex;
+    justify-content:flex-start;
+}
+.title-logo {
+    padding:10%;
+    margin-left: 20%;
+}
+.title {
+    color: white;
+    padding-left: 10%;
+}
+.header-img {
+    padding-right: 5%;
+}

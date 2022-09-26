@@ -5,9 +5,9 @@ img{
     }
 input {
     /*  display:none; */
-    padding: 20px;
+    /* padding: 20px;
     border: none;
-    border-style: none;
+    border-style: none; */
   }
 textarea {
     border: 1px solid black;
