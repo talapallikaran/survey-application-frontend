@@ -10,7 +10,6 @@ const Survey = (props) => {
   const [surveyId1, setSurveyId1] = useState(tabId + 1)
   const [radioValue, setRadioValue] = useState([])
   const [surveyAllData, setSurveyAllData] = useState({})
-  const [errormsg, setErrormsg] = useState('');
 
   const [values, setValues] = useState({
     ansData: [
@@ -39,7 +38,6 @@ const Survey = (props) => {
     setTab(tabId)
     setChangeBtnAndBgColor(!changeBtnAndBgColor);
     setSurveyAllData({ radio: radioValue, SurveyId: surveyId1, review: values.review });
-
   }
 
   console.log(surveyAllData);
@@ -68,11 +66,11 @@ const Survey = (props) => {
             <p className='survey-title1'><b>✔</b></p>
             <p className='survey-title2'><b>{title}</b></p>
           </div>
-          <div className='survey-button-main'>                                                                                        
+          <div className='survey-button-main'>
 
             {
-              changeBtnAndBgColor ? <button className='survey-button-save_saved' onClick={() => openSurveyBox()} disabled={values.review || values.ansData}><b>Saved</b></button>
-                : <button className='survey-button-save_saved' onClick={() => openSurveyBox()} disabled={!values.review || values.ansData}><b>Save</b></button>
+              changeBtnAndBgColor ? <button className='survey-button-save_saved' onClick={() => openSurveyBox()} disabled><b>Saved</b></button>
+                : <button className='survey-button-save_saved' onClick={() => openSurveyBox()} disabled={!values.review || radioValue.length < 5}><b>Save</b></button>
             }
           </div>
         </div>

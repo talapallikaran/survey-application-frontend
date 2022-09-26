@@ -1,14 +1,15 @@
 .header-main {
     background-color: #6d72f2;
     padding-right: 1750px;
-    display: flex;
     position: fixed;
+    margin-top: -35px;
 }
 
 .header-main-second {
     display: flex;
     justify-content: flex-start;
 }
+
 .title-logo {
     padding: 10%;
     margin-left: 20%;
