@@ -17,7 +17,7 @@ const SurveyApp = () => {
         <div>
             <Header />
             {
-                Surveys.map((surveyData, id) => {
+                Surveys && Surveys.length > 0 && Surveys.map((surveyData, id) => {
                     return (
                         <div key={id}>
                             <Survey
