@@ -16,9 +16,9 @@ textarea {
     border: 1px solid black;
     background-color: rgba(245, 241, 241, 0.891);
     height: 90px;
-    width: 350px;
+    width: 500px;
     border-radius: 10px;
-    margin-right: 500px;
+    margin-right: 230px;
 }
 
 .survey-button-save_saved {
@@ -44,7 +44,7 @@ button[disabled] {
     width: 120px;
     margin: 9px;
     color: white;
-    margin-right: 470px;
+    margin-right: 530px;
 }
 
 .footer-btn:hover {
@@ -58,7 +58,7 @@ button[disabled] {
 .radio-border {
     display: flex;
     justify-content: center;
-    margin-right: 480px;
+    margin-right: 160px;
 }
 
 .radio {
@@ -67,7 +67,7 @@ button[disabled] {
     justify-content: center;
     border: 1px solid #ddd;
     border-left: none;
-    padding: 10px 15px;
+    padding: 10px 25px;
 }
 
 .radio:first-child {
@@ -80,5 +80,5 @@ button[disabled] {
 }
 
 .review-text {
-    margin-right: 780px;
+    margin-right: 680px;
 }

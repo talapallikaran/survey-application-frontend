@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useState } from 'react';
 import './allSurvey.css';
 import '../../global.css';
 import { answers } from './data';
@@ -7,9 +8,9 @@ const Survey = (props) => {
   const { title, questions, setTab, tabId, isActive } = props;
   const [ansData, setAnsData] = useState([]);
   const [changeBtnAndBgColor, setChangeBtnAndBgColor] = useState(false);
-  const [surveyId1, setSurveyId1] = useState(tabId + 1)
-  const [radioValue, setRadioValue] = useState([])
-  const [surveyAllData, setSurveyAllData] = useState({})
+  const [surveyId1, setSurveyId1] = useState(tabId + 1);
+  const [radioValue, setRadioValue] = useState([]);
+  const [surveyAllData, setSurveyAllData] = useState({});
 
   const [values, setValues] = useState({
     ansData: [
@@ -103,7 +104,7 @@ const Survey = (props) => {
                                 onChange={handleRadioChange}
                                 required
                               />
-                              <b>{e.radio}</b>
+                              <b>{e.value}</b>
                             </div>
                           )
                         })
