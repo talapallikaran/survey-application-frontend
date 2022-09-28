@@ -22,6 +22,7 @@ const Survey = (props) => {
     review: '',
   })
 
+
   const handleChange =
     (name) => (event) => {
       setValues({ ...values, [name]: event.target.value });
@@ -30,8 +31,10 @@ const Survey = (props) => {
   const handleRadioChange = (event) => {
     const question = event.target.name;
     const ans = event.target.value;
+
     setValues({ qId: question, ans: ans })
     setRadioValue(ansData => [...ansData, { qId: question, ans: ans }]);
+  //  console.log("answer--------" , ans);
   }
 
   const openSurveyBox = () => {
@@ -39,8 +42,9 @@ const Survey = (props) => {
     setTab(tabId)
     setChangeBtnAndBgColor(!changeBtnAndBgColor);
     setSurveyAllData({ radio: radioValue, SurveyId: surveyId1, review: values.review });
-  }
+   // console.log("radiovalue----" , radioValue);
 
+  }
   console.log(surveyAllData);
 
 
@@ -52,6 +56,7 @@ const Survey = (props) => {
         ansData[ansDataInd].ans = qAns + 1;
       });
       setAnsData([...ansData]);
+      
     } else {
       ansData.length === 0 ? setAnsData([{ qid: qId, ans: qAns + 1 }]) :
         setAnsData(ansData => [...ansData, { qid: qId, ans: qAns + 1 }]);
@@ -71,7 +76,7 @@ const Survey = (props) => {
 
             {
               changeBtnAndBgColor ? <button className='survey-button-save_saved' onClick={() => openSurveyBox()} disabled><b>Saved</b></button>
-                : <button className='survey-button-save_saved' onClick={() => openSurveyBox()} disabled={!values.review || radioValue.length < 5}><b>Save</b></button>
+                : <button className='survey-button-save_saved' onClick={() => openSurveyBox()} disabled={values.review || radioValue.length < 5} ><b>Save</b></button>
             }
           </div>
         </div>
