@@ -3,6 +3,7 @@ import Header from './headerLogin/header';
 import { useNavigate } from 'react-router-dom';
 import './login.css';
 import UserFooter from './userFooter/userFooter';
+import '../../global.css'
 
 const Login = () => {
     const navigate = useNavigate();
@@ -35,27 +36,30 @@ const Login = () => {
         <div>
             <Header />
             <div className='form-container'>
-                <div className='login-wrapper'>
-                    <h2>Login</h2>
-                    <div className='form-group'>
-                        <label>Email</label>
-                        <input
-                            type="email"
-                            className='input-field'
-                            value={values.email}
-                            onChange={handleChange('email')}
-                            required
+                <div className='login-container'>
+                    <div className='login-wrapper'>
+                        <h2>Login</h2>
+                        <div className='form-group'>
+                            <label>Email</label><br />
+                            <input
+                                type="email"
+                                className='input-field'
+                                value={values.email}
+                                onChange={handleChange('email')}
+                                required
 
-                        />
-                        <label>Password</label>
-                        <input
-                            type="password"
-                            value={values.password}
-                            onChange={handleChange('password')}
-                            required />
+                            />
+                            <label>Password</label><br />
+                            <input
+                                type="password"
+                                className='input-field'
+                                value={values.password}
+                                onChange={handleChange('password')}
+                                required />
 
-                        <a className="reset-link" href='/SignIn'>ResetPassword?</a>
-                        <button className='login-btn' onClick={Submit}>Login</button>
+                            <a className="reset-link" href='/SignIn'>ResetPassword?</a>
+                            <button className='login-btn' onClick={Submit}>Login</button>
+                        </div>
                     </div>
                 </div>
             </div>

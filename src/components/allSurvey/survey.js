@@ -11,39 +11,32 @@ const Survey = (props) => {
   const [surveyId1, setSurveyId1] = useState(tabId + 1);
   const [radioValue, setRadioValue] = useState([]);
   const [surveyAllData, setSurveyAllData] = useState({});
-
+  const [text, setText] = useState();
   const [values, setValues] = useState({
     ansData: [
       {
         qid: 0,
         ans: 0
       }
-    ],
-    review: '',
+    ]
   })
 
-
-  const handleChange =
-    (name) => (event) => {
-      setValues({ ...values, [name]: event.target.value });
-    };
+  const handleChange = (event) => {
+    setText(event.target.value);
+  };
 
   const handleRadioChange = (event) => {
     const question = event.target.name;
     const ans = event.target.value;
-
     setValues({ qId: question, ans: ans })
     setRadioValue(ansData => [...ansData, { qId: question, ans: ans }]);
-  //  console.log("answer--------" , ans);
   }
 
   const openSurveyBox = () => {
     setSurveyId1(surveyId1)
     setTab(tabId)
     setChangeBtnAndBgColor(!changeBtnAndBgColor);
-    setSurveyAllData({ radio: radioValue, SurveyId: surveyId1, review: values.review });
-   // console.log("radiovalue----" , radioValue);
-
+    setSurveyAllData({ radio: radioValue, SurveyId: surveyId1, review: text });
   }
   console.log(surveyAllData);
 
@@ -56,7 +49,6 @@ const Survey = (props) => {
         ansData[ansDataInd].ans = qAns + 1;
       });
       setAnsData([...ansData]);
-      
     } else {
       ansData.length === 0 ? setAnsData([{ qid: qId, ans: qAns + 1 }]) :
         setAnsData(ansData => [...ansData, { qid: qId, ans: qAns + 1 }]);
@@ -76,7 +68,7 @@ const Survey = (props) => {
 
             {
               changeBtnAndBgColor ? <button className='survey-button-save_saved' onClick={() => openSurveyBox()} disabled><b>Saved</b></button>
-                : <button className='survey-button-save_saved' onClick={() => openSurveyBox()} disabled={values.review || radioValue.length < 5} ><b>Save</b></button>
+                : <button className='survey-button-save_saved' onClick={() => openSurveyBox()} disabled={radioValue.length < 5 || !text} ><b>Save</b></button>
             }
           </div>
         </div>
@@ -123,8 +115,8 @@ const Survey = (props) => {
           <p className='review-text'>Your Review</p>
 
           <textarea
-            value={values.review}
-            onChange={handleChange("review")}
+            value={text}
+            onChange={handleChange}
             type="textarea"
             name="review"
           />
