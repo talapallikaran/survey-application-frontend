@@ -1,126 +1,31 @@
 import React, { useState } from 'react';
+import { useDispatch } from "react-redux";
+import { mainSurveyData } from '../../redux/action/action';
 import './allSurvey.css';
 import '../../global.css';
 import { answers } from './data';
-
-
 
 const Survey = (props) => {
   const { title, questions, setTab, tabId, isActive } = props;
   const [ansData, setAnsData] = useState([]);
   const [changeBtnAndBgColor, setChangeBtnAndBgColor] = useState(false);
   const [surveyId1, setSurveyId1] = useState(tabId + 1)
-  // const [surveyData, setSurveyData] = useState([])
-  const [values, setValues] = useState({
-    ansData: [
-      {
-        qid: 1,
-        ans: 0
-      },
-      {
-        qid: 2,
-        ans: 0
-      },
-      {
-        qid: 3,
-        ans: 0
-      },
-      {
-        qid: 4,
-        ans: 0
-      },
-      {
-        qid: 5,
-        ans: 0
-      }
-    ],
-    review: '',
-    surveyId: ""
-  })
+  const [text, setText] = useState();
+  const dispatch = useDispatch();
 
-  const handleChange = (event) => {
-    const question = event.target.name;
-    // const ans = event.target.value;
-    const SurveyNumber = tabId
-    let q1, q2,q3,q4,q5,review,surveyId;
-
-    
-    if (question == 1) {
-      q1 = event.target.value
-      console.log("q1----", q1);
-    }
-    if (question == 2) {
-      q2 = event.target.value
-      q1 = event.target.value
-      console.log("q1----", q2,q1);
-    }
-    if (question == 3) {
-      q3 = event.target.value;
-      q2 = event.target.value
-      q1 = event.target.value
-      console.log("q1----", q3,q2,q1);
-    }
-    if (question == 4) {
-      q4 = event.target.value;
-      q3 = event.target.value;
-      q2 = event.target.value
-      q1 = event.target.value
-      console.log("q1----", q4,q3,q2,q1);
-    }
-    if (question == 5) {
-      q4 = event.target.value;
-      q3 = event.target.value;
-      q2 = event.target.value
-      q1 = event.target.value
-      q5 = event.target.value;
-      console.log("q1----", q5,q4,q3,q2,q1);
-    }
-    if (question == review) {
-      console.log(review);
-      review = event.target.value;
-      console.log("q1----", review);
-    }
-    if (question == SurveyNumber) {
-      surveyId = SurveyNumber
-      console.log("q1----", surveyId);
-    }
-    console.log('ans-------', q1,q2,q3,q4,q5, review);
-    setValues({
-      ansData: [
-        {
-          qid: 1,
-          ans: q1
-        },
-        {
-          qid: 2,
-          ans: q2
-        },
-        {
-          qid: 3,
-          ans: q3
-        },
-        {
-          qid: 4,
-          ans: q4
-        },
-        {
-          qid: 5,
-          ans: q5
-        },
-      ]
-    })
+  const handleChangeText = (e) => {
+    setText(e.target.value)
   }
-
 
   const openSurveyBox = () => {
+    setChangeBtnAndBgColor(!changeBtnAndBgColor);
     setSurveyId1(surveyId1)
     setTab(tabId)
-    setChangeBtnAndBgColor(!changeBtnAndBgColor);
-    //console.log(values, { SurveyId: surveyId1 });
-  }
-
+    dispatch(mainSurveyData({ SurveyId: surveyId1, radio: ansData, review: text }));
+  };
 
   const setAnsId = (qId, qAns) => {
+
     let existingAns = ansData.filter((ans) => ans.qid === qId);
     if (existingAns.length > 0) {
       existingAns.forEach((f) => {
@@ -132,9 +37,8 @@ const Survey = (props) => {
       ansData.length === 0 ? setAnsData([{ qid: qId, ans: qAns + 1 }]) :
         setAnsData(ansData => [...ansData, { qid: qId, ans: qAns + 1 }]);
     }
-  }
+  };
 
- // console.log('values-------', values);
 
   return (
     <div >
@@ -145,10 +49,9 @@ const Survey = (props) => {
             <p className='survey-title1'><b>✔</b></p>
             <p className='survey-title2'><b>{title}</b></p>
           </div>
-          <div className='survey-button-main'>                                                                                        
-
+          <div className='survey-button-main'>
             {
-              changeBtnAndBgColor ? <button className='survey-button-save_saved' onClick={() => openSurveyBox()} disabled={values.review}><b>Saved</b></button> : <button className='survey-button-save_saved' onClick={() => openSurveyBox()} disabled={!values.review}><b>Save</b></button>
+              changeBtnAndBgColor ? <button className='survey-button-save_saved' onClick={() => openSurveyBox()} disabled><b>Saved</b></button> : <button className='survey-button-save_saved' disabled={ansData.length < 5 || !text} onClick={() => { openSurveyBox()}}><b>Save</b></button>
             }
           </div>
         </div>
@@ -171,14 +74,16 @@ const Survey = (props) => {
                             btnActive = ansId + 1 <= isActive[0].ans ? 'active' : '';
                           }
                           return (
-                            <div key={ansId} className={`radio ${ansId + 1 <= 4 ? `red` : ansId + 1 > 4 && ansId + 1 <= 7 ? `orange` : 'green'} ${btnActive}`} name={e.radio} onClick={() => setAnsId(question.id, ansId)} >
+                            <div key={ansId} className={`radio ${ansId + 1 <= 4 ? `red` : ansId + 1 > 4 && ansId + 1 <= 7 ? `orange` : 'green'} ${btnActive}`}
+                              name={question.id} onClick={() => setAnsId(question.id, ansId)} htmlFor='radio1'>
                               <input
+                                className='input'
+                                id='radio1'
                                 type="radio"
                                 name={question.id}
                                 value={e.value}
-                                onChange={handleChange}
                               />
-                              <b>{e.radio}</b>
+                              <b>{e.value}</b>
                             </div>
                           )
                         })
@@ -189,14 +94,12 @@ const Survey = (props) => {
               })
             }
           </div>
-          <p>Your Review</p>
+          <p >Your Review</p>
           <textarea
+            onChange={handleChangeText}
             type="textarea"
-            value={values.review}
             name="review"
-            onChange={handleChange}
           />
-
         </div>
         : null}
     </div>

@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import Header from './headerLogin/header';
+import { useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
+import { userData } from '../../redux/action/action';
+
 import './signIn.css';
 
 const SignIn = () => {
     const navigate = useNavigate();
-
+    const dispatch = useDispatch();
     const [values, setValues] = useState({
         name: '',
         email: '',
@@ -24,43 +27,13 @@ const SignIn = () => {
             alert('Please Enter Valid Email like a@gmail.com')
         }
         else {
-            localStorage.setItem('Email', values.email);
-            localStorage.setItem('Password', values.password);
+            dispatch(userData(localStorage.setItem('Email', values.email)));
+            dispatch(userData(localStorage.setItem('Password', values.password)));
+            dispatch(userData(localStorage.setItem('name', values.name)));
+            dispatch(userData({ name: values.name }))
             navigate('/');
         }
-    }   
-
-    /* const Submit = (e) => {
-
-        const  { name, email, number, password } = values;
-
-        if (name === " "  || number === "" || email === "" || password === "") { alert("Hello") }
-        else {
-            e.preventDefault();
-
-            const res = fetch("http://wren.in:3200/api/sign-up/fan", {
-                method: "POST",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                  name, email, number, password
-                })
-            })
-                .then((resp) => {
-                    resp.json().then((result) => {
-                        console.warn("result", result)
-                    })
-                })
-
-            if (res) {
-                alert("done")
-            } else {
-                alert('Not Add Data')
-            }
-        }
-    } */
+    };
 
     return (
         <div>
@@ -90,16 +63,18 @@ const SignIn = () => {
                         />
                         <label>Mo.</label>
                         <input
-                            type="phone-input"
                             className='input-field'
-                            name="phone-input"
-                            title="Ten digits code"
-                            placeholder='Eg : 081 222 2224'
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder='Eg : 900 000 520'
+                            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                             value={values.number}
                             onChange={handleChange('number')}
                             required
 
                         />
+
                         <label>Password</label>
                         <input
                             type="password"
@@ -110,7 +85,7 @@ const SignIn = () => {
                         />
                         <button
                             className='login-btn'
-                            onClick={Submit} >SignIn</button>
+                            onClick={Submit} disabled={values.name === "" || values.email === "" || values.number === "" || values.password === ""}>SignIn</button>
                     </div>
                 </div>
             </div>

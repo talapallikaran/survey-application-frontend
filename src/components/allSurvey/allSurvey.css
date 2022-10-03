@@ -1,15 +1,21 @@
-.radio-main{
-    width: 50%;
-    border-radius: 5px;
-    height:715px;
-    margin-left: 25%;
-    background-color: rgba(245, 241, 241, 0.891);
-    margin-top: -3%;
-    border-radius: 0px 0px 15px 15px;
-    box-shadow: 4px 4px 4px rgba(156, 153, 153, 0.891);
+.radio-main {
+  width: 50%;
+  border-radius: 5px;
+  height: 715px;
+  margin-left: 25%;
+  background-color: rgba(245, 241, 241, 0.891);
+  margin-top: -3%;
+  border-radius: 0px 0px 15px 15px;
+  box-shadow: 4px 4px 4px rgba(156, 153, 153, 0.891);
+  text-align: center;
 }
+
 .radio-question {
-    padding-top: 4%;
+  padding-top: 4%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .survey-main {
@@ -19,8 +25,8 @@
   justify-content: center;
 }
 
-.survey-container{
-  background-color:#1a1a1a;
+.survey-container {
+  background-color: #1a1a1a;
   height: 50px;
   width: 50%;
   border-radius: 5px;
@@ -28,31 +34,37 @@
   display: flex;
   justify-content: space-between;
 }
+
 .survey-container-title {
   display: flex;
   justify-content: flex-start;
 }
-.survey-title1{
+
+.survey-title1 {
   color: white;
   padding-left: 45%;
 }
-.survey-title2{
+
+.survey-title2 {
   color: white;
   padding-left: 15%;
 }
+
 .survey-button-main {
   margin-right: 3%;
 }
 
-.red.active{
+.red.active {
   background-color: #da1414;
-  color:#fff;
+  color: #fff;
 }
-.orange.active{
+
+.orange.active {
   background-color: orange;
-  color:#fff;
+  color: #fff;
 }
-.green.active{
+
+.green.active {
   background-color: green;
-  color:#fff;
+  color: #fff;
 }
