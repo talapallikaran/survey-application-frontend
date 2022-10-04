@@ -8,12 +8,6 @@ import SignIn from './components/user/signIn';
 
 
 const App = () => {
-
-  const [tabActive, setTabActive] = useState(0);
-  const setTab = (tabId) => {
-    setTabActive(tabId + 1)
-  }
-
   return (
     <div>
 
