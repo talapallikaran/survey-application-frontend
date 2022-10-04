@@ -10,7 +10,6 @@ const Survey = (props) => {
   const [surveyId1, setSurveyId1] = useState(tabId + 1)
   const [radioValue, setRadioValue] = useState([])
   const [surveyAllData, setSurveyAllData] = useState({})
-
   const [values, setValues] = useState({
     ansData: [
       {
@@ -20,6 +19,10 @@ const Survey = (props) => {
     ],
     review: '',
   })
+  const handleChange =
+    (name) => (event) => {
+      setValues({ ...values, [name]: event.target.value });
+    };
 
   const handleChange =
     (name) => (event) => {
@@ -39,8 +42,8 @@ const Survey = (props) => {
     setChangeBtnAndBgColor(!changeBtnAndBgColor);
     setSurveyAllData({ radio: radioValue, SurveyId: surveyId1, review: values.review });
   }
-
   console.log(surveyAllData);
+
 
 
   const setAnsId = (qId, qAns) => {
@@ -101,7 +104,7 @@ const Survey = (props) => {
                                 name={question.id}
                                 value={e.value}
                                 onChange={handleRadioChange}
-                                required
+                                required 
                               />
                               <b>{e.radio}</b>
                             </div>
@@ -116,6 +119,7 @@ const Survey = (props) => {
           </div>
           <p className='review-text'>Your Review</p>
 
+          <p >Your Review</p>
           <textarea
             value={values.review}
             onChange={handleChange("review")}
