@@ -6,7 +6,7 @@ import { answers } from './data';
 import { useDispatch } from 'react-redux';
 import { fetchUserRequest } from '../redux/action';
 
-const Survey = (props, Finish) => {
+const Survey = (props) => {
   const { title, questions, setTab, tabId, isActive } = props;
   const [ansData, setAnsData] = useState([]);
   const [changeBtnAndBgColor, setChangeBtnAndBgColor] = useState(false);

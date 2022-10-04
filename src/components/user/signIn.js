@@ -30,38 +30,6 @@ const SignIn = () => {
         }
     }   
 
-    /* const Submit = (e) => {
-
-        const  { name, email, number, password } = values;
-
-        if (name === " "  || number === "" || email === "" || password === "") { alert("Hello") }
-        else {
-            e.preventDefault();
-
-            const res = fetch("http://wren.in:3200/api/sign-up/fan", {
-                method: "POST",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                  name, email, number, password
-                })
-            })
-                .then((resp) => {
-                    resp.json().then((result) => {
-                        console.warn("result", result)
-                    })
-                })
-
-            if (res) {
-                alert("done")
-            } else {
-                alert('Not Add Data')
-            }
-        }
-    } */
-
     return (
         <div>
             <Header />
