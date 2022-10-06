@@ -71,7 +71,7 @@ const Survey = (props) => {
 
             {
               changeBtnAndBgColor ? <button className='survey-button-save_saved' onClick={() => openSurveyBox()} disabled><b>Saved</b></button>
-                : <button className='survey-button-save_saved' onClick={() => openSurveyBox()} disabled={radioValue.length < 5 || !text} ><b>Save</b></button>
+                : <button className='survey-button-save_saved' onClick={() => openSurveyBox()} disabled={ansData.length < 5 || !text} ><b>Save</b></button>
             }
           </div>
         </div>
@@ -97,6 +97,7 @@ const Survey = (props) => {
                             <div key={ansId} className={`radio ${ansId + 1 <= 4 ? `red` : ansId + 1 > 4 && ansId + 1 <= 7 ? `orange` : 'green'} ${btnActive}`}
                               name={question.id} onClick={() => setAnsId(question.id, ansId)} htmlFor='radio1'>
                               <input
+                                className='survey-input'
                                 id='radio1'
                                 type="radio"
                                 name={question.id}

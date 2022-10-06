@@ -1,0 +1,8 @@
+.date-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+    margin-right: 37%;
+    margin-bottom: -100px;
+}
