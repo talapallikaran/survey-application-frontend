@@ -13,7 +13,6 @@ const Footer = () => {
   const navigate = useNavigate();
 
   const FinishData = useSelector((state) => state.data);
-
   useEffect(() => {
 
     FinishData.data.SurveyId === 1 ? setSurvey1(FinishData) : console.log();
@@ -33,7 +32,7 @@ const Footer = () => {
 
   return (
     <div className='footer-main'>
-      <button className='footer-btn' onClick={() => FinishSubmit()}>Finish</button>
+      <button className='footer-btn' onClick={() => FinishSubmit()} disabled={!survey1 || !survey2 || !survey3}>Finish</button>
     </div>
   )
 }

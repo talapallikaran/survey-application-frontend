@@ -4,6 +4,8 @@ import { Home, Sign, Survey } from './components/constant/constant';
 import SurveyApp from './components/allSurvey/surveyApp';
 import { Route, Routes } from 'react-router-dom';
 import SignIn from './components/user/signIn';
+import Protected from './components/user/protected';
+import ErrorPage from './404page';
 
 const App = () => {
 
@@ -12,7 +14,8 @@ const App = () => {
       <Routes>
         <Route path={Home} element={<Login />} />
         <Route path={Sign} element={<SignIn />} />
-        <Route path={Survey} element={<SurveyApp />} />
+        <Route path={Survey} element={< Protected Component={SurveyApp} />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
   );

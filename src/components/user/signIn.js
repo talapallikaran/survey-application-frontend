@@ -3,10 +3,12 @@ import Header from './headerLogin/header';
 import { useNavigate } from 'react-router-dom';
 import './signIn.css';
 import UserFooter from './userFooter/userFooter';
+import { useDispatch } from 'react-redux';
+import { userData } from '../redux/action';
 
 const SignIn = () => {
     const navigate = useNavigate();
-
+    const dispatch = useDispatch();
     const [values, setValues] = useState({
         name: '',
         email: '',
@@ -25,8 +27,10 @@ const SignIn = () => {
             alert('Please Enter Valid Email like a@gmail.com')
         }
         else {
-            localStorage.setItem('Email', values.email);
-            localStorage.setItem('Password', values.password);
+            dispatch(userData(localStorage.setItem('Email', values.email)));
+            dispatch(userData(localStorage.setItem('Password', values.password)));
+            dispatch(userData(localStorage.setItem('name', values.name)));
+            dispatch(userData({ name: values.name }))
             navigate('/');
         }
     }

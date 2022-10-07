@@ -4,10 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import UserFooter from './userFooter/userFooter';
 import { survey } from '../Img/Img';
 import './login.css';
+import { useDispatch } from 'react-redux';
+import { toggle } from "../redux/action";
 
 const Login = () => {
     const navigate = useNavigate();
-
+    const dispatch = useDispatch();
     const [values, setValues] = useState({
         email: '',
         password: '',
@@ -22,7 +24,8 @@ const Login = () => {
             alert('Please Enter Valid Email like a@gmail.com')
             console.log("localData--------", localStorage.getItem('Email'));
         } else if (values.email === localStorage.getItem('Email') && values.password === localStorage.getItem('Password')) {
-            navigate('/Survey')
+            navigate('/Survey');
+            dispatch(toggle())
         }
         else {
             alert("Data is not match Please SignIn")
