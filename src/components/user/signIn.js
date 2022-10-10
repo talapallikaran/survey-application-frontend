@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import Header from './headerLogin/header';
+import { useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
+import { userData } from '../../redux/action/action';
+
 import './signIn.css';
 import UserFooter from './userFooter/userFooter';
 
 const SignIn = () => {
     const navigate = useNavigate();
-
+    const dispatch = useDispatch();
     const [values, setValues] = useState({
         name: '',
         email: '',
@@ -25,11 +28,17 @@ const SignIn = () => {
             alert('Please Enter Valid Email like a@gmail.com')
         }
         else {
-            localStorage.setItem('Email', values.email);
-            localStorage.setItem('Password', values.password);
+            dispatch(userData(localStorage.setItem('Email', values.email)));
+            dispatch(userData(localStorage.setItem('Password', values.password)));
+            dispatch(userData(localStorage.setItem('name', values.name)));
+            dispatch(userData({ name: values.name }))
             navigate('/');
         }
+<<<<<<< HEAD
     }
+=======
+    };
+>>>>>>> cbe9d703bd191bc4494ac59843736a1707229897
 
     return (
         <div>
@@ -57,14 +66,24 @@ const SignIn = () => {
                         />
                         <label>Mo.</label>
                         <input
+<<<<<<< HEAD
                             type="phone-input"
                             className='signin-input-field'
                             name="phone-input"
                             title="Ten digits code"
+=======
+                            className='input-field'
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder='Eg : 900 000 520'
+                            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+>>>>>>> cbe9d703bd191bc4494ac59843736a1707229897
                             value={values.number}
                             onChange={handleChange('number')}
                             required
                         />
+
                         <label>Password</label>
                         <input
                             type="password"
@@ -74,8 +93,13 @@ const SignIn = () => {
                             required
                         />
                         <button
+<<<<<<< HEAD
                             className='signin-btn'
                             onClick={Submit} disabled={values.name === "" || values.email === "" || values.number === "" || values.password === ""} >SignIn</button>
+=======
+                            className='login-btn'
+                            onClick={Submit} disabled={values.name === "" || values.email === "" || values.number === "" || values.password === ""}>SignIn</button>
+>>>>>>> cbe9d703bd191bc4494ac59843736a1707229897
                     </div>
                 </div>
             </div>

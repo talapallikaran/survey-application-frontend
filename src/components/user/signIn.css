@@ -38,7 +38,17 @@ label {
     color: #fff;
     font-size: 18px;
     background: green;
+<<<<<<< HEAD
     border: none;
     padding: 10px;
     margin-top: 10px;
 }
+=======
+    border:none;
+    padding:10px;
+    margin-top: 20px;
+}
+
+
+
+>>>>>>> cbe9d703bd191bc4494ac59843736a1707229897

@@ -1,10 +1,18 @@
+<<<<<<< HEAD
 img {
+=======
+.img {
+>>>>>>> cbe9d703bd191bc4494ac59843736a1707229897
     height: 60px;
     border-radius: 50%;
     margin-top: 13%;
 }
 
+<<<<<<< HEAD
 .survey-input {
+=======
+.input {
+>>>>>>> cbe9d703bd191bc4494ac59843736a1707229897
     position: absolute;
     height: 50px;
     width: 50px;
@@ -18,7 +26,10 @@ textarea {
     height: 90px;
     width: 550px;
     border-radius: 10px;
+<<<<<<< HEAD
     margin-right: 200px;
+=======
+>>>>>>> cbe9d703bd191bc4494ac59843736a1707229897
 }
 
 .survey-button-save_saved {
@@ -44,7 +55,15 @@ button[disabled] {
     width: 120px;
     margin: 9px;
     color: white;
+<<<<<<< HEAD
     margin-right: 530px;
+=======
+    margin-right: 5%;
+}
+
+.footer-btn:hover {
+    background-color: green;
+>>>>>>> cbe9d703bd191bc4494ac59843736a1707229897
 }
 
 .number {
@@ -63,7 +82,12 @@ button[disabled] {
     justify-content: center;
     border: 1px solid #ddd;
     border-left: none;
+<<<<<<< HEAD
     padding: 10px 25px;
+=======
+    padding: 10px 15px;
+
+>>>>>>> cbe9d703bd191bc4494ac59843736a1707229897
 }
 
 .radio:first-child {
@@ -74,7 +98,21 @@ button[disabled] {
     border: 1px solid rgb(202, 198, 198);
     padding: 4px;
 }
+<<<<<<< HEAD
 
 .review-text {
     margin-right: 680px;
+=======
+.page-404{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1500px;
+    background-color: black;
+}
+.page-not-found{
+    color: aliceblue;
+    margin-top: -45%;
+    font-size:9vh;
+>>>>>>> cbe9d703bd191bc4494ac59843736a1707229897
 }
