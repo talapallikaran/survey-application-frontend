@@ -6,6 +6,8 @@ import { userData } from '../../redux/action/action';
 
 import './signIn.css';
 import UserFooter from './userFooter/userFooter';
+import { useDispatch } from 'react-redux';
+import { userData } from '../redux/action';
 
 const SignIn = () => {
     const navigate = useNavigate();

@@ -1,10 +1,12 @@
-import { STORE_USER_DATA } from "./actiontypes"
+import { STORE_USER_DATA, TOGGLE, USER_SIGNIN } from "./actiontypes"
 
 const initialState = {
-    data: []
+    data: [],
+    toggle: false,
+    userData: []
 }
 
-const reducer = (state = initialState, action) => {
+export const reducer = (state = initialState, action) => {
     switch (action.type) {
         case STORE_USER_DATA:
             return {
@@ -15,4 +17,21 @@ const reducer = (state = initialState, action) => {
     }
 }
 
-export default reducer
+export const userData = (state = initialState, action) => {
+    switch (action.type) {
+        case TOGGLE:
+            return {
+                ...state,
+                toggle: !state.toggle
+            }
+
+        case USER_SIGNIN:
+            return {
+                ...state,
+                userData: action.payload
+            }
+        default: return state
+    }
+}
+
+
