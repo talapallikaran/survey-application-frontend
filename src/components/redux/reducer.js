@@ -1,8 +1,7 @@
-import { FETCH_DATA, STORE_USER_DATA } from "./actiontypes"
+import { STORE_USER_DATA } from "./actiontypes"
 
 const initialState = {
-    data: [],
-    finish: []
+    data: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -11,12 +10,6 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 data: action.payload
-            }
-
-        case FETCH_DATA:
-            return {
-                ...state,
-                finish: action.payload
             }
         default: return state
     }
