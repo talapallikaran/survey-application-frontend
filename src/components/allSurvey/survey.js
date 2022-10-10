@@ -21,8 +21,7 @@ const Survey = (props) => {
     ],
     review: '',
   })
-
-
+  
   const handleChange =
     (name) => (event) => {
       setValues({ ...values, [name]: event.target.value });
