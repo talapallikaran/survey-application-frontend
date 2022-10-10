@@ -1,9 +1,9 @@
-img {
+
+.img {
     height: 60px;
     border-radius: 50%;
     margin-top: 13%;
 }
-
 .survey-input {
     position: absolute;
     height: 50px;
@@ -47,6 +47,7 @@ button[disabled] {
     margin-right: 530px;
 }
 
+
 .number {
     font-size: 18px;
 }
@@ -77,9 +78,10 @@ button[disabled] {
 
 .review-text {
     margin-right: 680px;
+
 }
 
-.page-404 {
+.page-404{
     display: flex;
     justify-content: center;
     align-items: center;

@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './footer.css'
+import { useSelector } from "react-redux";
 import '../../global.css'
 import { useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
@@ -27,13 +28,12 @@ const Footer = () => {
     console.log("Survey 2 Data :", survey2);
     console.log("Survey 3 Data :", survey3);
     navigate('/')
-
   }
 
   return (
     <div className='footer-main'>
       <button className='footer-btn' onClick={() => FinishSubmit()} disabled={!survey1 || !survey2 || !survey3}>Finish</button>
-    </div>
+   </div>
   )
 }
 export default Footer;
