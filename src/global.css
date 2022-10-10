@@ -1,10 +1,10 @@
-
 .img {
     height: 60px;
     border-radius: 50%;
     margin-top: 13%;
 }
-.survey-input {
+
+.input {
     position: absolute;
     height: 50px;
     width: 50px;
@@ -16,9 +16,8 @@ textarea {
     border: 1px solid black;
     background-color: rgba(245, 241, 241, 0.891);
     height: 90px;
-    width: 550px;
+    width: 350px;
     border-radius: 10px;
-    margin-right: 200px;
 }
 
 .survey-button-save_saved {
@@ -40,13 +39,16 @@ button[disabled] {
 .footer-btn {
     border-radius: 5px;
     border: none;
-    background-color: rgb(47, 177, 47);
+    background-color: rgb(160, 220, 160);
     width: 120px;
     margin: 9px;
     color: white;
-    margin-right: 530px;
+    margin-right: 5%;
 }
 
+.footer-btn:hover {
+    background-color: green;
+}
 
 .number {
     font-size: 18px;
@@ -55,7 +57,6 @@ button[disabled] {
 .radio-border {
     display: flex;
     justify-content: center;
-    margin-right: 160px;
 }
 
 .radio {
@@ -64,7 +65,8 @@ button[disabled] {
     justify-content: center;
     border: 1px solid #ddd;
     border-left: none;
-    padding: 10px 25px;
+    padding: 10px 15px;
+
 }
 
 .radio:first-child {
@@ -75,22 +77,15 @@ button[disabled] {
     border: 1px solid rgb(202, 198, 198);
     padding: 4px;
 }
-
-.review-text {
-    margin-right: 680px;
-
-}
-
 .page-404{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 1500px;
-    background-color: rgb(167, 162, 162);
+    background-color: black;
 }
-
-.page-not-found {
-    color: rgb(180, 69, 69);
+.page-not-found{
+    color: aliceblue;
     margin-top: -45%;
-    font-size: 9vh;
+    font-size:9vh;
 }

@@ -3,10 +3,10 @@
     left: 0;
     bottom: 0px;
     width: 100%;
-    background-color: #dbd2d2;
+    background-color:#d9d9d9;
     color: white;
     text-align: center;
     height: 50px;
     display: flex;
-    justify-content: right;
+    justify-content:right;
 }
