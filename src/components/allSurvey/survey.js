@@ -3,6 +3,8 @@ import { useState } from 'react';
 import './allSurvey.css';
 import '../../global.css';
 import { answers } from './data';
+import { useDispatch } from 'react-redux';
+import { fetchUserRequest } from '../redux/action';
 
 const Survey = (props) => {
   const { title, questions, setTab, tabId, isActive } = props;
@@ -21,13 +23,9 @@ const Survey = (props) => {
       }
     ]
   })
-
-  const handleChange =
-    (name) => (event) => {
-      setValues({ ...values, [name]: event.target.value });
-    };
-
-    const handleChange = (event) => {
+  const dispatch = useDispatch();
+  
+  const handleChange = (event) => {
     setText(event.target.value);
   };
 
@@ -42,10 +40,11 @@ const Survey = (props) => {
     setSurveyId1(surveyId1)
     setTab(tabId)
     setChangeBtnAndBgColor(!changeBtnAndBgColor);
-    setSurveyAllData({ radio: radioValue, SurveyId: surveyId1, review: text });
-  
-  console.log(surveyAllData);
-}
+    setSurveyAllData({ radio: ansData, SurveyId: surveyId1, review: text });
+    const AllData = dispatch(fetchUserRequest({ radio: ansData, SurveyId: surveyId1, review: text }))
+    //  console.log(AllData);
+  }
+
   const setAnsId = (qId, qAns) => {
     let existingAns = ansData.filter((ans) => ans.qid === qId);
     if (existingAns.length > 0) {
