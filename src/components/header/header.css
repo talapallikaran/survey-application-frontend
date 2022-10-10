@@ -1,13 +1,16 @@
 .header-main {
     background-color: #6d72f2;
-    padding-right: 1750px;
-    position: fixed;
+    display: flex;
+    justify-content: space-between;
     margin-top: -35px;
+    position: fixed;
 }
 
 .header-main-second {
     display: flex;
     justify-content: flex-start;
+    margin-right: 1800px;
+    margin-top: 10px;
 }
 
 .title-logo {
