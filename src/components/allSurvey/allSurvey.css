@@ -3,6 +3,7 @@
   border-radius: 5px;
   height: 680px;
   margin-left: 522px;
+
   background-color: rgba(245, 241, 241, 0.891);
   margin-top: -3%;
   border-radius: 0px 0px 15px 15px;
@@ -11,6 +12,7 @@
 }
 
 .radio-question {
+
   padding-top: 3%;
   display: flex;
   justify-content: center;
@@ -18,6 +20,7 @@
   align-items: left;
   text-align: left;
   padding-left: 40px;
+
 }
 
 .survey-main {

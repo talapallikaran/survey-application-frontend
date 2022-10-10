@@ -14,6 +14,7 @@ const Survey = (props) => {
   const [radioValue, setRadioValue] = useState([]);
   const [surveyAllData, setSurveyAllData] = useState({});
   const [text, setText] = useState();
+
   const [values, setValues] = useState({
     ansData: [
       {
@@ -23,6 +24,7 @@ const Survey = (props) => {
     ]
   })
   const dispatch = useDispatch();
+  
   const handleChange = (event) => {
     setText(event.target.value);
   };
@@ -102,6 +104,7 @@ const Survey = (props) => {
                                 value={e.value}
                                 onChange={handleRadioChange}
                                 required
+
                               />
                               <b>{e.value}</b>
                             </div>
