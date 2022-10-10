@@ -6,8 +6,7 @@ import Login from './components/user/login';
 import SurveyApp from './components/allSurvey/surveyApp';
 import SignIn from './components/user/signIn';
 import Protected from './components/user/protected';
-import ErrorPage from "./404page"
-
+import ErrorPage from "./404Page"
 
 function App() {
 
