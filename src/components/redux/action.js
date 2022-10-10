@@ -1,4 +1,4 @@
-import { STORE_USER_DATA } from "./actiontypes"
+import { FETCH_DATA, STORE_USER_DATA } from "./actiontypes"
 
 export const fetchUserRequest = data => {
     return {
@@ -7,3 +7,9 @@ export const fetchUserRequest = data => {
     }
 }
 
+export const finsihRequest = finish => {
+    return {
+        type: FETCH_DATA,
+        payload: finish
+    }
+}

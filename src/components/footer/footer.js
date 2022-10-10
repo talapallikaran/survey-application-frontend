@@ -3,17 +3,18 @@ import './footer.css'
 import '../../global.css'
 import { useSelector } from 'react-redux'
 
+
 const Footer = () => {
 
-  const AllData = useSelector((state) => state.data);
+  const FinishData = useSelector((state) => state.finish);
 
-  const Submit = () => {
-    console.log(AllData);
-  }
+  const FinishSubmit = () => {
+    console.log(FinishData);
+  } 
 
   return (
     <div className='footer-main'>
-      <button className='footer-btn' onClick={() => Submit()} >Finish</button>
+      <button className='footer-btn' onClick={() => FinishSubmit()} >Finish</button>
     </div>
   )
 }

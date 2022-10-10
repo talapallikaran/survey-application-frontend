@@ -6,7 +6,7 @@ import { answers } from './data';
 import { useDispatch } from 'react-redux';
 import { fetchUserRequest } from '../redux/action';
 
-const Survey = (props) => {
+const Survey = (props, Finish) => {
   const { title, questions, setTab, tabId, isActive } = props;
   const [ansData, setAnsData] = useState([]);
   const [changeBtnAndBgColor, setChangeBtnAndBgColor] = useState(false);
@@ -42,6 +42,7 @@ const Survey = (props) => {
     setChangeBtnAndBgColor(!changeBtnAndBgColor);
     setSurveyAllData({ radio: ansData, SurveyId: surveyId1, review: text });
     const AllData = dispatch(fetchUserRequest({ radio: ansData, SurveyId: surveyId1, review: text }))
+
     //  console.log(AllData);
   }
 
