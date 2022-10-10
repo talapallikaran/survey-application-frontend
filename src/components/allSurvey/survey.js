@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useState } from 'react';
 import './allSurvey.css';
 import '../../global.css';
 import { answers } from './data';
@@ -7,9 +8,10 @@ const Survey = (props) => {
   const { title, questions, setTab, tabId, isActive } = props;
   const [ansData, setAnsData] = useState([]);
   const [changeBtnAndBgColor, setChangeBtnAndBgColor] = useState(false);
-  const [surveyId1, setSurveyId1] = useState(tabId + 1)
-  const [radioValue, setRadioValue] = useState([])
-  const [surveyAllData, setSurveyAllData] = useState({})
+  const [surveyId1, setSurveyId1] = useState(tabId + 1);
+  const [radioValue, setRadioValue] = useState([]);
+  const [surveyAllData, setSurveyAllData] = useState({});
+
   const [values, setValues] = useState({
     ansData: [
       {
@@ -31,14 +33,15 @@ const Survey = (props) => {
     setRadioValue(ansData => [...ansData, { qId: question, ans: ans }]);
   }
 
-
   const openSurveyBox = () => {
     setSurveyId1(surveyId1)
     setTab(tabId)
     setChangeBtnAndBgColor(!changeBtnAndBgColor);
     setSurveyAllData({ radio: radioValue, SurveyId: surveyId1, review: values.review });
   }
+
   console.log(surveyAllData);
+
 
   const setAnsId = (qId, qAns) => {
     let existingAns = ansData.filter((ans) => ans.qid === qId);
@@ -55,7 +58,7 @@ const Survey = (props) => {
   }
 
   return (
-    <div >
+    <div>
       <div className='survey-main'>
         <div className='survey-container' style={changeBtnAndBgColor ? { backgroundColor: '#11963e' } :
           { backgroundColor: '#1a1a1a' }}>
@@ -63,10 +66,11 @@ const Survey = (props) => {
             <p className='survey-title1'><b>✔</b></p>
             <p className='survey-title2'><b>{title}</b></p>
           </div>
-          <div className='survey-button-main'>                                                                                        
+          <div className='survey-button-main'>
 
             {
-              changeBtnAndBgColor ? <button className='survey-button-save_saved' onClick={() => openSurveyBox()} disabled={values.review}><b>Saved</b></button> : <button className='survey-button-save_saved' onClick={() => openSurveyBox()} disabled={!values.review}><b>Save</b></button>
+              changeBtnAndBgColor ? <button className='survey-button-save_saved' onClick={() => openSurveyBox()} disabled><b>Saved</b></button>
+                : <button className='survey-button-save_saved' onClick={() => openSurveyBox()} disabled={!values.review || radioValue.length < 5}><b>Save</b></button>
             }
           </div>
         </div>
@@ -97,8 +101,9 @@ const Survey = (props) => {
                                 name={question.id}
                                 value={e.value}
                                 onChange={handleRadioChange}
+                                required
                               />
-                              <b>{e.radio}</b>
+                              <b>{e.value}</b>
                             </div>
                           )
                         })
@@ -109,7 +114,8 @@ const Survey = (props) => {
               })
             }
           </div>
-          <p >Your Review</p>
+          <p className='review-text'>Your Review</p>
+
           <textarea
             value={values.review}
             onChange={handleChange("review")}

@@ -1,8 +1,9 @@
 .radio-main {
-  width: 50%;
+  width: 852px;
   border-radius: 5px;
-  height: 715px;
-  margin-left: 25%;
+  height: 680px;
+  margin-left: 522px;
+
   background-color: rgba(245, 241, 241, 0.891);
   margin-top: -3%;
   border-radius: 0px 0px 15px 15px;
@@ -11,11 +12,13 @@
 }
 
 .radio-question {
-  padding-top: 4%;
+  padding-top: 3%;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
+  text-align: left;
+  padding-left: 40px;
 }
 
 .survey-main {
@@ -28,16 +31,18 @@
 .survey-container {
   background-color: #1a1a1a;
   height: 50px;
-  width: 50%;
+  width: 45%;
   border-radius: 5px;
   border-radius: 15px;
   display: flex;
   justify-content: space-between;
+  margin-top: 80px;
 }
 
 .survey-container-title {
   display: flex;
   justify-content: flex-start;
+
 }
 
 .survey-title1 {

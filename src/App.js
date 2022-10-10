@@ -1,11 +1,9 @@
-import React from 'react';
 import './App.css';
 import Login from './components/user/login';
 import { Home, Sign, Survey } from './components/constant/constant';
 import SurveyApp from './components/allSurvey/surveyApp';
 import { Route, Routes } from 'react-router-dom';
 import SignIn from './components/user/signIn';
-
 
 const App = () => {
 
