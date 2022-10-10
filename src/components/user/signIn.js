@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from './headerLogin/header';
 import { useNavigate } from 'react-router-dom';
 import './signIn.css';
+import UserFooter from './userFooter/userFooter';
 
 const SignIn = () => {
     const navigate = useNavigate();
@@ -28,60 +29,57 @@ const SignIn = () => {
             localStorage.setItem('Password', values.password);
             navigate('/');
         }
-    }   
+    }
 
     return (
         <div>
             <Header />
             <div className='form-container'>
-                <div className='login-wrapper'>
+                <div className='signin-login-wrapper'>
                     <h2>SignIn</h2>
-                    <div className='form-group'>
+                    <div className='signin-form-group'>
                         <label>Name</label>
                         <input
                             type="text"
-                            className='input-field'
+                            className='signin-input-field'
                             value={values.name}
                             onChange={handleChange('name')}
                             required
-
                         />
                         <label>Email</label>
                         <input
                             type="Email"
                             pattern="[^ @]*@[^ @]*"
-                            className='input-field'
+                            className='signin-input-field'
                             value={values.email}
                             onChange={handleChange('email')}
                             required
-
                         />
                         <label>Mo.</label>
                         <input
                             type="phone-input"
-                            className='input-field'
+                            className='signin-input-field'
                             name="phone-input"
                             title="Ten digits code"
-                            placeholder='Eg : 081 222 2224'
                             value={values.number}
                             onChange={handleChange('number')}
                             required
-
                         />
                         <label>Password</label>
                         <input
                             type="password"
+                            className='signin-input-field'
                             value={values.password}
                             onChange={handleChange('password')}
                             required
-
                         />
                         <button
-                            className='login-btn'
-                            onClick={Submit} >SignIn</button>
+                            className='signin-btn'
+                            onClick={Submit} disabled={values.name === "" || values.email === "" || values.number === "" || values.password === ""} >SignIn</button>
                     </div>
                 </div>
             </div>
+            <UserFooter />
         </div>
     );
 };

@@ -1,21 +1,19 @@
 .header-main {
     background-color: #6d72f2;
     display: flex;
-    justify-content: space-between;
-    margin-top: -35px;
-    position: fixed;
+    margin-top: -1%;
+    position: sticky;
+    top: 0;
 }
 
 .header-main-second {
     display: flex;
     justify-content: flex-start;
-    margin-right: 1800px;
-    margin-top: 10px;
 }
 
-.title-logo {
-    padding: 10%;
+.title-Img {
     margin-left: 20%;
+    margin-top: 6px;
 }
 
 .title {
@@ -24,5 +22,16 @@
 }
 
 .header-img {
-    padding-left: 1700px;
+    margin-top: -19px;
+    display: flex;
+    align-items: center;
+    padding-right: 2%;
+}
+
+.img {
+    margin-left: 12px;
+}
+
+.user-name {
+    color: white;
 }

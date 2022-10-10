@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import Header from './headerLogin/header';
 import { useNavigate } from 'react-router-dom';
-import './login.css';
 import UserFooter from './userFooter/userFooter';
-import '../../global.css'
+import { survey } from '../Img/Img';
+import './login.css';
 
 const Login = () => {
     const navigate = useNavigate();
+
     const [values, setValues] = useState({
         email: '',
         password: '',
@@ -24,7 +25,7 @@ const Login = () => {
             navigate('/Survey')
         }
         else {
-            alert("Data is not match please SignIn")
+            alert("Data is not match Please SignIn")
             setValues({
                 email: '',
                 password: '',
@@ -40,28 +41,31 @@ const Login = () => {
                     <div className='login-wrapper'>
                         <h2>Login</h2>
                         <div className='form-group'>
-                            <label>Email</label><br />
+                            <label>Email</label>
                             <input
                                 type="email"
-                                className='input-field'
+                                className='login-input-field'
                                 value={values.email}
                                 onChange={handleChange('email')}
                                 required
 
                             />
-                            <label>Password</label><br />
+                            <label>Password</label>
                             <input
                                 type="password"
-                                className='input-field'
+                                className='login-input-field'
                                 value={values.password}
                                 onChange={handleChange('password')}
-                                required />
+                                required /><br />
 
-                            <a className="reset-link" href='/SignIn'>ResetPassword?</a>
-                            <button className='login-btn' onClick={Submit}>Login</button>
+                            <a className="reset-link" href='/SignIn'>Sign In</a>
+                            <button className='login-btn' onClick={Submit} disabled={values.email === "" || values.password === ""} >Login</button>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className='img-container'>
+                <img className="surveyImg " src={survey} alt="hello" />
             </div>
             <UserFooter />
         </div>
