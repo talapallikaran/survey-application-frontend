@@ -39,14 +39,14 @@ const SignIn = () => {
     return (
         <div>
             <Header />
-            <div className='form-container'>
-                <div className='login-wrapper'>
+            <div className='signin-form-container'>
+                <div className='signin-wrapper'>
                     <h2>SignIn</h2>
-                    <div className='form-group'>
+                    <div className='signin-form-group'>
                         <label>Name</label>
                         <input
                             type="text"
-                            className='input-field'
+                            className='signin-input-field'
                             value={values.name}
                             onChange={handleChange('name')}
                             required
@@ -56,7 +56,7 @@ const SignIn = () => {
                         <input
                             type="Email"
                             pattern="[^ @]*@[^ @]*"
-                            className='input-field'
+                            className='signin-input-field'
                             value={values.email}
                             onChange={handleChange('email')}
                             required
@@ -64,7 +64,7 @@ const SignIn = () => {
                         />
                         <label>Mo.</label>
                         <input
-                            className='input-field'
+                            className='signin-input-field'
                             type="tel"
                             id="phone"
                             name="phone"
@@ -78,13 +78,14 @@ const SignIn = () => {
                         <label>Password</label>
                         <input
                             type="password"
+                            className='signin-input-field'
                             value={values.password}
                             onChange={handleChange('password')}
                             required
 
                         />
                         <button
-                            className='login-btn'
+                            className='signin-btn'
                             onClick={Submit} disabled={values.name === "" || values.email === "" || values.number === "" || values.password === ""}>SignIn</button>
                     </div>
                 </div>

@@ -13,7 +13,7 @@ function App() {
   return (
     <div>
       <div>
-        <div>
+        <div className='wrapper'>
           <Routes>
             <Route path={Home} element={<Login />} />
             <Route path={Sign} element={<SignIn />} />
