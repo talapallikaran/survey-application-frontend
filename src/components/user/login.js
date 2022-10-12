@@ -59,7 +59,7 @@ const Login = () => {
                             onChange={handleChange('password')}
                             required />
 
-                        <a className="reset-link" href='/SignIn'>Sign In</a>
+                        <a className="reset-link" href='/SignIn'>Reset password?</a>
                         <button className='login-btn' onClick={Submit} disabled={values.email === "" || values.password === ""} >Login</button>
                     </div>
                 </div>
