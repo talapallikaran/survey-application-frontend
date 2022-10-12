@@ -1,50 +1,59 @@
-.form-container{
+.signin-form-container{
     padding-top: 60px;
+    margin-bottom: 15%;
 }
-
-.login-wrapper{
-    width: 50%;
+.signin-wrapper{
+    width: 100%;
     max-width: 500px;
     margin: 0 auto;
-    -webkit-box-shadow: 0px 0px 10px 0px rgba(182, 174, 174, 0.5);
-    -moz-box-shadow: 0px 0px 10px 0px rgba(182, 172, 172, 0.5);
-    box-shadow: 0px 0px 10px 0px rgba(185, 182, 182, 0.5);
+    background: #FFFFFF;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     padding: 20px 10px;
 }
 
 label{
     margin-bottom: 8px;
+    width: 46px;
+    height: 22px;
+    left: 728px;
+    top: 490px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000000;
 }
 
 input{
     padding: 15px;
-    border-radius: 7px;
     border: 0;
-    background: #f1f1f1;
+    background: #F0F0F0;
+    border-radius: 10px;
 }
 
-.input-field,
-.reset-link{
-    margin-bottom: 19px;
+.signin-input-field,
+.signin-reset-link{
+    margin-bottom: 30px;
 }
 
-.form-group{
+.signin-form-group{
     display: flex;
     flex-direction: column;
 }
 
-.login-btn{
+.signin-btn{
     max-width: 180px;
     margin: 0 auto;
-    border-radius: 5px;
     color:#fff;
     font-size: 18px;
-    background: green;
     border:none;
     padding:10px;
-    margin-top: 20px;
+    width: 150px;
+    height: 48px;
+    left: 885px;
+    top: 767px;
+    background: #11963E;
+    border-radius: 10px;
 }
-
-
-

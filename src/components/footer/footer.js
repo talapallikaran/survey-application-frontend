@@ -27,7 +27,11 @@ const Footer = () => {
 
   return (
     <div className='footer-main'>
-      <button className='footer-btn' onClick={Submit} disabled={!survey1Data || !survey2Data || !survey3Data} >Finish</button>
+      <div className='footer-container'>
+        <div className="footer-btn-wrapper">
+          <button className='footer-btn' onClick={Submit} disabled={!survey1Data || !survey2Data || !survey3Data} >Finish</button>
+        </div>
+      </div>
     </div>
   )
 }

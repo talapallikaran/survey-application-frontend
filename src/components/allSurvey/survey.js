@@ -43,11 +43,11 @@ const Survey = (props) => {
   return (
     <div >
       <div className='survey-main'>
-        <div className='survey-container' style={changeBtnAndBgColor ? { backgroundColor: '#11963e' } :
-          { backgroundColor: '#1a1a1a' }}>
+        <div className='survey-container' style={changeBtnAndBgColor ? { backgroundColor: '#11963E' } :
+          { backgroundColor: '#1A1A1A' }}>
           <div className='survey-container-title'>
-            <p className='survey-title1'><b>✔</b></p>
-            <p className='survey-title2'><b>{title}</b></p>
+            <p className='survey-title1'><span>✔</span></p>
+            <p className='survey-title2'>{title}</p>
           </div>
           <div className='survey-button-main'>
             {
@@ -65,7 +65,7 @@ const Survey = (props) => {
               questions.map((question, id) => {
                 return (
                   <div key={id}>
-                    <p>{question.question}</p>
+                    <p className='s-questions'>{question.question}</p>
                     <div className='radio-border'>
                       {
                         answers.map((e, ansId) => {
@@ -84,7 +84,7 @@ const Survey = (props) => {
                                 name={question.id}
                                 value={e.value}
                               />
-                              <b>{e.value}</b>
+                              <b className='radio-text'>{e.value}</b>
                             </div>
                           )
                         })
@@ -95,7 +95,7 @@ const Survey = (props) => {
               })
             }
           </div>
-          <p >Your Review</p>
+          <p className='s-questions'>Your Review</p>
           <textarea
             onChange={handleChangeText}
             type="textarea"

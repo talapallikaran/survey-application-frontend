@@ -1,57 +1,54 @@
+.survey-main{
+  position: relative;
+}
+
 .radio-main {
-  width: 50%;
-  border-radius: 5px;
-  height: 715px;
-  margin-left: 25%;
-  background-color: rgba(245, 241, 241, 0.891);
-  margin-top: -3%;
-  border-radius: 0px 0px 15px 15px;
-  box-shadow: 4px 4px 4px rgba(156, 153, 153, 0.891);
-  text-align: center;
+  background-color: #fff;
+  border-radius: 0 0 16px 16px;
+  box-shadow: 4px 4px 4px rgb(225 225 225 / 89%);
+  padding: 30px 60px 52px;
+  margin-top: -10px;
 }
 
-.radio-question {
-  padding-top: 4%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
+.radio-text{
+  font-size: 22px;
 }
 
-.survey-main {
-  margin-top: 2%;
-  margin-bottom: 2%;
-  display: flex;
-  justify-content: center;
+.s-questions{
+  font-size: 18px;
+  margin-top: 10px;
+  margin-top: 30px;
 }
 
 .survey-container {
-  background-color: #1a1a1a;
-  height: 50px;
-  width: 50%;
-  border-radius: 5px;
-  border-radius: 15px;
+  width: 100%;
+  border-radius: 16px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  box-sizing: border-box;
 }
 
 .survey-container-title {
   display: flex;
   justify-content: flex-start;
+  align-items: center;
+  font-weight: 700;
 }
 
 .survey-title1 {
-  color: white;
+  color: #000;
   padding-left: 45%;
+  background: #fff;
+  border-radius: 100%;
+  padding: 5px 10px;
 }
 
 .survey-title2 {
   color: white;
   padding-left: 15%;
-}
-
-.survey-button-main {
-  margin-right: 3%;
+  font-size: 24px;
 }
 
 .red.active {
@@ -60,11 +57,11 @@
 }
 
 .orange.active {
-  background-color: orange;
+  background-color: #f2970d;
   color: #fff;
 }
 
 .green.active {
-  background-color: green;
+  background-color: #35c03a;
   color: #fff;
 }

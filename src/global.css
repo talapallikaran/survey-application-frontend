@@ -1,7 +1,6 @@
 .img {
     height: 60px;
     border-radius: 50%;
-    margin-top: 13%;
 }
 
 .input {
@@ -13,41 +12,45 @@
 }
 
 textarea {
-    border: 1px solid black;
-    background-color: rgba(245, 241, 241, 0.891);
+    border: 1px solid #ddd;
+    background-color: #fff;
     height: 90px;
-    width: 350px;
+    width: 100%;
     border-radius: 10px;
 }
 
 .survey-button-save_saved {
-    margin: 10%;
     border: none;
-    border-radius: 5px;
-    width: 100px;
-    height: 30px;
+    border-radius: 10px;
+    width: 150px;
+    padding: 10px;
 }
 
-button:disabled,
-button[disabled] {
-    border: 1px solid #999999;
-    background-color: #cccccc;
+.survey-button-save_saved:disabled,
+.survey-button-save_saved[disabled] {
+    background-color: #fff;
     color: #666666;
     cursor: not-allowed;
+    font-weight: 700;
+    font-size: 20px;
+    color: #1A1A1A;
 }
 
 .footer-btn {
-    border-radius: 5px;
+    border-radius: 10px;
     border: none;
-    background-color: rgb(160, 220, 160);
-    width: 120px;
-    margin: 9px;
+    background-color: #11963E;
+    opacity: 0.5;
+    width: 200px;
     color: white;
-    margin-right: 5%;
+    padding: 20px 0;
+    font-weight: 700;
+    font-size: 20px;
 }
 
 .footer-btn:hover {
-    background-color: green;
+    background-color: #11963E;
+    opacity: 1;
 }
 
 .number {
@@ -56,7 +59,7 @@ button[disabled] {
 
 .radio-border {
     display: flex;
-    justify-content: center;
+    justify-content: left;
 }
 
 .radio {

@@ -40,14 +40,14 @@ const Login = () => {
     return (
         <div>
             <Header />
-            <div className='form-container'>
+            <div className='login-form-container'>
                 <div className='login-wrapper'>
                     <h2>Login</h2>
-                    <div className='form-group'>
+                    <div className='login-form-group'>
                         <label>Email</label>
                         <input
                             type="email"
-                            className='input-field'
+                            className='login-input-field'
                             value={values.email}
                             onChange={handleChange('email')}
                             required
@@ -59,7 +59,7 @@ const Login = () => {
                             onChange={handleChange('password')}
                             required />
 
-                        <a className="reset-link" href='/SignIn'>Reset password?</a>
+                        <a className="login-reset-link" href='/SignIn'>Reset password?</a>
                         <button className='login-btn' onClick={Submit} disabled={values.email === "" || values.password === ""} >Login</button>
                     </div>
                 </div>
