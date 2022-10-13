@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from './headerLogin/header';
 import { useNavigate } from 'react-router-dom';
 import './login.css';
 import UserFooter from './userFooter/userFooter';
-import { useDispatch } from "react-redux";
-import { toggle } from '../../redux/action/action';
+import { useDispatch, useSelector } from "react-redux";
+import { toggle, loginUserAction} from '../../redux/action/action';
 import { survey } from '../Img/Img';
 
 const Login = () => {
@@ -15,6 +15,16 @@ const Login = () => {
         email: '',
         password: '',
     });
+    const LoginData = useSelector((state) => state?.loginUserReducer?.data)
+
+    useEffect(() => {
+        if(LoginData?.status === "success"){
+            navigate('/Survey')
+        }
+        else{
+            alert("Data is not match");
+        }
+    },[LoginData])
 
     const handleChange = (name) => (event) => {
         setValues({ ...values, [name]: event.target.value });
@@ -22,20 +32,22 @@ const Login = () => {
 
     const Submit = (e) => {
         e.preventDefault()
-        if (!values.email || !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-            alert('Please Enter Valid Email like a@gmail.com')
-        } else if (values.email === localStorage.getItem("Email") && values.password === localStorage.getItem("Password")) {
-            navigate('/Survey')
-            dispatch(toggle())
-        }
-        else {
-            alert("Data is not match please SignIn")
-            setValues({
-                email: '',
-                password: '',
-            })
-        }
+        dispatch(loginUserAction(values));
     }
+    //if (!values.email || !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    //    alert('Please Enter Valid Email like a@gmail.com')
+    //} else if (values.email === localStorage.getItem("Email") && values.password === localStorage.getItem("Password")) {
+    //    navigate('/Survey')
+    //    //dispatch(toggle())
+      
+    //}
+    //else {
+    //    alert("Data is not match please SignIn")
+    //    setValues({
+    //        email: '',
+    //        password: '',
+    //    })
+    //}
 
     return (
         <div>

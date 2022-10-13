@@ -4,16 +4,16 @@ import { useSelector } from "react-redux";
 
 const Protected = (props) => {
     const { Component } = props;
-    const userData = useSelector((state) => state.userData.toggle);
+    const userData = useSelector((state) => state?.loginUserReducer?.data);
    
     const navigate = useNavigate();
     useEffect(() => {
-        let login = userData;
+        let login = (userData?.status === "success") ? "true" : "false";
         // let login = localStorage.getItem('Email')
         if (!login) {
           navigate('/');
         };
-    });
+    },[userData]);
     return (
         <div>
             <Component />
