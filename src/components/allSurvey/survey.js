@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useDispatch } from "react-redux";
-import { mainSurveyData } from '../../redux/action/action';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { mainSurveyData, getSurveyDataAction } from '../../redux/action/action';
 import './allSurvey.css';
 import '../../global.css';
 import { answers } from './data';
@@ -12,6 +12,12 @@ const Survey = (props) => {
   const [surveyId1, setSurveyId1] = useState(tabId + 1)
   const [text, setText] = useState();
   const dispatch = useDispatch();
+  const SurveyData = useSelector((state) => state?.getSurveyDataReducer?.data)
+  const login = useSelector((state) => state?.loginUserReducer?.data)
+
+  useEffect(() => {
+    dispatch(getSurveyDataAction(login?.uuid))
+  },[login])
 
   const handleChangeText = (e) => {
     setText(e.target.value)
