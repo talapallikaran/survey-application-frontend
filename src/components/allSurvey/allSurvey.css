@@ -43,11 +43,11 @@
   background: #fff;
   border-radius: 100%;
   padding: 5px 10px;
+  margin-right: 10px;
 }
 
 .survey-title2 {
   color: white;
-  padding-left: 15%;
   font-size: 24px;
 }
 

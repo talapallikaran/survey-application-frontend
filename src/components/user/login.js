@@ -21,10 +21,13 @@ const Login = () => {
         if(LoginData?.status === "success"){
             navigate('/Survey')
         }
-        else{
-            alert("Data is not match");
-        }
     },[LoginData])
+
+    let uuid = LoginData && LoginData.uuid
+
+    if (typeof window !== 'undefined') {
+        localStorage.setItem('UUID' , uuid)
+    }
 
     const handleChange = (name) => (event) => {
         setValues({ ...values, [name]: event.target.value });
@@ -34,20 +37,6 @@ const Login = () => {
         e.preventDefault()
         dispatch(loginUserAction(values));
     }
-    //if (!values.email || !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    //    alert('Please Enter Valid Email like a@gmail.com')
-    //} else if (values.email === localStorage.getItem("Email") && values.password === localStorage.getItem("Password")) {
-    //    navigate('/Survey')
-    //    //dispatch(toggle())
-      
-    //}
-    //else {
-    //    alert("Data is not match please SignIn")
-    //    setValues({
-    //        email: '',
-    //        password: '',
-    //    })
-    //}
 
     return (
         <div>
