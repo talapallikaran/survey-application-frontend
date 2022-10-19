@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { dataReducer, userData, loginUserReducer, signInUserReducer, getSurveyDataReducer, postSurveyDataReducer } from "../reducer/reducer";
+import { dataReducer, userData, loginUserReducer, signInUserReducer, getSurveyDataReducer, postSurveyDataReducer, fetchSurveyDataReducer } from "../reducer/reducer";
 
 const RootReducers = combineReducers({
     data: dataReducer,
@@ -8,5 +8,6 @@ const RootReducers = combineReducers({
     signInUserReducer:signInUserReducer,
     getSurveyDataReducer:getSurveyDataReducer,
     postSurveyDataReducer:postSurveyDataReducer,
+    fetchSurveyDataReducer: fetchSurveyDataReducer
 });
 export default RootReducers;

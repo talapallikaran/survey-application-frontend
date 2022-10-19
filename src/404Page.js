@@ -7,5 +7,5 @@ const ErrorPage = () => {
      <h1 className='page-not-found'>page not found</h1>
     </div>
   )
-}
+};
 export default ErrorPage;

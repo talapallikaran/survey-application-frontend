@@ -1,98 +1,122 @@
-import { 
-  SURVEY_DATA, 
-  USER_SIGN_IN, 
-  TOGGLE, 
-  LOGIN_USER_REQUEST, 
-  LOGIN_USER_ERROR, 
-  LOGIN_USER_SUCCESS, 
-  SIGNIN_USER_ERROR, 
-  SIGNIN_USER_SUCCESS, 
-  SIGNIN_USER_REQUEST, 
-  GET_SURVEY_DATA_ERROR, 
-  GET_SURVEY_DATA_REQUEST, 
+import {
+  SURVEY_DATA,
+  USER_SIGN_IN,
+  TOGGLE,
+  LOGIN_USER_ERROR,
+  LOGIN_USER_SUCCESS,
+  SIGNIN_USER_ERROR,
+  SIGNIN_USER_SUCCESS,
+  GET_SURVEY_DATA_ERROR,
   GET_SURVEY_DATA_SUCCESS,
-  POST_SURVEY_DATA_REQUEST,
   POST_SURVEY_DATA_SUCCESS,
-  POST_SURVEY_DATA_ERROR 
-} from '../actionType/actionType';
-import axios from 'axios';
+  POST_SURVEY_DATA_ERROR,
+  FETCH_SURVEY_DATA,
+  FETCH_SURVEY_DATA_ERROR
+} from "../actionType/actionType";
+import axios from "axios";
+
+const UUID = localStorage.getItem('UUID')
 
 export const mainSurveyData = (data) => {
+  console.log("Hello", data);
   return {
     type: SURVEY_DATA,
-    payload: data
+    payload: data,
   };
 };
 
 export const userData = (data) => {
   return {
     type: USER_SIGN_IN,
-    payload: data
+    payload: data,
   };
 };
 export const toggle = () => {
   return {
     type: TOGGLE,
-  }
-}
+  };
+};
 
 //login
-export const loginUserAction = (details) => async(dispatch) => {
-try {
-  const res = await axios.post("http://localhost:4000/login",details); 
-  dispatch({
-    type: LOGIN_USER_SUCCESS,
-    payload:{data: res.data}
-  })
-} catch (error) {
-  dispatch({
-    type:LOGIN_USER_ERROR,
-    payload:{data: error}
-  })
-}};
+export const loginUserAction = (details) => async (dispatch) => {
+  try {
+    const res = await axios.post("http://localhost:4000/login", details);
+    dispatch({
+      type: LOGIN_USER_SUCCESS,
+      payload: { data: res.data },
+    });
+  } catch (error) {
+    dispatch({
+      type: LOGIN_USER_ERROR,
+      payload: { data: error },
+    });
+  }
+};
 
 //SignIn
-export const signInUserAction = (details) => async(dispatch) => {
+export const signInUserAction = (details) => async (dispatch) => {
   try {
-    const res = await axios.post("http://localhost:4000/register",details); 
+    const res = await axios.post("http://localhost:4000/register", details);
     dispatch({
       type: SIGNIN_USER_SUCCESS,
-      payload:{data: res.data}
-    })
+      payload: { data: res.data },
+    });
   } catch (error) {
     dispatch({
-      type:SIGNIN_USER_ERROR,
-      payload:{data: error}
-    })
-  }};
+      type: SIGNIN_USER_ERROR,
+      payload: { data: error },
+    });
+  }
+};
 
+export const fetchSurveyDataAction = () => async(dispatch) => {
+  try {
+    const res = await axios.get(`http://localhost:4000/survey/data/${UUID}`);
+    dispatch({
+      type: FETCH_SURVEY_DATA,
+      payload: { surveyData: res.data },
+    });
+  } catch (error) {
+    dispatch({
+      type: FETCH_SURVEY_DATA_ERROR,
+      payload: { surveyData: error },
+    });
+  }
+};
 
 //SurveyData
-export const getSurveyDataAction = (id) => async(dispatch) => {
+export const getSurveyDataAction = (id) => async (dispatch) => {
   try {
-    const res = await axios.get(`http://localhost:4000/survey/data/${id}`); 
+    const res = await axios.get(`http://localhost:4000/survey/data/${id}`);
     dispatch({
       type: GET_SURVEY_DATA_SUCCESS,
-      payload:{data: res.data}
-    })
+      payload: { data: res.data },
+    });
   } catch (error) {
     dispatch({
-      type:GET_SURVEY_DATA_ERROR,
-      payload:{data: error}
-    })
-  }};
+      type: GET_SURVEY_DATA_ERROR,
+      payload: { data: error },
+    });
+  }
+};
 
 //SurveyDataPost
-export const postSurveyDataAction = (id,data) => async(dispatch) => {
+export const postSurveyDataAction = (data) => async(dispatch) => {
+  // console.log('dpAction==========>>>>>>>>>>',data);
   try {
-    const res = await axios.post(`http://localhost:4000/survey/data/${id}`,data); 
+    // console.log("post survey action,,,,,,,",res);
+    const res = await axios.post(
+      `http://localhost:4000/survey/submission/`,
+      data
+      );
     dispatch({
       type: POST_SURVEY_DATA_SUCCESS,
-      payload:{data: res.data}
-    })
+      payload: { data: res.data },
+    });
   } catch (error) {
     dispatch({
-      type:POST_SURVEY_DATA_ERROR,
-      payload:{data: error}
-    })
-  }};
+      type: POST_SURVEY_DATA_ERROR,
+      payload: { data: error },
+    });
+  }
+};
