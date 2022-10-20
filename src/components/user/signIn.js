@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import { userData, signInUserAction } from '../../redux/action/action';
 import UserFooter from './userFooter/userFooter';
 
-
 import './signIn.css';
 
 const SignIn = () => {
