@@ -1,13 +1,25 @@
 import { combineReducers } from "redux";
-import { dataReducer, userData, loginUserReducer, signInUserReducer, getSurveyDataReducer, postSurveyDataReducer, fetchSurveyDataReducer } from "../reducer/reducer";
+import { getSurveyDataReducer, postSurveyDataReducer, fetchSurveyDataReducer, } from "../reducer/SurveyReducers/SurveyReducer";
+import { putUserEditDataReducer } from "../reducer/AdminUser/putEditDataReducer";
+import { editDataReducer } from "../reducer/AdminUser/EditUserDataReducer";
+import { getRegistrationDataReducer } from "../reducer/RegistrationUser/getRegistrationDataReducer";
+import { RegistrationUserReducer } from "../reducer/RegistrationUser/RegisterUserReducer";
+import { loginUserReducer } from "../reducer/Loginuser/loginUserReducer";
+import { deleteUserReducer } from "../reducer/AdminUser/deleteUserReducer";
 
 const RootReducers = combineReducers({
-    data: dataReducer,
-    userData: userData,
-    loginUserReducer:loginUserReducer,
-    signInUserReducer:signInUserReducer,
-    getSurveyDataReducer:getSurveyDataReducer,
-    postSurveyDataReducer:postSurveyDataReducer,
-    fetchSurveyDataReducer: fetchSurveyDataReducer
+    //login 
+    loginUserReducer: loginUserReducer,
+    //registration
+    RegistrationUserReducer: RegistrationUserReducer,
+    getRegistrationDataReducer: getRegistrationDataReducer,
+    //survey
+    getSurveyDataReducer: getSurveyDataReducer,
+    postSurveyDataReducer: postSurveyDataReducer,
+    fetchSurveyDataReducer: fetchSurveyDataReducer,
+    //admin
+    editDataReducer: editDataReducer,
+    putUserEditDataReducer: putUserEditDataReducer,
+    deleteUserReducer: deleteUserReducer
 });
 export default RootReducers;
