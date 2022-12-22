@@ -1,0 +1,25 @@
+.login-header-container {
+    background-color: #6d72f2;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    padding: 5px;
+    z-index: 999;
+}
+.login-header-image{
+    height: 60px;
+    border-radius: 50%;
+    margin-top: 6px;
+}
+.login-header-subcontainer {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.login-header-container h1 {
+    color: white;
+    padding-left: 10%;
+    margin-top: 10px;
+}
