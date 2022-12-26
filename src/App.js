@@ -1,25 +1,31 @@
 import React from 'react';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import { Home, Sign, Survey } from './components/constant/constant';
-import Login from './components/user/login';
-import SurveyApp from './components/allSurvey/surveyApp';
-import SignIn from './components/user/signIn';
-import Protected from './components/user/protected';
-import ErrorPage from "./404Page"
+import { Home, Register, Survey , Admin , Worker } from './components/constant/constant';
+import WorkerData from './components/Survey/WorkerData';
+import Protected from './pages/protected';
+import ErrorPage from "./pages/404Page";
+import Homepage from './pages/home';
+import Registration from './pages/RegistrationPage';
+import SurveyApp from './pages/surveyPage';
+import AdminPage from "./pages/adminPage";
 
 function App() {
-
+  
   return (
     <div>
       <div>
         <div className='wrapper'>
           <Routes>
-            <Route path={Home} element={<Login />} />
-            <Route path={Sign} element={<SignIn />} />
+             {/* <Route path={Home} element={< Login />} /> */}
+            <Route path={Home} element={<Protected Component={Homepage} />} />
+            <Route path={Register} element={<Registration />} />
+            <Route path={Admin} element={<Protected Component={AdminPage} />} />
             <Route path={Survey} element={<Protected Component={SurveyApp} />} />
+            <Route path={Worker} element={<Protected Component={WorkerData} />} />
             <Route path="*" element={<ErrorPage />} />
-          </Routes>
+          </Routes> 
+
         </div>
       </div>
     </div>
