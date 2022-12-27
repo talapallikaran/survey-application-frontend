@@ -15,10 +15,11 @@ const RegistrationUseForm = (RegistratioValidate, image_src, uploadedImage, setI
   const RegisterData = useSelector((state) => state?.RegistrationUserReducer?.data);
   const allUserData = useSelector((state) => state?.getRegistrationDataReducer?.data);
 
-  let emailValidate = allUserData && allUserData.filter((e) => e.email == values.email);
-  let validEmail = emailValidate?.length;
-  //  console.log(emailValidate);
+  // let emailValidate = allUserData && allUserData.filter((e) => e.email == values.email);
+  // let validEmail = emailValidate?.length;
+  // //  console.log(emailValidate);
 
+  
   useEffect(() => {
     if (RegisterData?.status === "success") {
       navigate("/");
@@ -35,7 +36,7 @@ const RegistrationUseForm = (RegistratioValidate, image_src, uploadedImage, setI
     setValidatedata(true);
 
     if (event) event.preventDefault();
-    setErrors(RegistratioValidate(values, setValues, uploadedImage, setImage, validEmail));
+    setErrors(RegistratioValidate(values, setValues, uploadedImage, setImage));
     let reporting_person_id = values.reporting_person_id || "0";
     formData.append("name", values.name);
     formData.append("email", values.email);
@@ -47,9 +48,9 @@ const RegistrationUseForm = (RegistratioValidate, image_src, uploadedImage, setI
     formData.append("image_src", image_src);
     formData.append("last_name", values.last_name);
     dispatch(RegistrationUserAction(formData));
-    if (validEmail == 1) {
-      toast.error("Email is taken");
-    }
+    // if (validEmail == 1) {
+    //   toast.error("Email is taken");
+    // }
   };
 
   const handleChange = (event) => {

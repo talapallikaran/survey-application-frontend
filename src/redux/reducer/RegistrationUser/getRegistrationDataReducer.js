@@ -4,6 +4,8 @@ import {GET_REGISTRATION_DATA_ERROR,
 
 const instate = {
     toggle :false,
+    users: [],
+    error: false,
   }
 
   export const getRegistrationDataReducer = (state = instate, action) => {
@@ -16,9 +18,15 @@ const instate = {
         };
      //   return { ...action.payload };
       case GET_REGISTRATION_DATA_SUCCESS:
-        return { ...action.payload };
+        return { 
+          ...state,
+          users: action.payload.data 
+        };
       case GET_REGISTRATION_DATA_ERROR:
-        return { ...action.payload };
+        return { 
+          ...state,
+          error: true
+        };
       default:
         return state;
     }
