@@ -14,8 +14,8 @@ function Registration() {
   const [image, setImage] = useState();
   const dispatch = useDispatch();
 
-  const allRegisterUserData = useSelector((state) => state.getRegistrationDataReducer.users);
-  console.log(allRegisterUserData);
+  const allRegisterUserData = useSelector((state) => state?.getRegistrationDataReducer?.users);
+ // console.log(allRegisterUserData);
 
   useEffect(() => {
     dispatch(getRegistrationDataAction());
@@ -135,7 +135,7 @@ function Registration() {
               >
                 <option>Select from dropdown</option>
                 {
-                  allRegisterUserData && allRegisterUserData.length && allRegisterUserData?.map((register, id) => {
+                  allRegisterUserData && allRegisterUserData?.length && allRegisterUserData?.map((register, id) => {
                     if (register.role_id == 2 && values.role_id == 3) {
                       return (
                         <>

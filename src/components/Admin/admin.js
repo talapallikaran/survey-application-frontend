@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FiEdit } from "react-icons/fi";
-import { ToastContainer , toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { MdDelete } from 'react-icons/md';
 import EscapeOutside from "react-escape-outside";
@@ -17,7 +17,8 @@ const Admin = () => {
     const [show, setShow] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
     const dispatch = useDispatch();
-    const userdata = useSelector((state) => state?.getRegistrationDataReducer?.data);
+    const userdata = useSelector((state) => state?.getRegistrationDataReducer?.users);
+   // console.log(userdata);
 
     useEffect(() => {
         dispatch(getRegistrationDataAction());
@@ -54,7 +55,7 @@ const Admin = () => {
                         <div> {show && <AddUser setShow={setShow} />} </div>
                     </EscapeOutside>
                     <EscapeOutside onEscapeOutside={() => setShowEdit(false)} >
-                        <div>{showEdit && <EditUser setShowEdit={setShowEdit}  />} </div>
+                        <div>{showEdit && <EditUser setShowEdit={setShowEdit} />} </div>
                     </EscapeOutside>
 
 

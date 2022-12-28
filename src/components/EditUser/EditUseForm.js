@@ -13,7 +13,7 @@ const EditUseForm = (EditUserValidate, img, uploadedImage, setShowEdit) => {
   const [validateData, setValidatedata] = useState(null);
   let validImage = img || editData.image_src;
 
-  const allUserData = useSelector((state) => state?.getRegistrationDataReducer?.data);
+  const allUserData = useSelector((state) => state?.getRegistrationDataReducer?.users);
   let validEmailData = allUserData.filter((e) => e.email == values.email);
   let validEmail = validEmailData?.length;
   //console.log(validEmail);
