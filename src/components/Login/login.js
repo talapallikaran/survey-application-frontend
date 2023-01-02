@@ -84,46 +84,59 @@ const Login = () => {
 
     return (
         <div>
-
-            <div className='login-form-container'>
-                <div className='login-wrapper'>
-                    <ToastContainer autoClose={1500} position="top-center" />
-                    <h2>Login</h2>
-                    <form className='login-form-group' onSubmit={formSubmit}>
-
-                        <label className='loign-form-label'>Email</label>
-                        <input
-                            type="email"
-                            className={`login-input-field ${errors.email && "login-danger1"}`}
-                            value={values.email || ""}
-                            onChange={handleChange}
-                            name='email'
-                        />
-                        {errors.email && (<b className="login-danger">{errors.email}</b>)}
-
-                        <label className='loign-form-label'>Password</label>
-                        <input
-                            type="password"
-                            className={`login-input-field ${errors.password && "login-danger1"}`}
-                            value={values.password || ""}
-                            onChange={handleChange}
-                            name='password'
-                        />
-                        {errors.password && (<b className="login-danger">{errors.password}</b>)}
-
-                        <a className="login-resetpassword-link" href='/'>ResetPassword?</a>
-                        <a className="login-signin-link" href='/Registration'>Sign up</a>
-                        {/* <a className="login-admin-link" href='/admin'>Admin</a> */}
-
-                        <button className='login-button' onClick={Submit}  >Login</button>
-                    </form>
-                </div>
+        <div className="login-form-container">
+          <div className="login-wrapper">
+            <ToastContainer
+              className="ToastContainer"
+              position="top-center"
+              autoClose={3000}
+            />
+            <h2 className="login">Login</h2>
+            <div className="login-form-group">
+              <label className="login-label">Email</label>
+              <input
+                type="email"
+                className="login-input-field login-input"
+                value={values.email || " "}
+                onChange={handleChange}
+                name="email"
+                required
+              />
+              {errors.email && (
+                <b className="is-danger for-email">{errors.email}</b>
+              )}
+              <label className="login-label">Password</label>
+              <input
+                type="password"
+                className="login-input"
+                value={values.password || ""}
+                onChange={handleChange}
+                name="password"
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") {
+                    Submit();
+                  }
+                }}
+                required
+              />
+              {errors.password && (
+                <b className="login_is-danger">{errors.password}</b>
+              )}
+              <div className="link">
+                <a className="login-reset-link" href="/registration">
+                <i>  +add user</i>
+                </a>
+              </div>
+              <button className="login-btn" onClick={Submit}>
+                Login
+              </button>
             </div>
-            <div className='login-image-container'>
-                <img className="login-page-image" src={survey} alt="image" />
-            </div>
-
+          </div>
         </div>
+        <div className="img-container">
+          <div className="img-container1"></div>
+        </div>
+      </div>
     );
 };
 export default Login;
