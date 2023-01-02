@@ -8,11 +8,7 @@ import {
 
   export const deleteUserAction = (id, data) => async (dispatch) => {
     try {
-      const res = await axios.delete(`http://localhost:4000/delete/${id}`, data, {
-        headers: {
-          "Content-type": "multipart/form-data",
-        },
-      });
+      const res = await axios.delete(`http://localhost:4000/delete/${id}`, data);
       dispatch({
         type: DELETE_USER_DATA_SUCCESS,
         payload: { data: res.data },

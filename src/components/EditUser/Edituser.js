@@ -173,7 +173,7 @@ function EditUser({ setShowEdit }) {
                 name="reporting_person_id"
                 disabled={values.role_id == 2 || !values.role_id}
               >
-                {registrationData && registrationData.data.map((register, id) => {
+                {registrationData && registrationData?.users?.map((register, id) => {
                   if (register.role_id == 2 && values.role_id == 3) {
                     return (
                       <option value={register.id} key={id}>

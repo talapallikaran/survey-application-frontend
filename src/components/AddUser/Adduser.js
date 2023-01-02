@@ -46,8 +46,9 @@ function AddUser({ setShow }) {
 
   const { values, errors, handleChange, handleSubmit } = AddUseForm(AddUserValidate, image, uploadedImage, setImage);
 
-  const registrationData = useSelector((state) => state.getRegistrationDataReducer);
+  const registrationData = useSelector((state) => state?.getRegistrationDataReducer);
   // console.log(registrationData);
+  
   useEffect(() => {
     dispatch(getRegistrationDataAction());
   }, []);
@@ -149,8 +150,8 @@ function AddUser({ setShow }) {
                   <option>Select from dropdown</option>
                   {
                     registrationData &&
-                    registrationData.data &&
-                    registrationData.data.map((register, id) => {
+                    registrationData?.users &&
+                    registrationData?.users?.map((register, id) => {
                       //   console.log(register);
                       // console.log(values.role_id);
                       //   console.log(register.role_id);

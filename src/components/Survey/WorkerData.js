@@ -3,27 +3,30 @@ import WorkerFooter from "./SurveyFooter/WorkerFooter";
 import Header from "./SurveytHeader/SurveyHeader";
 import "./surveyApp.css";
 import { useDispatch, useSelector } from "react-redux";
-import {fetchWorkerDataAction, postWorkerDataAction} from "../../redux/action/SurveyActions/workerSurveyAction";
-import {  useParams } from "react-router-dom";
-import {getRegistrationDataAction} from '../../redux/action/RegistrationUser/getRegistrationDataAction';
+import { fetchWorkerDataAction, postWorkerDataAction } from "../../redux/action/SurveyActions/workerSurveyAction";
+import { useParams } from "react-router-dom";
+import { getRegistrationDataAction } from '../../redux/action/RegistrationUser/getRegistrationDataAction';
 import WorkerSurvey from "./WorkerSurvey";
 
 const WorkerDetails = () => {
   const dispatch = useDispatch();
   const [tabActive, setTabActive] = useState(0);
-  const {workeruuid} = useParams();
+  const { workeruuid } = useParams();
   const wuuid = workeruuid;
   //console.log(workeruuid);
 
-  const data = useSelector((state) => state?.fetchSurveyDataReducer);
-  // console.log("fetch reducer=========",data);
-
+  const data = useSelector((state) => state?.fetchWorkerDataReducer);
+  //  console.log("fetch reducer=========",data);
+  const allRegisterUserData = useSelector((state) => state?.getRegistrationDataReducer?.users);
+  //console.log(allRegisterUserData);
+  let workerName = allRegisterUserData && allRegisterUserData?.find((e) => e.uuid == workeruuid);
+  // console.log(workerName);
 
   useEffect(() => {
     dispatch(fetchWorkerDataAction());
     dispatch(getRegistrationDataAction());
   }, []);
-  
+
   var months = [
     "January",
     "February",
@@ -47,7 +50,7 @@ const WorkerDetails = () => {
   let surveydata;
   const setServeyAnswers = (surveyInfo) => {
     // console.log("setServeyAnswers.......", surveyInfo);
-  
+
     let mySurveyIndex = data?.surveyData?.surveydata.findIndex(
       (survey) => survey.survey_id === surveyInfo.survey_id
     );
@@ -83,8 +86,8 @@ const WorkerDetails = () => {
             {monthName} {new Date().getFullYear()}
           </h2>
         </div>
-        <h4>Worker-----</h4>
-        
+        <h4>Worker Name: {workerName?.name}</h4>
+
         {data &&
           data.surveyData &&
           data.surveyData.surveydata &&

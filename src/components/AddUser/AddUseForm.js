@@ -9,7 +9,8 @@ const AddUseForm = (AddUserValidate, image_src) => {
   const [validateData, setValidatedata] = useState(null);
   const dispatch = useDispatch();
 
-  const allUserData = useSelector((state) => state?.getRegistrationDataReducer?.data);
+  const allUserData = useSelector((state) => state?.getRegistrationDataReducer?.users);
+  // console.log(allUserData);
   let validEmailData = allUserData.filter((e) => e.email == values.email);
   let validEmail = validEmailData?.length;
 
