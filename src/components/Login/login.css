@@ -1,15 +1,31 @@
 .login-form-container {
-    padding-top: 200px;
+    padding-top: 100px;
+    background: #FFFFFF;
 }
 
 .login-wrapper {
-    width: 100%;
-    max-width: 470px;
+    max-width: 500px;
     margin: 0 auto;
-    background: #F2F2F2;
-    box-shadow: 0px 0px 30px rgb(0 0 0 / 30%);
+    background: #FFFFFF;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     padding: 20px;
+}
+
+.ToastContainer {
+    margin-top: 7%;
+}
+
+.login {
+    width: 81px;
+    height: 36px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+    color: #000000;
+    margin-bottom: 39px;
 }
 
 .login-form-group {
@@ -17,48 +33,54 @@
     flex-direction: column;
 }
 
-.loign-form-label {
-    margin-bottom: 8px;
+.login-label {
+    width: 46px;
+    height: 22px;
+    left: 728px;
+    top: 490px;
     font-family: 'Inter';
-    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000000;
 }
 
-.login-resetpassword-link {
-    margin-top: 5px;
-    margin-bottom: 30px;
-}
-
-.login-signin-link {
-    margin-bottom: 30px;
-    margin-left: 380px;
-    margin-top: -50px;
-}
-
-.login-admin-link {
-    margin-bottom: 30px;
-    margin-left: 380px;
-    margin-top: -50px;
-}
-
-.login-input-field {
-    padding: 10px;
+.login-input {
+    padding: 15px;
+    border: 0;
     background: #F0F0F0;
-    border: 1px solid #D9D9D9;
-    border-radius: 8px;
-    width: 90%;
-    font-size: 16px;
+    border-radius: 10px;
+    margin-top: 5px;
 }
 
-.login-danger {
+.login-input-field{
+    margin-bottom: 30px;
+}
+.login-reset-link {
+    margin-top: -11px;
+    margin-bottom: 54px;
+    font-family: 'Inter';
+}
+
+.login_is-danger {
     color: red;
     font-size: 0.9rem;
+    margin-top: 5px;
 }
 
-.login-danger1 {
-    color: rgb(15, 15, 15);
+.for-email {
+    margin-top: -5%;
+    margin-bottom: 1%;
 }
 
-.login-button {
+.link {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2%;
+}
+
+.login-btn {
     max-width: 180px;
     margin: 0 auto;
     color: #fff;
@@ -73,14 +95,24 @@
     border-radius: 10px;
 }
 
-.login-image-container {
+.img-container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.login-page-image {
-    width: 30%;
-    opacity: 0.5;
-    margin-bottom: -10%;
+.img-container1 {
+    background-image: url("../../assets//Img/survey.png");
+    background-repeat: no-repeat;
+    opacity: 1.5;
+    background-size: 97%;
+    height: 490px;
+    width: 777px;
+    margin-bottom: 36px;
+}
+.img {
+    height: 40px;
+    width: 40px;
+    margin-top: 17px;
+    margin-left: 38px;
 }
