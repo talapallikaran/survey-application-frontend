@@ -103,12 +103,12 @@ const Login = () => {
                 required
               />
               {errors.email && (
-                <b className="is-danger for-email">{errors.email}</b>
+                <b className="login_is-danger for-email">{errors.email}</b>
               )}
-              <label className="login-label">Password</label>
+              <label className="login-label-password">Password</label>
               <input
                 type="password"
-                className="login-input"
+                className="login-input-password"
                 value={values.password || ""}
                 onChange={handleChange}
                 name="password"
@@ -124,7 +124,7 @@ const Login = () => {
               )}
               <div className="link">
                 <a className="login-reset-link" href="/registration">
-                <i>  +add user</i>
+                <i>  Reser password</i>
                 </a>
               </div>
               <button className="login-btn" onClick={Submit}>
