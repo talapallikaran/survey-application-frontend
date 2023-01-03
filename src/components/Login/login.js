@@ -73,7 +73,7 @@ const Login = () => {
 
     const Submit = (e) => {
         setValidatedata(true);
-        e.preventDefault();
+        // e.preventDefault();
         dispatch(loginUserAction(values));
         setErrors(loginFormValidate(values, setValues));
     }
@@ -124,7 +124,7 @@ const Login = () => {
               )}
               <div className="link">
                 <a className="login-reset-link" href="/registration">
-                <i>  Reser password</i>
+                {/* <i>  Reser password</i> */}
                 </a>
               </div>
               <button className="login-btn" onClick={Submit}>

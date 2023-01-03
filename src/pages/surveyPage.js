@@ -8,7 +8,6 @@ function Home(){
         <div>
             <SurveyHeader />
             <SurveyPage />
-         
         </div>
     )
 }

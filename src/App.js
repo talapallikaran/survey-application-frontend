@@ -6,7 +6,7 @@ import WorkerData from './components/Survey/WorkerData';
 import Protected from './pages/protected';
 import ErrorPage from "./pages/404Page";
 import Homepage from './pages/home';
-import Registration from './pages/RegistrationPage';
+// import Registration from './pages/RegistrationPage';
 import SurveyApp from './pages/surveyPage';
 import AdminPage from "./pages/adminPage";
 
@@ -19,7 +19,7 @@ function App() {
           <Routes>
              {/* <Route path={Home} element={< Login />} /> */}
             <Route path={Home} element={<Protected Component={Homepage} />} />
-            <Route path={Register} element={<Registration />} />
+            {/* <Route path={Register} element={<Registration />} /> */}
             <Route path={Admin} element={<Protected Component={AdminPage} />} />
             <Route path={Survey} element={<Protected Component={SurveyApp} />} />
             <Route path={Worker} element={<Protected Component={WorkerData} />} />
