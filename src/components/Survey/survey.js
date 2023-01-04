@@ -13,7 +13,10 @@ const Survey = (props) => {
   const [comment, setComment] = useState();
   const dispatch = useDispatch();
   const login = useSelector((state) => state?.loginUserReducer?.data);
-  //console.log(login);
+  const data = useSelector((state) => state?.fetchSurveyDataReducer);
+  //console.log("api data=========", data);
+  // console.log(questions);
+  //console.log(SurveyData);
 
   const surveyData = {
     survey_id: surveyId1,
@@ -36,6 +39,7 @@ const Survey = (props) => {
     setAnswers(surveyData);
     submitSurvey();
   };
+
   const setAnsId = (qId, qAns) => {
     let existingAns = ansData.filter((ans) => ans.qid === qId);
     if (existingAns.length > 0) {
@@ -51,45 +55,49 @@ const Survey = (props) => {
     }
   };
 
+
   return (
     <div>
+
       <div className="survey-main">
-        <div
-          className="survey-container"
-          style={
-            changeBtnAndBgColor
-              ? { backgroundColor: "#11963E" }
-              : { backgroundColor: "#1A1A1A" }
-          }
-        >
-          <div className="survey-container-title">
-            <p className="survey-title1">
-              <span>✔</span>
-            </p>
-            <p className="survey-title2">{title}</p>
-          </div>
-          <div className="survey-button-main">
-            {changeBtnAndBgColor ? (
-              <button
-                className="survey-button-save_saved"
-                onClick={() => saveButton()}
-                disabled
-              >
-                {" "}
-                <b>Saved</b>{" "}
-              </button>
-            ) : (
-              <button
-                className="survey-button-save_saved"
-                disabled={ansData.length < 5 || !comment}
-                onClick={() => {
-                  saveButton();
-                }}
-              >
-                {" "}
-                <b>Save</b>{" "}
-              </button>
-            )}
+        <div>
+          <div
+            className="survey-container"
+            style={
+              changeBtnAndBgColor
+                ? { backgroundColor: "#11963E" }
+                : { backgroundColor: "#1A1A1A" }
+            }
+          >
+            <div className="survey-container-title">
+              <p className="survey-title1">
+                <span>✔</span>
+              </p>
+              <p className="survey-title2">{title}</p>
+            </div>
+            <div className="survey-button-main">
+              {changeBtnAndBgColor ? (
+                <button
+                  className="survey-button-save_saved"
+                  onClick={() => saveButton()}
+                  disabled
+                >
+                  {" "}
+                  <b>Saved</b>{" "}
+                </button>
+              ) : (
+                <button
+                  className="survey-button-save_saved"
+                  disabled={ansData.length < 5 || !comment}
+                  onClick={() => {
+                    saveButton();
+                  }}
+                >
+                  {" "}
+                  <b>Save</b>{" "}
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -99,14 +107,15 @@ const Survey = (props) => {
         <div className="radio-main">
           <div className="radio-question">
             {questions.map((question, ansId) => {
-              //    console.log("ansdata" , ansData);
+              //console.log("ansdata", question);
               let isActive = ansData.filter((qa) => qa.qid === question.qid);
-              //    console.log("ansId======",ansId);
+              // console.log("ansId======",isActive);
               //   console.log("question ans======",question);
               let btnActive;
               if (isActive.length > 0) {
                 btnActive = ansId + 1 <= isActive[0].ans ? "active" : "";
               }
+
               return (
                 <div key={ansId}>
                   <p className="s-questions">
@@ -115,6 +124,7 @@ const Survey = (props) => {
 
                   <div className="radio-border">
                     {answers.map((e, ansId) => {
+                      //  console.log(ansId);
                       let isActive = ansData.filter(
                         (qa) => qa.qid === question.qid
                       );
@@ -154,7 +164,10 @@ const Survey = (props) => {
                   </div>
                 </div>
               );
+
             })}
+
+
           </div>
           <p className="s-questions">Your Review</p>
           <textarea onChange={handleChangeText} type="textarea" name="review" defaultValue={newcomments} />

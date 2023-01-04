@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchSurveyDataAction, postSurveyDataAction } from "../../redux/action/SurveyActions/surveyAction";
 import { getRegistrationDataAction } from '../../redux/action/RegistrationUser/getRegistrationDataAction';
 import { useNavigate } from 'react-router-dom';
+import { answers, SurveyData } from "./surveydata";
 
 const SurveyApp = () => {
   const dispatch = useDispatch();
@@ -15,9 +16,42 @@ const SurveyApp = () => {
   const [tabActive, setTabActive] = useState(0);
   // const [values, setValues] = useState();
 
-  const data = useSelector((state) => state?.fetchSurveyDataReducer);
-  //  console.log("fetch reducer=========",data);
+  console.log("static data", SurveyData);
+
+  const data = useSelector((state) => state?.fetchSurveyDataReducer?.surveyData);
+  console.log("api data=========", data);
   let LoginRoleid = localStorage.getItem("ROLLID");
+
+
+  useEffect(() => {
+    if (data) {
+      SurveyData?.surveyData?.surveydata?.map((sdata) => {
+        console.log("staticdata=======>", sdata);
+        if (sdata) {
+          data?.surveydata?.map((Apidata) => {
+            console.log("amisha=======>", Apidata);
+            if (Apidata.survey_id === sdata.survey_id) {
+              sdata.comment = Apidata.comment;
+              console.log("surveyiddone");
+              sdata.question.map((sQ) => {
+                if (sQ) {
+                  Apidata.question.map((ApiQ, index) => {
+                    if (ApiQ.qid === sQ.qid) {
+                      console.log("sQ.ans", sQ.ans, ApiQ.ans);
+                      sQ.ans = ApiQ.ans;
+                    }
+                  });
+                }
+                console.log("squetions", sQ);
+              });
+            }
+          });
+        }
+      });
+    }
+    console.log("survaeydata========>", SurveyData);
+  }, [SurveyData, data]);
+
 
   useEffect(() => {
     dispatch(fetchSurveyDataAction());
@@ -45,13 +79,15 @@ const SurveyApp = () => {
     setTabActive(tabId + 1);
   };
   let surveydata;
+  // console.log(SurveyData);
   const setServeyAnswers = (surveyInfo) => {
     // console.log("setServeyAnswers.......", surveyInfo);
 
-    let mySurveyIndex = data?.surveyData?.surveydata.findIndex(
-      (survey) => survey.survey_id === surveyInfo.survey_id
+    let mySurveyIndex = SurveyData?.surveyData?.surveydata.findIndex(
+      (survey) =>
+        survey.survey_id === surveyInfo.survey_id
     );
-    let survey = data?.surveyData?.surveydata[mySurveyIndex];
+    let survey = SurveyData?.surveyData?.surveydata[mySurveyIndex];
     survey.comment = surveyInfo.comment;
     surveyInfo.question.map((question) => {
       let questionIndex = survey.question.findIndex(
@@ -59,7 +95,7 @@ const SurveyApp = () => {
       );
       survey.question[questionIndex].ans = question.ans;
     });
-    surveydata = data?.surveyData?.surveydata
+    surveydata = SurveyData?.surveyData?.surveydata
   };
 
   const submitSurvey = () => {
@@ -114,11 +150,12 @@ const SurveyApp = () => {
             }
           </div>
         </div>
-        {data &&
-          data.surveyData &&
-          data.surveyData.surveydata &&
-          data.surveyData.surveydata.map((surveyData, id) => {
-            //  console.log("all data=======" , surveyData.question[id].ans);
+
+        {SurveyData &&
+          SurveyData.surveyData &&
+          SurveyData.surveyData.surveydata &&
+          SurveyData.surveyData.surveydata.map((surveyData, id) => {
+            // console.log("static data" ,surveyData );
             return (
               <div key={id} className="survey-wrapper">
                 <Survey
@@ -135,7 +172,7 @@ const SurveyApp = () => {
             );
           })}
       </div>
-      <Footer surveydata={data?.surveyData?.surveydata} />
+      <Footer surveydata={SurveyData?.surveyData?.surveydata} />
     </div>
   );
 };
