@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import { getSurveyDataReducer, postSurveyDataReducer, fetchSurveyDataReducer, } from "../reducer/SurveyReducers/SurveyReducer";
+import { fetchWorkerDataReducer, postWorkerDataReducer, getWorkerDataReducer } from '../reducer/SurveyReducers/WorkerSurveyReducers'
 import { putUserEditDataReducer } from "../reducer/AdminUser/putEditDataReducer";
 import { editDataReducer } from "../reducer/AdminUser/EditUserDataReducer";
 import { getRegistrationDataReducer } from "../reducer/RegistrationUser/getRegistrationDataReducer";
@@ -17,6 +18,10 @@ const RootReducers = combineReducers({
     getSurveyDataReducer: getSurveyDataReducer,
     postSurveyDataReducer: postSurveyDataReducer,
     fetchSurveyDataReducer: fetchSurveyDataReducer,
+    // worker survey
+    fetchWorkerDataReducer: fetchWorkerDataReducer,
+    getWorkerDataReducer: getWorkerDataReducer,
+    postWorkerDataReducer: postWorkerDataReducer,
     //admin
     editDataReducer: editDataReducer,
     putUserEditDataReducer: putUserEditDataReducer,
