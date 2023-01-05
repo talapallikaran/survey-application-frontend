@@ -102,6 +102,7 @@ function AddUser({ setShow }) {
                 className="form-input-field-name"
                 type="text"
                 name="name"
+                placeholder="Enter first name"
                 onChange={handleChange}
                 value={values.name || ""}
                 required
@@ -118,6 +119,7 @@ function AddUser({ setShow }) {
                 className="form-input-field-lastName"
                 type="text"
                 name="last_name"
+                placeholder="Enter last name"
                 onChange={handleChange}
                 value={values.last_name || ""}
                 required
@@ -136,6 +138,7 @@ function AddUser({ setShow }) {
             className="form-input-field"
             type="email"
             name="email"
+            placeholder="Enter email eddress"
             onChange={handleChange}
             value={values.email || ""}
             required
@@ -151,6 +154,7 @@ function AddUser({ setShow }) {
             className="form-input-field"
             type="text"
             name="phone"
+            placeholder="Enter phone number"
             onChange={handleChange}
             value={values.phone || ""}
             required
@@ -168,7 +172,7 @@ function AddUser({ setShow }) {
               value={values.role_id || ""}
               name="role_id"
             >
-              <option>Select from Designation</option>
+              <option>Select from dropdown</option>
               <option value={3}>Worker</option>
               <option value={2}> Supervisor</option>
             </select>
@@ -186,7 +190,7 @@ function AddUser({ setShow }) {
               name="reporting_person_id"
               disabled={values.role_id == 2 || !values.role_id}
             >
-              <option>Select from Reporter</option>
+              <option>Select from dropdown</option>
               {data?.map((e, id) => {
                 if (e.role_id == 2 && values.role_id == 3) {
                   return (
@@ -213,6 +217,7 @@ function AddUser({ setShow }) {
                 name="password"
                 onChange={handleChange}
                 value={values.password || ""}
+                placeholder="Enter password"
                 required
               />
               <br />
@@ -230,6 +235,7 @@ function AddUser({ setShow }) {
                 name="confirmPassword"
                 onChange={handleChange}
                 value={values.confirmPassword || ""}
+                placeholder="Conform password"
                 required
               />
               <br />

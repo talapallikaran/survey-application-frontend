@@ -6,24 +6,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchSurveyDataAction, postSurveyDataAction } from "../../redux/action/SurveyActions/surveyAction";
 import { getRegistrationDataAction } from '../../redux/action/RegistrationUser/getRegistrationDataAction';
 import { useNavigate } from 'react-router-dom';
+import SurveyHeader from './SurveytHeader/SurveyHeader';
+import {surveyDummyData} from './surveydata';
+
 
 const SurveyApp = () => {
+  const uuid = localStorage.getItem("UUID");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  let uuid = localStorage.getItem("UUID");
-
   const [tabActive, setTabActive] = useState(0);
-  // const [values, setValues] = useState();
-
   const data = useSelector((state) => state?.fetchSurveyDataReducer);
-  //  console.log("fetch reducer=========",data);
-  let LoginRoleid = localStorage.getItem("ROLLID");
-
+  let LoginData = JSON.parse(localStorage.getItem("WorkerData") || "[]");
+  const optionData = useSelector((state) => state?.getRegistrationDataReducer?.users);
+  let responce = data?.surveyData?.message;
+  let superVisor = optionData && optionData?.find((e) => e.uuid == uuid);
   useEffect(() => {
     dispatch(fetchSurveyDataAction());
     dispatch(getRegistrationDataAction());
   }, []);
-
   var months = [
     "January",
     "February",
@@ -40,14 +40,11 @@ const SurveyApp = () => {
   ];
   var d = new Date();
   var monthName = months[d.getMonth()];
-
   const setTab = (tabId) => {
     setTabActive(tabId + 1);
   };
   let surveydata;
   const setServeyAnswers = (surveyInfo) => {
-    // console.log("setServeyAnswers.......", surveyInfo);
-
     let mySurveyIndex = data?.surveyData?.surveydata.findIndex(
       (survey) => survey.survey_id === surveyInfo.survey_id
     );
@@ -59,66 +56,64 @@ const SurveyApp = () => {
       );
       survey.question[questionIndex].ans = question.ans;
     });
-    surveydata = data?.surveyData?.surveydata
+    surveydata = data?.surveyData?.surveydata;
   };
-
   const submitSurvey = () => {
     dispatch(
       postSurveyDataAction({
         uuid,
-        surveydata
+        surveydata,
       })
     );
   };
-
-  const handleChange = (event) => {
-    let workeruuid = event.target.value;
-    //  console.log(workerUuid);
-    navigate(`/Survey${workeruuid}`);
-    localStorage.setItem('workerUUID', workeruuid);
+  const handleChange = (e) => {
+    let workerData = e.target.value;
+    localStorage.setItem("workerId", workerData);
+    navigate(`/Survey/${workerData}`);
   };
-
-  let users = JSON.parse(localStorage.getItem("WorkerData") || "[]");
-  let userdata = users && users[0];
-
-  // console.log("user",userdata);
+  let dm;
+  if (superVisor?.role_id == 2) {
+    dm = LoginData.map((e) => e.map((e) => e.id == null));
+  }
 
   return (
-    <div>
+    <div className="wrepper">
+     <SurveyHeader />
       <div className="container">
-        <div className="survey-heading">
-          <div className="survey-date">
+        <div className="date-container">
+          <div className="date">
             <h2>
               {monthName} {new Date().getFullYear()}
             </h2>
           </div>
-          <div className="Dropdown">
-            {
-              LoginRoleid == 2 && (
-                <select
-                  className="worker-select"
-                  onChange={handleChange}
-                //  name="workerdata"
-                //   value={values.uuid}
-                >
-                  <option>Select from Worker</option>
-                  {
-                    userdata.map((e, id) => {
+          {superVisor?.role_id == 2 && (
+            <select
+              className="select-option"
+              onChange={handleChange}
+              name="reporting_person_id"
+              disabled={dm[0] == "true"}
+            >
+              <option>Select from worker</option>
+              {LoginData?.map((data, id) => {
+                return (
+                  <React.Fragment key={id}>
+                    {data.map((e, id) => {
                       return (
-                        <option value={e.id} key={id} >{e.name}</option>
-                      )
-                    })
-                  }
-                </select>
-              )
-            }
-          </div>
+                        <option value={e.id} key={id}>
+                          {e.name}
+                        </option>
+                      );
+                    })}
+                  </React.Fragment>
+                );
+              })}
+            </select>
+          )}
         </div>
-        {data &&
+        {responce !== "Network Error" && data &&
           data.surveyData &&
           data.surveyData.surveydata &&
           data.surveyData.surveydata.map((surveyData, id) => {
-            //  console.log("all data=======" , surveyData.question[id].ans);
             return (
               <div key={id} className="survey-wrapper">
                 <Survey
@@ -129,9 +124,56 @@ const SurveyApp = () => {
                   isActive={tabActive === id}
                   setAnswers={(surveyInfo) => setServeyAnswers(surveyInfo)}
                   submitSurvey={() => submitSurvey()}
-                  newcomments={surveyData.comment}
+                  comments={surveyData.comment}
                 />
               </div>
+            );
+          })}
+
+          {data &&
+          data.surveyData &&
+          data.surveyData.surveydata &&
+          data.surveyData.surveydata.map((surveyData, id) => {
+            return (
+              <div key={id} className="survey-wrapper">
+                <Survey
+                  tabId={id}
+                  title={surveyData.title}
+                  questions={surveyData.question}
+                  setTab={(id) => setTab(id)}
+                  isActive={tabActive === id}
+                  setAnswers={(surveyInfo) => setServeyAnswers(surveyInfo)}
+                  submitSurvey={() => submitSurvey()}
+                  comments={surveyData.comment}
+                />
+              </div>
+            );
+          })}
+          {surveyDummyData &&
+          surveyDummyData.map((surveyData, id) => {
+            return (
+              <React.Fragment key = {id}>
+                {responce == "Network Error" && surveyData &&
+                  surveyData.map((surveyData) => {
+                    console.log("staticcc2", surveyData.question);
+                    return (
+                      <div key={id} className="survey-wrapper">
+                      <Survey
+                        tabId={id}
+                        title={surveyData.title}
+                        questions={surveyData.question}
+                        setTab={(id) => setTab(id)}
+                        isActive={tabActive === id}
+                        setAnswers={(surveyInfo) =>
+                          setServeyAnswers(surveyInfo)
+                        }
+                        submitSurvey={() => submitSurvey()}
+                        comments={surveyData.comment}
+                      />
+                      </div>
+                    );
+                  })}
+              </React.Fragment>
             );
           })}
       </div>
