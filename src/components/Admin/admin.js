@@ -12,7 +12,7 @@ import { editUserData } from "../../redux/action/AdminUser/EditUserDataAction";
 import { deleteUserAction } from "../../redux/action/AdminUser/deleteUserAction";
 import AddUser from "../AddUser/Adduser";
 import EditUser from "../EditUser/Edituser";
-import {userDataStatic} from '../Survey/surveydata';
+import { userDataStatic } from "../Survey/surveydata";
 
 const Admin = () => {
   const [show, setShow] = useState(false);
@@ -24,7 +24,7 @@ const Admin = () => {
 
   useEffect(() => {
     dispatch(getRegistrationDataAction());
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
   }, []);
 
   const Edit = (data) => {

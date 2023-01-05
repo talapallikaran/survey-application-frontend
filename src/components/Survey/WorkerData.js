@@ -14,8 +14,7 @@ const WorkerDetails = () => {
   const wuuid = localStorage.getItem("workerId");
   let LoginData = JSON.parse(localStorage.getItem("WorkerData") || "[]");
   const [tabActive, setTabActive] = useState(0);
-  const data = useSelector((state) => state?.fetchSurveyDataReducer);
-  // console.log(data);
+  const data = useSelector((state) => state?.fetchWorkerDataReducer);
   let workerMap = [];
   LoginData.map((e) => (workerMap = e));
   let workerName = workerMap.find((e) => e.id == worker);
@@ -84,7 +83,6 @@ const WorkerDetails = () => {
           data.surveyData &&
           data.surveyData.surveydata &&
           data.surveyData.surveydata.map((surveyData, id) => {
-            {/* console.log(surveyData) */}
             return (
               <div key={id} className="survey-wrapper">
                 <WorkerSurvey
@@ -101,7 +99,7 @@ const WorkerDetails = () => {
             );
           })}
       </div>
-      <WorkerFooter surveydata={data?.surveyData?.surveydata} />
+      <WorkerFooter data={data?.surveyData?.surveydata} />
     </div>
   );
 };
