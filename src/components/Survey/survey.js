@@ -1,19 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSurveyDataAction } from "../../redux/action/SurveyActions/surveyAction";
+// import { getSurveyDataAction } from "../../redux/action/surveyDataAction/surveyDataA";
 import "./survey.css";
-import "../../assets/global.css";
-import { answers } from "./surveydata";
+import "../../assets/css/global.css";
+import "../../assets/css/responsive.css";
+import { answers } from "../common/data";
 
 const Survey = (props) => {
-  const { title, questions, setTab, tabId, isActive, setAnswers, submitSurvey, newcomments } = props;
+  const {
+    title,
+    questions,
+    setTab,
+    tabId,
+    isActive,
+    setAnswers,
+    submitSurvey,
+    comments,
+  } = props;
   const [ansData, setAnsData] = useState([]);
   const [changeBtnAndBgColor, setChangeBtnAndBgColor] = useState(false);
   const [surveyId1, setSurveyId1] = useState(tabId + 1);
   const [comment, setComment] = useState();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const login = useSelector((state) => state?.loginUserReducer?.data);
-  //console.log(login);
 
   const surveyData = {
     survey_id: surveyId1,
@@ -21,14 +30,13 @@ const Survey = (props) => {
     comment: comment,
   };
 
-  useEffect(() => {
-    dispatch(getSurveyDataAction(login?.uuid));
-  }, [login]);
+  // useEffect(() => {
+  //   // dispatch(getSurveyDataAction(login?.uuid));
+  // }, [login]);
 
   const handleChangeText = (e) => {
     setComment(e.target.value);
   };
-
   const saveButton = () => {
     setChangeBtnAndBgColor(!changeBtnAndBgColor);
     setSurveyId1(surveyId1);
@@ -36,6 +44,7 @@ const Survey = (props) => {
     setAnswers(surveyData);
     submitSurvey();
   };
+
   const setAnsId = (qId, qAns) => {
     let existingAns = ansData.filter((ans) => ans.qid === qId);
     if (existingAns.length > 0) {
@@ -50,7 +59,6 @@ const Survey = (props) => {
         : setAnsData((ansData) => [...ansData, { qid: qId, ans: qAns + 1 }]);
     }
   };
-
   return (
     <div>
       <div className="survey-main">
@@ -86,8 +94,7 @@ const Survey = (props) => {
                   saveButton();
                 }}
               >
-                {" "}
-                <b>Save</b>{" "}
+                <b>Save</b>
               </button>
             )}
           </div>
@@ -95,14 +102,10 @@ const Survey = (props) => {
       </div>
 
       {isActive ? (
-
         <div className="radio-main">
           <div className="radio-question">
             {questions.map((question, ansId) => {
-              //    console.log("ansdata" , ansData);
               let isActive = ansData.filter((qa) => qa.qid === question.qid);
-              //    console.log("ansId======",ansId);
-              //   console.log("question ans======",question);
               let btnActive;
               if (isActive.length > 0) {
                 btnActive = ansId + 1 <= isActive[0].ans ? "active" : "";
@@ -121,20 +124,20 @@ const Survey = (props) => {
                       let btnActive;
                       if (isActive.length > 0) {
                         btnActive =
-                          ansId + 1 <= isActive[0].ans && "active";
-                      }
-                      else {
+                          ansId + 1 <= isActive[0].ans ? "active" : "";
+                      } else {
                         btnActive = ansId + 1 <= question.ans && "active";
                       }
                       return (
                         <div
                           key={ansId}
-                          className={`radio ${ansId + 1 <= 4
-                            ? `red`
-                            : ansId + 1 > 4 && ansId + 1 <= 7
+                          className={`radio ${
+                            ansId + 1 <= 4
+                              ? `red`
+                              : ansId + 1 > 4 && ansId + 1 <= 7
                               ? `orange`
                               : "green"
-                            } ${btnActive}`}
+                          } ${btnActive}`}
                           name={question.qid}
                           onClick={() => setAnsId(question.qid, ansId)}
                           htmlFor="radio1"
@@ -148,7 +151,6 @@ const Survey = (props) => {
                           />
                           <b className="radio-text">{e.value}</b>
                         </div>
-
                       );
                     })}
                   </div>
@@ -157,10 +159,14 @@ const Survey = (props) => {
             })}
           </div>
           <p className="s-questions">Your Review</p>
-          <textarea onChange={handleChangeText} type="textarea" name="review" defaultValue={newcomments} />
+          <textarea
+            onChange={handleChangeText}
+            type="textarea"
+            name="review"
+            defaultValue={comments}
+          />
         </div>
       ) : null}
-
     </div>
   );
 };
