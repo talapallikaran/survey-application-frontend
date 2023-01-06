@@ -3,7 +3,7 @@ export default function EditValidate(
   setValues,
   uploadedImage,
   setShowEdit,
-  notify,
+  notify
 ) {
   let errors = {};
   if (!values.name) {
@@ -20,14 +20,14 @@ export default function EditValidate(
   if (!values.phone) {
     errors.phone = "phone number is required";
   } else if (
-    !/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(values.phone) 
+    !/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(values.phone)
   ) {
     errors.phone = "phone number is invalid";
   }
   if (!values.role_id) {
     errors.role_id = "select your supervisor or worker ";
   }
-  if (!values.reporting_person_id && values.role_id == 3 ) {
+  if (!values.reporting_person_id && values.role_id == 3) {
     errors.reporting_person_id = "select your supervisor";
   }
   if (!values.password) {
@@ -43,7 +43,9 @@ export default function EditValidate(
     setValues(" ");
     uploadedImage.current.src = " ";
     notify();
-    setTimeout(()=>{window.location.reload()},1000)
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
     setShowEdit(false);
   }
   return errors;

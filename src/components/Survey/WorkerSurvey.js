@@ -165,7 +165,7 @@ const WorkerSurvey = (props) => {
             onChange={handleChangeText}
             type="textarea"
             name="review"
-            key = {comments}
+            key={comments}
             defaultValue={comments}
           />
         </div>

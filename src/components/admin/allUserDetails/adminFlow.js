@@ -30,21 +30,6 @@ const AdminFlow = () => {
     setShowEdit(true);
     dispatch(editData(data));
   };
-
-  // useEffect(() => {
-  //   userDataStatic.map((staticData) => {
-  //     userData &&
-  //       userData?.map((ApiData) => {
-  //         console.log("staticData", staticData);
-  //         console.log("ApiData", ApiData);
-  //         if (staticData.id == ApiData.id) {
-  //           staticData.id = ApiData.id
-
-  //         }
-  //       });
-  //   });
-  // }, []);
-
   const notify = () => toast.success("successful");
   const emailError = () => toast.error("email is taken");
   const deletes = () => toast.success("user is deleted sucessfully");
@@ -53,7 +38,7 @@ const AdminFlow = () => {
     dispatch(deleteUserData(id, data));
     setTimeout(() => {
       window.location.reload();
-    }, 400);
+    }, 700);
     deletes();
   };
   return (

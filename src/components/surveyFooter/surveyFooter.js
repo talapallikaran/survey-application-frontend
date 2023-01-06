@@ -17,8 +17,7 @@ const Footer = (props) => {
   btn?.map((item) => (!item.length > 0 ? (btnValidation = true) : " "));
 
   const Submit = () => {
-    // alert("your data is Submitted");
-    var answer = window.confirm("your data is Submitted?");
+    var answer = window.confirm("your are Submitted your data?");
     if (answer) {
       dispatch(
         postSurveyDataAction({
@@ -31,7 +30,7 @@ const Footer = (props) => {
       navigate("/");
     }
   };
-  
+
   return (
     <div className="footer-main">
       <div className="footer-container">

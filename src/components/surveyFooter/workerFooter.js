@@ -18,7 +18,7 @@ const WorkerFooter = (props) => {
   btn?.map((item) => (!item.length > 0 ? (btnValidation = true) : " "));
 
   const Submit = () => {
-    var answer = window.confirm("your data is Submitted?");
+    var answer = window.confirm("your are Submitted your data?");
     if (answer) {
       dispatch(
         postWorkerDataAction({

@@ -47,18 +47,18 @@
     margin-top: 1px;
 }
 
-    .login-label-password {
-        width: 46px;
-        height: 22px;
-        left: 728px;
-        top: 490px;
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 18px;
-        line-height: 22px;
-        color: #000000;
-        margin-top: 21px;
+.login-label-password {
+    width: 46px;
+    height: 22px;
+    left: 728px;
+    top: 490px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000000;
+    margin-top: 21px;
 }
 
 .login-input {
@@ -69,6 +69,7 @@
     margin-top: 8px;
     width: 433px;
 }
+
 .login-input-password {
     padding: 16px;
     border: 0;
@@ -78,9 +79,10 @@
     width: 433px;
 }
 
-.login-input-field{
+.login-input-field {
     margin-bottom: 30px;
 }
+
 .login-reset-link {
     margin-top: -11px;
     margin-bottom: 54px;

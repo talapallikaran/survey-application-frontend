@@ -78,59 +78,59 @@ const Login = () => {
   };
   return (
     <div>
-        <div className="login-form-container">
-          <div className="login-wrapper">
-            <ToastContainer
-              className="ToastContainer"
-              position="top-center"
-              autoClose={3000}
+      <div className="login-form-container">
+        <div className="login-wrapper">
+          <ToastContainer
+            className="ToastContainer"
+            position="top-center"
+            autoClose={3000}
+          />
+          <h2 className="login">Login</h2>
+          <div className="login-form-group">
+            <label className="login-label">Email</label>
+            <input
+              type="email"
+              className="login-input-field login-input"
+              value={values.email || " "}
+              onChange={handleChange}
+              name="email"
+              required
             />
-            <h2 className="login">Login</h2>
-            <div className="login-form-group">
-              <label className="login-label">Email</label>
-              <input
-                type="email"
-                className="login-input-field login-input"
-                value={values.email || " "}
-                onChange={handleChange}
-                name="email"
-                required
-              />
-              {errors.email && (
-                <b className="login_is-danger for-email">{errors.email}</b>
-              )}
-              <label className="login-label-password">Password</label>
-              <input
-                type="password"
-                className="login-input-password"
-                value={values.password || ""}
-                onChange={handleChange}
-                name="password"
-                onKeyPress={(e) => {
-                  if (e.key === "Enter") {
-                    Submit();
-                  }
-                }}
-                required
-              />
-              {errors.password && (
-                <b className="login_is-danger">{errors.password}</b>
-              )}
-              <div className="link">
-                <a className="login-reset-link" href="/addUser">
+            {errors.email && (
+              <b className="login_is-danger for-email">{errors.email}</b>
+            )}
+            <label className="login-label-password">Password</label>
+            <input
+              type="password"
+              className="login-input-password"
+              value={values.password || ""}
+              onChange={handleChange}
+              name="password"
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  Submit();
+                }
+              }}
+              required
+            />
+            {errors.password && (
+              <b className="login_is-danger">{errors.password}</b>
+            )}
+            <div className="link">
+              <a className="login-reset-link" href="/addUser">
                 {/* <i>  Reser password</i> */}
-                </a>
-              </div>
-              <button className="login-btn" onClick={Submit}>
-                Login
-              </button>
+              </a>
             </div>
+            <button className="login-btn" onClick={Submit}>
+              Login
+            </button>
           </div>
         </div>
-        <div className="img-container">
-          <div className="img-container1"></div>
-        </div>
       </div>
+      <div className="img-container">
+        <div className="img-container1"></div>
+      </div>
+    </div>
   );
 };
 export default Login;

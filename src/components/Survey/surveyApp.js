@@ -23,11 +23,7 @@ const SurveyApp = () => {
   );
   let LoginData = JSON.parse(localStorage.getItem("WorkerData") || "[]");
   const optionData = useSelector((state) => state?.fetchUserReducer?.data);
-  let responce = data?.surveyData?.message;
-  let superVisor =
-    responce !== "Network Error" &&
-    optionData &&
-    optionData?.find((e) => e.uuid == uuid);
+  let superVisor = optionData && optionData?.find((e) => e.uuid == uuid);
 
   useEffect(() => {
     dispatch(fetchSurveyDataAction());
@@ -73,10 +69,9 @@ const SurveyApp = () => {
   let surveydata;
   const setServeyAnswers = (surveyInfo) => {
     let mySurveyIndex = SurveyData?.surveyData?.surveydata.findIndex(
-      (survey) =>
-        survey.survey_id === surveyInfo.survey_id
+      (survey) => survey.survey_id === surveyInfo.survey_id
     );
-    let survey = SurveyData?.surveyData?.surveydata[mySurveyIndex]
+    let survey = SurveyData?.surveyData?.surveydata[mySurveyIndex];
     survey.comment = surveyInfo.comment;
     surveyInfo.question.map((question) => {
       let questionIndex = survey.question.findIndex(
@@ -84,8 +79,8 @@ const SurveyApp = () => {
       );
       survey.question[questionIndex].ans = question.ans;
     });
-    surveydata = SurveyData?.surveyData?.surveydata
-  }
+    surveydata = SurveyData?.surveyData?.surveydata;
+  };
 
   const submitSurvey = () => {
     dispatch(
@@ -138,11 +133,11 @@ const SurveyApp = () => {
             </select>
           )}
         </div>
+
         {SurveyData &&
           SurveyData.surveyData &&
           SurveyData.surveyData.surveydata &&
           SurveyData.surveyData.surveydata.map((surveyData, id) => {
-            {/* console.log("API", surveyData.question); */}
             return (
               <div key={id} className="survey-wrapper">
                 <Survey
@@ -153,7 +148,7 @@ const SurveyApp = () => {
                   isActive={tabActive === id}
                   setAnswers={(surveyInfo) => setServeyAnswers(surveyInfo)}
                   submitSurvey={() => submitSurvey()}
-                  comments={surveyData.comment}
+                  newcomments={surveyData.comment}
                 />
               </div>
             );
