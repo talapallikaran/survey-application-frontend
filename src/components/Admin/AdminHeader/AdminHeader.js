@@ -24,15 +24,6 @@ const Header = () => {
     }
   }, [RegisterData]);
 
-  useEffect(() => {
-    if (editData?.status === "success") {
-      toast.success("User Edited Successfully");
-      setTimeout(() => {
-        window.location.reload();
-      }, 300);
-    }
-  }, [editData]);
-
   const logout = () => {
     localStorage.clear();
     navigate("/");

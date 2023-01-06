@@ -32,6 +32,9 @@ const Admin = () => {
     dispatch(editUserData(data));
   };
 
+  const notify = () => toast.success("successful");
+  const emailError = () => toast.error("email is taken");
+
   const deleteUser = (id, data) => {
     dispatch(deleteUserAction(id, data));
     window.location.reload();
@@ -64,7 +67,15 @@ const Admin = () => {
           <div> {show && <AddUser setShow={setShow} />}</div>
         </EscapeOutside>
         <EscapeOutside onEscapeOutside={() => setShowEdit(false)}>
-          <div>{showEdit && <EditUser setShowEdit={setShowEdit} />}</div>
+          <div>
+            {showEdit && (
+              <EditUser
+                setShowEdit={setShowEdit}
+                notify={notify}
+                emailError={emailError}
+              />
+            )}
+          </div>
         </EscapeOutside>
 
         {

@@ -3,27 +3,50 @@ import Survey from "./survey";
 import Footer from "./SurveyFooter/SurveyFooter";
 import "./surveyApp.css";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSurveyDataAction, postSurveyDataAction } from "../../redux/action/SurveyActions/surveyAction";
-import { getRegistrationDataAction } from '../../redux/action/RegistrationUser/getRegistrationDataAction';
-import { useNavigate } from 'react-router-dom';
-import SurveyHeader from './SurveytHeader/SurveyHeader';
-import {surveyDummyData} from './surveydata';
-
+import {
+  fetchSurveyDataAction,
+  postSurveyDataAction,
+} from "../../redux/action/SurveyActions/surveyAction";
+import { getRegistrationDataAction } from "../../redux/action/RegistrationUser/getRegistrationDataAction";
+import { useNavigate } from "react-router-dom";
+import SurveyHeader from "./SurveytHeader/SurveyHeader";
+import { SurveyData } from "./surveydata";
 
 const SurveyApp = () => {
   const uuid = localStorage.getItem("UUID");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [tabActive, setTabActive] = useState(0);
-  const data = useSelector((state) => state?.fetchSurveyDataReducer);
+  const data = useSelector((state) => state?.fetchSurveyDataReducer?.surveyData);
   let LoginData = JSON.parse(localStorage.getItem("WorkerData") || "[]");
-  const optionData = useSelector((state) => state?.getRegistrationDataReducer?.users);
+  const optionData = useSelector(
+    (state) => state?.getRegistrationDataReducer?.users
+  );
   let responce = data?.surveyData?.message;
+  console.log("responce", responce);
   let superVisor = optionData && optionData?.find((e) => e.uuid == uuid);
   useEffect(() => {
     dispatch(fetchSurveyDataAction());
     dispatch(getRegistrationDataAction());
   }, []);
+
+  useEffect(() => {
+    SurveyData?.surveyData?.surveydata?.map((sdata) => {
+      data?.surveydata?.map((Apidata) => {
+        if (Apidata.survey_id === sdata.survey_id) {
+          sdata.comment = Apidata.comment;
+          sdata.question.map((sQ) => {
+            Apidata.question.map((ApiQ) => {
+              if (ApiQ.qid === sQ.qid) {
+                sQ.ans = ApiQ.ans;
+              }
+            });
+          });
+        }
+      });
+    });
+  }, [SurveyData, data]);
+
   var months = [
     "January",
     "February",
@@ -45,10 +68,10 @@ const SurveyApp = () => {
   };
   let surveydata;
   const setServeyAnswers = (surveyInfo) => {
-    let mySurveyIndex = data?.surveyData?.surveydata.findIndex(
+    let mySurveyIndex = SurveyData?.surveyData?.surveydata.findIndex(
       (survey) => survey.survey_id === surveyInfo.survey_id
     );
-    let survey = data?.surveyData?.surveydata[mySurveyIndex];
+    let survey = SurveyData?.surveyData?.surveydata[mySurveyIndex];
     survey.comment = surveyInfo.comment;
     surveyInfo.question.map((question) => {
       let questionIndex = survey.question.findIndex(
@@ -56,8 +79,9 @@ const SurveyApp = () => {
       );
       survey.question[questionIndex].ans = question.ans;
     });
-    surveydata = data?.surveyData?.surveydata;
+    surveydata = SurveyData?.surveyData?.surveydata;
   };
+
   const submitSurvey = () => {
     dispatch(
       postSurveyDataAction({
@@ -78,7 +102,7 @@ const SurveyApp = () => {
 
   return (
     <div className="wrepper">
-     <SurveyHeader />
+      <SurveyHeader />
       <div className="container">
         <div className="date-container">
           <div className="date">
@@ -110,10 +134,11 @@ const SurveyApp = () => {
             </select>
           )}
         </div>
-        {responce !== "Network Error" && data &&
-          data.surveyData &&
-          data.surveyData.surveydata &&
-          data.surveyData.surveydata.map((surveyData, id) => {
+        {SurveyData &&
+          SurveyData.surveyData &&
+          SurveyData.surveyData.surveydata &&
+          SurveyData.surveyData.surveydata.map((surveyData, id) => {
+            {/* console.log("API", surveyData.question); */}
             return (
               <div key={id} className="survey-wrapper">
                 <Survey
@@ -127,57 +152,10 @@ const SurveyApp = () => {
                   comments={surveyData.comment}
                 />
               </div>
-            );
-          })}
-
-          {data &&
-          data.surveyData &&
-          data.surveyData.surveydata &&
-          data.surveyData.surveydata.map((surveyData, id) => {
-            return (
-              <div key={id} className="survey-wrapper">
-                <Survey
-                  tabId={id}
-                  title={surveyData.title}
-                  questions={surveyData.question}
-                  setTab={(id) => setTab(id)}
-                  isActive={tabActive === id}
-                  setAnswers={(surveyInfo) => setServeyAnswers(surveyInfo)}
-                  submitSurvey={() => submitSurvey()}
-                  comments={surveyData.comment}
-                />
-              </div>
-            );
-          })}
-          {surveyDummyData &&
-          surveyDummyData.map((surveyData, id) => {
-            return (
-              <React.Fragment key = {id}>
-                {responce == "Network Error" && surveyData &&
-                  surveyData.map((surveyData) => {
-                    console.log("staticcc2", surveyData.question);
-                    return (
-                      <div key={id} className="survey-wrapper">
-                      <Survey
-                        tabId={id}
-                        title={surveyData.title}
-                        questions={surveyData.question}
-                        setTab={(id) => setTab(id)}
-                        isActive={tabActive === id}
-                        setAnswers={(surveyInfo) =>
-                          setServeyAnswers(surveyInfo)
-                        }
-                        submitSurvey={() => submitSurvey()}
-                        comments={surveyData.comment}
-                      />
-                      </div>
-                    );
-                  })}
-              </React.Fragment>
             );
           })}
       </div>
-      <Footer surveydata={data?.surveyData?.surveydata} />
+      <Footer surveydata={SurveyData?.surveyData?.surveydata} />
     </div>
   );
 };

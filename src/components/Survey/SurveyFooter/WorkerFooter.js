@@ -3,26 +3,31 @@ import "./SurveyFooter.css";
 import { useDispatch } from "react-redux";
 import { postWorkerDataAction } from "../../../redux/action/SurveyActions/workerSurveyAction";
 import "../../../assets/global.css";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Footer = (props) => {
-
-  const dispatch = useDispatch();
+  const wuuid = localStorage.getItem("workerId");
+  const uuid = localStorage.getItem("UUID");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  let surveydata = props.data;
 
-  const { surveydata } = props;
+  let btnValidation = false;
+  let btn = surveydata?.map((e) => e.comment);
+  btn?.map((item) => (!item.length > 0 ? (btnValidation = true) : " "));
 
-  const uuid = localStorage.getItem('UUID');
-  const wuuid = localStorage.getItem("workerUUID");
-
-  let s1 = false;
-  let s2 = surveydata?.map((e) => e.comment);
-  s2?.map((item) => (item.length > 0 ? " " : s1 = true));
-
-  const Submit = () => {    
-     dispatch(postWorkerDataAction({ uuid, wuuid, surveydata }));
-     alert("Survey Data is Submitted Successfully");
-     navigate("/");
+  const Submit = () => {
+    var answer = window.confirm("your data is Submitted?");
+    if (answer) {
+      dispatch(
+        postWorkerDataAction({
+          uuid,
+          wuuid,
+          surveydata,
+        })
+      );
+      navigate("/survey");
+    }
   };
 
   return (
@@ -30,7 +35,10 @@ const Footer = (props) => {
       <div className="footer-container">
         <div className="footer-btn-wrapper">
           <button
-            className="footer-btn" onClick={Submit} disabled={s1}>
+            className="footer-btn"
+            onClick={Submit}
+            disabled={btnValidation}
+          >
             Finish
           </button>
         </div>
