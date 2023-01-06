@@ -1,25 +1,36 @@
 import { combineReducers } from "redux";
-import { getSurveyDataReducer, postSurveyDataReducer, fetchSurveyDataReducer, } from "../reducer/SurveyReducers/SurveyReducer";
-import { putUserEditDataReducer } from "../reducer/AdminUser/putEditDataReducer";
-import { editDataReducer } from "../reducer/AdminUser/EditUserDataReducer";
-import { getRegistrationDataReducer } from "../reducer/RegistrationUser/getRegistrationDataReducer";
-import { RegistrationUserReducer } from "../reducer/RegistrationUser/RegisterUserReducer";
-import { loginUserReducer } from "../reducer/Loginuser/loginUserReducer";
-import { deleteUserReducer } from "../reducer/AdminUser/deleteUserReducer";
+import {
+  loginUserReducer,
+  signInUserReducer,
+} from "../reducer/loginReducer/loginR";
+import {
+  getSurveyDataReducer,
+  postSurveyDataReducer,
+  fetchSurveyDataReducer,
+} from "../reducer/surveyDataReducer/surveyDataR";
+import { fetchWorkerDataReducer } from "../reducer/workerDataReducer/workerDataR";
+import { fetchUserReducer } from "../reducer/userDataReducer/fetchUserR";
+import { putUserEditDataR } from "../reducer/userDataReducer/postEditDataR";
+import { deleteUserData } from "../reducer/userDataReducer/deleteUserR";
+import { editDataR } from "../reducer/userDataReducer/editDataR";
 
 const RootReducers = combineReducers({
-    //login 
-    loginUserReducer: loginUserReducer,
-    //registration
-    RegistrationUserReducer: RegistrationUserReducer,
-    getRegistrationDataReducer: getRegistrationDataReducer,
-    //survey
-    getSurveyDataReducer: getSurveyDataReducer,
-    postSurveyDataReducer: postSurveyDataReducer,
-    fetchSurveyDataReducer: fetchSurveyDataReducer,
-    //admin
-    editDataReducer: editDataReducer,
-    putUserEditDataReducer: putUserEditDataReducer,
-    deleteUserReducer: deleteUserReducer
+  //logIn and SignIn
+  loginUserReducer: loginUserReducer,
+  signInUserReducer: signInUserReducer,
+  fetchUserReducer: fetchUserReducer,
+
+  //survey
+  getSurveyDataReducer: getSurveyDataReducer,
+  postSurveyDataReducer: postSurveyDataReducer,
+  fetchSurveyDataReducer: fetchSurveyDataReducer,
+
+  //worker
+  fetchWorkerDataReducer: fetchWorkerDataReducer,
+
+  // user
+  putUserEditDataR: putUserEditDataR,
+  deleteUserData: deleteUserData,
+  editDataR: editDataR,
 });
 export default RootReducers;
