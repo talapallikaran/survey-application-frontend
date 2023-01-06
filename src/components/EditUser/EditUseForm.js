@@ -1,67 +1,69 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { putEditUserData } from "../../redux/action/AdminUser/putEditDataAction";
 
-const EditUseForm = (EditUserValidate, img, uploadedImage, setShowEdit) => {
-
-  const dispatch = useDispatch();
-
+const EditUseForm = (
+  EditUserValidate,
+  img,
+  uploadedImage,
+  setShowEdit,
+  notify,
+  emailError
+) => {
   const editData = useSelector((state) => state?.editDataReducer);
-  // console.log(editData);
   const [values, setValues] = useState(editData);
   const [errors, setErrors] = useState({});
-  const [validateData, setValidatedata] = useState(null);
-  let validImage = img || editData.image_src;
+  const data = useSelector((state) => state?.getRegistrationDataReducer?.users);
+  let Edits = data?.find((e) => e.email == values.email);
 
-  const allUserData = useSelector((state) => state?.getRegistrationDataReducer?.users);
-  let validEmailData = allUserData.filter((e) => e.email == values.email);
-  let validEmail = validEmailData?.length;
-  //console.log(validEmail);
-
-  useEffect(() => {
-    if (validateData) {
-      setErrors(EditUserValidate(values))
-    }
-  }, [values])
-
+  const dispatch = useDispatch();
+  let newImg = img || editData.image_src;
+  const id = values.role_id == 2 ? 0 : values.reporting_person_id;
+  const formData = new FormData();
+  let dataval =
+    Object.keys(errors).length === 0 && errors.constructor === Object;
   const handleSubmit = (event) => {
-    const formData = new FormData();
-    setValidatedata(true);
     if (event) event.preventDefault();
-    setErrors(EditUserValidate(values, setValues, uploadedImage, setShowEdit, validEmail));
     formData.append("name", values.name);
     formData.append("email", values.email);
     formData.append("role_id", values.role_id);
     formData.append("password", values.password);
     formData.append("phone", values.phone);
-    formData.append("reporting_person_id", values.reporting_person_id);
+    formData.append("reporting_person_id", id);
     formData.append("confirmPassword", values.confirmPassword);
-    formData.append("image_src", validImage);
+    formData.append("image_src", newImg);
     formData.append("last_name", values.last_name);
 
-    dispatch(putEditUserData(editData.id, formData));
-
-    // if(validEmail == 1){
-    //   toast.error("Email is taken");
-    // }
+    if (editData.email == Edits?.email) {
+      dispatch(putEditUserData(editData.id, formData));
+      setErrors(
+        EditUserValidate(values, setValues, uploadedImage, setShowEdit, notify)
+      );
+    } else if (Edits?.email == values.email) {
+      console.log("error");
+      emailError();
+    } else if (Edits?.email !== values.email) {
+      dispatch(putEditUserData(editData.id, formData));
+      setErrors(
+        EditUserValidate(values, setValues, uploadedImage, setShowEdit, notify)
+      );
+    }
   };
-
   const handleChange = (event) => {
     event.persist();
     setValues((values) => ({
       ...values,
       [event.target.name]: event.target.value,
     }));
-    // if (validateData) {
-    //  setErrors(EditValidate(values))
-    // }
+    if (!dataval) {
+      setErrors(EditUserValidate(values));
+    }
   };
-
   return {
     handleChange,
     handleSubmit,
     values,
-    errors
+    errors,
   };
 };
 

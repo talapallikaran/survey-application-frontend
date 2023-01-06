@@ -9,4 +9,5 @@
     height: 8%;
     display: flex;
     justify-content: right;
+    z-index: 1;
 }

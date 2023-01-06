@@ -6,24 +6,32 @@ import "../../assets/global.css";
 import { answers } from "./surveydata";
 
 const WorkerSurvey = (props) => {
-  const { title, questions, setTab, tabId, isActive, setAnswers, submitSurvey, newcomments } = props;
+  const {
+    title,
+    questions,
+    setTab,
+    tabId,
+    isActive,
+    setAnswers,
+    submitSurvey,
+    comments,
+  } = props;
+  // const uuid = localStorage.getItem("workerId");
   const [ansData, setAnsData] = useState([]);
   const [changeBtnAndBgColor, setChangeBtnAndBgColor] = useState(false);
   const [surveyId1, setSurveyId1] = useState(tabId + 1);
   const [comment, setComment] = useState();
-  const dispatch = useDispatch();
-  const login = useSelector((state) => state?.loginUserReducer?.data);
-  //console.log(login);
+  // const dispatch = useDispatch();
+  // const login = useSelector((state) => state?.loginUserReducer?.data);
 
   const surveyData = {
     survey_id: surveyId1,
     question: ansData,
     comment: comment,
   };
-
-  useEffect(() => {
-    dispatch(getWorkerDataAction(login?.uuid));
-  }, [login]);
+  // useEffect(() => {
+  //   // dispatch(getWorkerDataAction(uuid));
+  // }, [login]);
 
   const handleChangeText = (e) => {
     setComment(e.target.value);
@@ -36,6 +44,7 @@ const WorkerSurvey = (props) => {
     setAnswers(surveyData);
     submitSurvey();
   };
+
   const setAnsId = (qId, qAns) => {
     let existingAns = ansData.filter((ans) => ans.qid === qId);
     if (existingAns.length > 0) {
@@ -56,7 +65,11 @@ const WorkerSurvey = (props) => {
       <div className="survey-main">
         <div
           className="survey-container"
-          style={changeBtnAndBgColor ? { backgroundColor: "#11963E" } : { backgroundColor: "#1A1A1A" }}
+          style={
+            changeBtnAndBgColor
+              ? { backgroundColor: "#11963E" }
+              : { backgroundColor: "#1A1A1A" }
+          }
         >
           <div className="survey-container-title">
             <p className="survey-title1">
@@ -91,14 +104,10 @@ const WorkerSurvey = (props) => {
       </div>
 
       {isActive ? (
-
         <div className="radio-main">
           <div className="radio-question">
             {questions.map((question, ansId) => {
-              //    console.log("ansdata" , ansData);
               let isActive = ansData.filter((qa) => qa.qid === question.qid);
-              //    console.log("ansId======",ansId);
-              //   console.log("question ans======",question);
               let btnActive;
               if (isActive.length > 0) {
                 btnActive = ansId + 1 <= isActive[0].ans ? "active" : "";
@@ -117,20 +126,20 @@ const WorkerSurvey = (props) => {
                       let btnActive;
                       if (isActive.length > 0) {
                         btnActive =
-                          ansId + 1 <= isActive[0].ans && "active";
-                      }
-                      else {
+                          ansId + 1 <= isActive[0].ans ? "active" : "";
+                      } else {
                         btnActive = ansId + 1 <= question.ans && "active";
                       }
                       return (
                         <div
                           key={ansId}
-                          className={`radio ${ansId + 1 <= 4
-                            ? `red`
-                            : ansId + 1 > 4 && ansId + 1 <= 7
+                          className={`radio ${
+                            ansId + 1 <= 4
+                              ? `red`
+                              : ansId + 1 > 4 && ansId + 1 <= 7
                               ? `orange`
                               : "green"
-                            } ${btnActive}`}
+                          } ${btnActive}`}
                           name={question.qid}
                           onClick={() => setAnsId(question.qid, ansId)}
                           htmlFor="radio1"
@@ -144,7 +153,6 @@ const WorkerSurvey = (props) => {
                           />
                           <b className="radio-text">{e.value}</b>
                         </div>
-
                       );
                     })}
                   </div>
@@ -153,10 +161,15 @@ const WorkerSurvey = (props) => {
             })}
           </div>
           <p className="s-questions">Your Review</p>
-          <textarea onChange={handleChangeText} type="textarea" name="review" defaultValue={newcomments} />
+          <textarea
+            onChange={handleChangeText}
+            type="textarea"
+            name="review"
+            key ={comments}
+            defaultValue={comments}
+          />
         </div>
       ) : null}
-
     </div>
   );
 };

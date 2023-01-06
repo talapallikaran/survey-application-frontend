@@ -3,10 +3,9 @@ import "./SurveyFooter.css";
 import { useDispatch } from "react-redux";
 import { postSurveyDataAction } from "../../../redux/action/SurveyActions/surveyAction";
 import "../../../assets/global.css";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Footer = (props) => {
-  
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -15,13 +14,17 @@ const Footer = (props) => {
 
   let disableButton = false;
   let disableButtonData = surveydata?.map((e) => e.comment);
-  disableButtonData?.map((item) => (item.length > 0 ? " " : disableButton = true));
+  disableButtonData?.map((item) =>
+    item.length > 0 ? " " : (disableButton = true)
+  );
 
-  const Submit = () => {    
-     dispatch(postSurveyDataAction({ uuid, surveydata }));
-     alert("Survey Data is Submitted Successfully");
-     localStorage.clear();
-     navigate("/");
+  const Submit = () => {
+    var answer = window.confirm("your data is Submitted?");
+    if (answer) {
+      dispatch(postSurveyDataAction({ uuid, surveydata }));
+      localStorage.clear();
+      navigate("/");
+    }
   };
 
   return (
@@ -29,7 +32,10 @@ const Footer = (props) => {
       <div className="footer-container">
         <div className="footer-btn-wrapper">
           <button
-            className="footer-btn" onClick={Submit} disabled={disableButton}>
+            className="footer-btn"
+            onClick={Submit}
+            disabled={disableButton}
+          >
             Finish
           </button>
         </div>

@@ -11,7 +11,7 @@ import axios from "axios";
 export const fetchWorkerDataAction = () => async (dispatch) => {
   try {
     let UUID = localStorage.getItem('UUID');
-    let wUUID = localStorage.getItem('workerUUID');
+    let wUUID = localStorage.getItem('workerId');
 
     const res = await axios.get(`http://localhost:4000/survey/data/${UUID}?wuuid=${wUUID}`);
     dispatch({
@@ -30,7 +30,7 @@ export const fetchWorkerDataAction = () => async (dispatch) => {
 export const getWorkerDataAction = (id) => async (dispatch) => {
   try {
     let UUID = localStorage.getItem('UUID');
-    let wUUID = localStorage.getItem('workerUUID');
+    let wUUID = localStorage.getItem('workerId');
 
     const res = await axios.get(`http://localhost:4000/survey/data/${UUID}?wuuid=${wUUID}`);
     dispatch({

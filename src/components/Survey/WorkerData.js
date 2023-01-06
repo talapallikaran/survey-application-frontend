@@ -3,30 +3,26 @@ import WorkerFooter from "./SurveyFooter/WorkerFooter";
 import Header from "./SurveytHeader/SurveyHeader";
 import "./surveyApp.css";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchWorkerDataAction, postWorkerDataAction } from "../../redux/action/SurveyActions/workerSurveyAction";
-import { useParams } from "react-router-dom";
-import { getRegistrationDataAction } from '../../redux/action/RegistrationUser/getRegistrationDataAction';
+import {fetchWorkerDataAction, postWorkerDataAction} from "../../redux/action/SurveyActions/workerSurveyAction";
+import {  useParams } from "react-router-dom";
+// import {getRegistrationDataAction} from '../../redux/action/RegistrationUser/getRegistrationDataAction';
 import WorkerSurvey from "./WorkerSurvey";
 
 const WorkerDetails = () => {
   const dispatch = useDispatch();
+  const { worker } = useParams();
+  const wuuid = localStorage.getItem("workerId");
+  let LoginData = JSON.parse(localStorage.getItem("WorkerData") || "[]");
   const [tabActive, setTabActive] = useState(0);
-  const { workeruuid } = useParams();
-  const wuuid = workeruuid;
-  //console.log(workeruuid);
-
   const data = useSelector((state) => state?.fetchWorkerDataReducer);
-  //  console.log("fetch reducer=========",data);
-  const allRegisterUserData = useSelector((state) => state?.getRegistrationDataReducer?.users);
-  //console.log(allRegisterUserData);
-  let workerName = allRegisterUserData && allRegisterUserData?.find((e) => e.uuid == workeruuid);
-  // console.log(workerName);
+  let workerMap = [];
+  LoginData.map((e) => (workerMap = e));
+  let workerName = workerMap.find((e) => e.id == worker);
 
   useEffect(() => {
     dispatch(fetchWorkerDataAction());
-    dispatch(getRegistrationDataAction());
+    // dispatch(fetchUserAction());
   }, []);
-
   var months = [
     "January",
     "February",
@@ -43,14 +39,11 @@ const WorkerDetails = () => {
   ];
   var d = new Date();
   var monthName = months[d.getMonth()];
-
   const setTab = (tabId) => {
     setTabActive(tabId + 1);
   };
   let surveydata;
   const setServeyAnswers = (surveyInfo) => {
-    // console.log("setServeyAnswers.......", surveyInfo);
-
     let mySurveyIndex = data?.surveyData?.surveydata.findIndex(
       (survey) => survey.survey_id === surveyInfo.survey_id
     );
@@ -62,37 +55,34 @@ const WorkerDetails = () => {
       );
       survey.question[questionIndex].ans = question.ans;
     });
-    surveydata = data?.surveyData?.surveydata
+    surveydata = data?.surveyData?.surveydata;
   };
-
-  let uuid = localStorage.getItem("UUID");
-
   const submitSurvey = () => {
     dispatch(
       postWorkerDataAction({
-        uuid,
         wuuid,
-        surveydata
+        surveydata,
       })
     );
   };
 
   return (
-    <div>
+    <div className="wrepper">
       <Header />
       <div className="container">
-        <div className="date">
-          <h2>
-            {monthName} {new Date().getFullYear()}
-          </h2>
+        <div className="date-container">
+          <div className="date">
+            <h2>
+              {monthName} {new Date().getFullYear()}
+            </h2>
+          </div>
+          <h4 className="select-option">WorkerName : {workerName.name}</h4>
         </div>
-        <h4>Worker Name: {workerName?.name}</h4>
 
         {data &&
           data.surveyData &&
           data.surveyData.surveydata &&
           data.surveyData.surveydata.map((surveyData, id) => {
-            //  console.log("all data=======" , surveyData.question[id].ans);
             return (
               <div key={id} className="survey-wrapper">
                 <WorkerSurvey
@@ -103,13 +93,13 @@ const WorkerDetails = () => {
                   isActive={tabActive === id}
                   setAnswers={(surveyInfo) => setServeyAnswers(surveyInfo)}
                   submitSurvey={() => submitSurvey()}
-                  newcomments={surveyData.comment}
+                  comments={surveyData.comment}
                 />
               </div>
             );
           })}
       </div>
-      <WorkerFooter surveydata={data?.surveyData?.surveydata} />
+      <WorkerFooter data={data?.surveyData?.surveydata} />
     </div>
   );
 };
