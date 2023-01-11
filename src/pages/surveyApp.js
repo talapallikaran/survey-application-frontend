@@ -1,5 +1,5 @@
 import React from "react";
-import SurveyApp from "../components/survey/surveyApp";
+import SurveyApp from "../components/Survey/surveyApp";
 
 const SurveyAppPage = () => {
   return (

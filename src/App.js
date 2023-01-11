@@ -18,7 +18,7 @@ import LoginPage from "./pages/login";
 import SurveyAppPage from "./pages/surveyApp";
 import { Protected } from "./components/loginPageUser/login/protected";
 import ErrorPage from "./components/common/404Page";
-import WorkerDetails from "./components/survey/workerDetails";
+import WorkerDetails from "./components/Survey/WorkerDetails";
 import RagisterPage from "./pages/ragisterPage"; // remove it
 
 import AddTask from "./components/addTask";

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import WorkerSurvey from "./workerSurvey";
+import WorkerSurvey from "./WorkerSurvey";
 import WorkerFooter from "../surveyFooter/workerFooter";
 import Header from "../surveyHeader/surveyHeader";
 import "./surveyApp.css";
