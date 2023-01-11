@@ -38,12 +38,12 @@
 }
 
 .survey-title1 {
-  color: #000;
-  padding-left: 45%;
-  background: #fff;
-  border-radius: 100%;
-  padding: 5px 10px;
-  margin-right: 10px;
+  background:url("../../assets/img/Vector.png");
+  background-repeat: no-repeat;
+  height: 30px;
+  width: 30px;
+  margin-top: 25px;
+  padding-right: 15px;
 }
 
 .survey-title2 {
