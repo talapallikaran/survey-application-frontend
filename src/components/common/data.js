@@ -197,3 +197,28 @@ export const userDataStatic = [
     role: "supervisior",
   },
 ];
+
+
+export const deshboard = [
+  {
+    img : "img",
+    person: "person 1",
+    Designation : "designation",
+    points: 9.85,
+    status: 2 
+  },
+  {
+    img : "img",
+    person: "person 2",
+    Designation : "designation",
+    points: " ",
+    status: 1
+  },
+  {
+    img : "img",
+    person: "person 1",
+    Designation : "designation",
+    points: 9.6,
+    status: 2 
+  }
+]

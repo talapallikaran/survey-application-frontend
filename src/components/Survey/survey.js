@@ -72,7 +72,6 @@ const Survey = (props) => {
         >
           <div className="survey-container-title">
             <p className="survey-title1">
-              <span>✔</span>
             </p>
             <p className="survey-title2">{title}</p>
           </div>

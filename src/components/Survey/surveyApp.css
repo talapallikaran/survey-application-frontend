@@ -30,8 +30,13 @@
 .select-option {
     margin-right: 60px;
     padding: 0.5%;
-    font-size: 20px;
+    font-size: 30px;
     width: 282px;
+    box-sizing: border-box;
+    height: 48px;
+    border-radius: 5px;
+    font-family: 'Inter';
+    font-size: 18px;
 }
 .select-option:disabled{
     cursor: not-allowed;

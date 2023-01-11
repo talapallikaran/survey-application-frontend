@@ -57,6 +57,7 @@ const useForm = (validate, img) => {
       [event.target.name]: event.target.value,
     }));
   };
+
   return {
     handleChange,
     handleSubmit,
