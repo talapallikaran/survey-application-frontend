@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-// import { getSurveyDataAction } from "../../redux/action/surveyDataAction/surveyDataA";
+import React, { useState } from "react";
 import "./survey.css";
 import "../../assets/css/global.css";
 import "../../assets/css/responsive.css";
@@ -21,18 +19,12 @@ const Survey = (props) => {
   const [changeBtnAndBgColor, setChangeBtnAndBgColor] = useState(false);
   const [surveyId1, setSurveyId1] = useState(tabId + 1);
   const [comment, setComment] = useState();
-  // const dispatch = useDispatch();
-  const login = useSelector((state) => state?.loginUserReducer?.data);
 
   const surveyData = {
     survey_id: surveyId1,
     question: ansData,
     comment: comment,
   };
-
-  // useEffect(() => {
-  //   // dispatch(getSurveyDataAction(login?.uuid));
-  // }, [login]);
 
   const handleChangeText = (e) => {
     setComment(e.target.value);
@@ -71,7 +63,7 @@ const Survey = (props) => {
           }
         >
           <div className="survey-container-title">
-            <p className="survey-title1">
+            <p className="survey-title-icon">
             </p>
             <p className="survey-title2">{title}</p>
           </div>
@@ -114,7 +106,6 @@ const Survey = (props) => {
                   <p className="s-questions">
                     {question.qid}. {question.question}
                   </p>
-
                   <div className="radio-border">
                     {answers.map((e, ansId) => {
                       let isActive = ansData.filter(

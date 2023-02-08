@@ -21,7 +21,6 @@ const useForm = (Validate, img) => {
   const allUserData = useSelector((state) => state?.fetchUserReducer?.data);
   let validEmai = allUserData?.filter((e) => e.email == values.email);
   let validEmail = validEmai?.length;
-  console.log(validEmail);
   const id = values.role_id == 2 ? 0 : values.reporting_person_id;
   useEffect(() => {
     if (RegisterData?.status === "success") {

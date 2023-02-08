@@ -112,18 +112,20 @@ const AdminFlow = () => {
                           )}
                         </span>
                       </div>
-                      <div>
-                        <span
-                          className="delete-icon"
-                          onClick={() => deleteUser(e.id, e)}
-                        >
-                          <MdDelete />
-                        </span>
-                      </div>
-                      <div>
-                        <span className="edit-icon" onClick={() => Edit(e)}>
-                          <FiEdit />
-                        </span>
+                      <div className="icons-container">
+                        <div>
+                          <span
+                            className="delete-icon"
+                            onClick={() => deleteUser(e.id, e)}
+                          >
+                            <MdDelete />
+                          </span>
+                        </div>
+                        <div>
+                          <span className="edit-icon" onClick={() => Edit(e)}>
+                            <FiEdit />
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>

@@ -221,4 +221,4 @@ export const deshboard = [
     points: 9.6,
     status: 2 
   }
-]
+];

@@ -145,9 +145,6 @@ function USer() {
               <option>Select from Reporter</option>
 
               {data?.map((e, id) => {
-                {
-                  /* console.log(e) */
-                }
                 if (e.role_id == 2 && values.role_id == 3) {
                   return (
                     <option value={e.id} key={id}>

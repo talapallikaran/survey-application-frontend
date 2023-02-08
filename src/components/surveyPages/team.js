@@ -5,8 +5,8 @@ const Team = () => {
   return (
     <div>
       <SurveyPages/>
+      Hello team
     </div>
   )
 }
-
 export default Team;

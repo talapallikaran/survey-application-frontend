@@ -81,7 +81,7 @@ const SurveyApp = () => {
     });
     surveydata = SurveyData?.surveyData?.surveydata;
   };
-
+  
   const submitSurvey = () => {
     dispatch(
       postSurveyDataAction({
@@ -99,6 +99,7 @@ const SurveyApp = () => {
   if (superVisor?.role_id == 2) {
     dm = LoginData.map((e) => e.map((e) => e.id == null));
   }
+  
   return (
     <div className="wrepper">
       <Header />
@@ -148,7 +149,7 @@ const SurveyApp = () => {
                   isActive={tabActive === id}
                   setAnswers={(surveyInfo) => setServeyAnswers(surveyInfo)}
                   submitSurvey={() => submitSurvey()}
-                  newcomments={surveyData.comment}
+                  comments={surveyData.comment}
                 />
               </div>
             );

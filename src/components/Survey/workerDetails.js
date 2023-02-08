@@ -9,7 +9,6 @@ import {
   postWorkerDataAction,
 } from "../../redux/action/workerDataAction/workerDataA";
 import { useParams } from "react-router-dom";
-// import { fetchUserAction } from "../../redux/action/userDataAction/fetchUser";
 
 const WorkerDetails = () => {
   const dispatch = useDispatch();
@@ -18,13 +17,13 @@ const WorkerDetails = () => {
   let LoginData = JSON.parse(localStorage.getItem("WorkerData") || "[]");
   const [tabActive, setTabActive] = useState(0);
   const data = useSelector((state) => state?.fetchWorkerDataReducer);
+
   let workerMap = [];
   LoginData.map((e) => (workerMap = e));
   let workerName = workerMap.find((e) => e.id == worker);
 
   useEffect(() => {
     dispatch(fetchWorkerDataAction());
-    // dispatch(fetchUserAction());
   }, []);
   var months = [
     "January",

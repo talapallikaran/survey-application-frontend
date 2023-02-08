@@ -1,5 +1,5 @@
 .dashboard-container {
-        margin-left: 20px;
+        margin-left: 81px;
 }
 
 .hello-xyz {
@@ -7,8 +7,6 @@
         color: #6D72F2;
         font-size: 24px;
         Line-height: 29.05px;
-        margin-left: 4px;
-        margin-top: 42px;
         font-weight: 700;
         font-style: normal;
 }
@@ -52,7 +50,7 @@
 
 .dashborder-team {
         width: 1190px;
-        height: 300px;
+        height: 325px;
         margin-left: 8px;
         margin-top: 40px;
         background: #F6F6F6;
@@ -159,8 +157,6 @@
 
 
 /* for team */
-
-
 .team-statistics {
         font-family: 'Inter';
         font-style: normal;

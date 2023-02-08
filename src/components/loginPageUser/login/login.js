@@ -71,7 +71,6 @@ const Login = () => {
     }
   };
   const Submit = (e) => {
-    // e.preventDefault();
     setValidatedata(true);
     dispatch(loginUserAction(values));
     setErrors(loginValidate(values, setValues));

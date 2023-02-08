@@ -40,7 +40,6 @@ const EditSubmit = (
         EditValidate(values, setValues, uploadedImage, setShowEdit, notify)
       );
     } else if (Edits?.email == values.email) {
-      console.log("error");
       emailError();
     } else if (Edits?.email !== values.email) {
       dispatch(putUserEditData(editData.id, formData));

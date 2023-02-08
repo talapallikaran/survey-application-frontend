@@ -5,6 +5,7 @@ const Setting = () => {
   return (
     <div>
       <SurveyPages/>
+      hello setting
     </div>
   )
 }

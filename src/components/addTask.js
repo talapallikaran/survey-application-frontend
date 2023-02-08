@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import { answers } from "./common/data";
 import "./addTask.css";
-import { dimg } from "../assets/img/Img";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -9,10 +9,10 @@ const AddTask = () => {
   const [showModal, setShowModal] = useState(true);
   const [startDate, setStartDate] = useState();
   const [values, setValues] = useState({});
-  const [file, setFile] = useState();
+  const [file, setFile] = useState([]);
 
   const handleImg = (e) => {
-    setFile(URL.createObjectURL(e.target.files[0]));
+    setFile([...file, URL.createObjectURL(e.target.files[0])]);
   };
   const handleChange = (e) => {
     setValues((values) => ({
@@ -27,11 +27,15 @@ const AddTask = () => {
     img: file,
   };
 
-  const submit = () => {
-    console.log(data);
+  const submit = (e) => {
+    e.preventDefault();
     setValues(" ");
     setStartDate(undefined);
-    setFile(undefined);
+    setFile([" "]);
+  };
+
+  const deleteImg = (data) => {
+    setFile(file.filter((image, eId) => eId !== data));
   };
 
   return (
@@ -69,9 +73,9 @@ const AddTask = () => {
                   onChange={handleChange}
                 >
                   <option value="volvo"> Select assignee </option>
-                  <option value="saab">Saab</option>
-                  <option value="mercedes">Mercedes</option>
-                  <option value="audi">Audi</option>
+                  <option value="1">developer</option>
+                  <option value="2">designer</option>
+                  <option value="3">tester</option>
                 </select>
               </div>
               <div className="priority-row">
@@ -83,9 +87,9 @@ const AddTask = () => {
                   onChange={handleChange}
                 >
                   <option value="volvo"> Select priority </option>
-                  <option value="saab">Saab</option>
-                  <option value="mercedes">Mercedes</option>
-                  <option value="audi">Audi</option>
+                  <option value="1">high</option>
+                  <option value="2">medaium</option>
+                  <option value="3">low</option>
                 </select>
               </div>
             </div>
@@ -139,17 +143,15 @@ const AddTask = () => {
               <div className="addTitle-img-containner">
                 <span className="image-title">Upload image</span>
                 <div className="selected-img">
-                  {file == undefined ? (
-                    <img className="uplode-img" src={dimg} />
-                  ) : (
-                    <>
-                      <span
-                        className="close"
-                        onClick={() => setFile(undefined)}
-                      ></span>
-                      <img className="uplode-img" src={file} />
-                    </>
-                  )}
+                  {file.map((images, id) => {
+                    return (
+                      <div key={id}>
+                        <img className="uplode-img" src={images} />
+                        <p className="close" onClick={() => deleteImg(id)}></p>
+                      </div>
+                    );
+                  })}
+
                   <div
                     className="select-img-input"
                     onClick={() => imageUploader.current.click()}
@@ -201,5 +203,4 @@ const AddTask = () => {
     </>
   );
 };
-
 export default AddTask;

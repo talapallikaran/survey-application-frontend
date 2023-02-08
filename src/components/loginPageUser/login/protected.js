@@ -7,7 +7,7 @@ export const Protected = (props) => {
 
   useEffect(() => {
     let admin = localStorage.getItem("UserRole");
-    if (admin !== "admin") {
+    if (admin !== "abc") {
       navigate("/");
     }
   }, []);

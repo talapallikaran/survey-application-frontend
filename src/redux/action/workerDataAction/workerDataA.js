@@ -8,12 +8,13 @@ export const fetchWorkerDataAction = () => async (dispatch) => {
     const res = await axios.get(
       `http://localhost:4000/survey/data/${UUID}?wuuid=${wuuid}`
     );
-    console.log("worker",res.data);
+  
     dispatch({
       type: workerAndSurvey.FETCH_WORKER_DATA_SUCCESS,
       payload: { surveyData: res.data },
     });
   } catch (error) {
+   
     dispatch({
       type: workerAndSurvey.FETCH_WORKER_DATA_ERROR,
       payload: { surveyData: error },
@@ -28,11 +29,14 @@ export const getWorkerDataAction = () => async (dispatch) => {
     const res = await axios.get(
       `http://localhost:4000/survey/data/${UUID}?wuuid=${wuuid}`
     );
+   
     dispatch({
       type: workerAndSurvey.GET_WORKER_DATA_SUCCESS,
       payload: { data: res.data },
+     
     });
   } catch (error) {
+   
     dispatch({
       type: workerAndSurvey.GET_WORKER_DATA_ERROR,
       payload: { data: error },
