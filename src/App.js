@@ -1,34 +1,60 @@
-import React from 'react';
-import './App.css';
-import { Route, Routes } from 'react-router-dom';
-import { Home, Register, Survey , Admin , Worker } from './components/constant/constant';
-import WorkerData from './components/Survey/WorkerData';
-import Protected from './pages/protected';
-import ErrorPage from "./pages/404Page";
-import Homepage from './pages/home';
-import Registration from './pages/RegistrationPage';
-import SurveyApp from './pages/surveyPage';
-import AdminPage from "./pages/adminPage";
+import React from "react";
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import {
+  Home,
+  Sign,
+  Survey,
+  worker,
+  add,
+  surveyPage,
+  dashboard,
+  team,
+  setting,
+  addTask
+} from "./components/common/constantRouter";
+import AdminFlowPage from "./pages/adminFlow";
+import LoginPage from "./pages/login";
+import SurveyAppPage from "./pages/surveyApp";
+import { Protected } from "./components/loginPageUser/login/protected";
+import ErrorPage from "./components/common/404Page";
+import WorkerDetails from "./components/Survey/workerDetails";
+import RagisterPage from "./pages/ragisterPage"; // remove it
+
+import AddTask from "./components/addTask";
+
+import SurveyPages from "./pages/surveyPages";
+import Dashboard from "./components/surveyPages/dashboard";
+import Team from "./components/surveyPages/team";
+import Setting from "./components/surveyPages/setting";
 
 function App() {
-  
   return (
-    <div>
+    <div className="main-edituser">
       <div>
-        <div className='wrapper'>
-          <Routes>
-             {/* <Route path={Home} element={< Login />} /> */}
-            <Route path={Home} element={<Protected Component={Homepage} />} />
-            <Route path={Register} element={<Registration />} />
-            <Route path={Admin} element={<Protected Component={AdminPage} />} />
-            <Route path={Survey} element={<Protected Component={SurveyApp} />} />
-            <Route path={Worker} element={<Protected Component={WorkerData} />} />
-            <Route path="*" element={<ErrorPage />} />
-          </Routes> 
+        <Routes>
+          <Route path={Home} element={<Protected Component={LoginPage} />} />
+          <Route
+            path={Sign}
+            element={<Protected Component={AdminFlowPage} />}
+          />
+          <Route
+            path={Survey}
+            element={<Protected Component={SurveyAppPage} />}
+          />
+          <Route path={add} element={<RagisterPage />} /> // remove it
+          <Route path={worker} element={<WorkerDetails />} />
+          <Route path="*" element={<ErrorPage />} />
 
-        </div>
+          <Route path={addTask} element={<AddTask />} />
+
+          <Route path={surveyPage} element={<SurveyPages />} />
+          <Route path={dashboard} element={<Dashboard />} />
+          <Route path={team} element={<Team />} />
+          <Route path={setting} element={<Setting />} />
+        </Routes>
       </div>
     </div>
   );
-};
-export default App; 
+}
+export default App;

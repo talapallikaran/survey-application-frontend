@@ -1,28 +1,51 @@
 import React, { useState, useEffect } from "react";
 import Survey from "./survey";
-import Footer from "./SurveyFooter/SurveyFooter";
+import Footer from "../surveyFooter/surveyFooter";
+import Header from "../surveyHeader/surveyHeader";
 import "./surveyApp.css";
+import "../../assets/css/responsive.css";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSurveyDataAction, postSurveyDataAction } from "../../redux/action/SurveyActions/surveyAction";
-import { getRegistrationDataAction } from '../../redux/action/RegistrationUser/getRegistrationDataAction';
-import { useNavigate } from 'react-router-dom';
+import {
+  fetchSurveyDataAction,
+  postSurveyDataAction,
+} from "../../redux/action/surveyDataAction/surveyDataA";
+import { useNavigate } from "react-router-dom";
+import { fetchUserAction } from "../../redux/action/userDataAction/fetchUser";
+import { SurveyData } from "../common/data";
 
 const SurveyApp = () => {
+  const uuid = localStorage.getItem("UUID");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  let uuid = localStorage.getItem("UUID");
-
   const [tabActive, setTabActive] = useState(0);
-  // const [values, setValues] = useState();
-
-  const data = useSelector((state) => state?.fetchSurveyDataReducer);
-  //  console.log("fetch reducer=========",data);
-  let LoginRoleid = localStorage.getItem("ROLLID");
+  const data = useSelector(
+    (state) => state?.fetchSurveyDataReducer?.surveyData
+  );
+  let LoginData = JSON.parse(localStorage.getItem("WorkerData") || "[]");
+  const optionData = useSelector((state) => state?.fetchUserReducer?.data);
+  let superVisor = optionData && optionData?.find((e) => e.uuid == uuid);
 
   useEffect(() => {
     dispatch(fetchSurveyDataAction());
-    dispatch(getRegistrationDataAction());
+    dispatch(fetchUserAction());
   }, []);
+
+  useEffect(() => {
+    SurveyData?.surveyData?.surveydata?.map((sdata) => {
+      data?.surveydata?.map((Apidata) => {
+        if (Apidata.survey_id === sdata.survey_id) {
+          sdata.comment = Apidata.comment;
+          sdata.question.map((sQ) => {
+            Apidata.question.map((ApiQ) => {
+              if (ApiQ.qid === sQ.qid) {
+                sQ.ans = ApiQ.ans;
+              }
+            });
+          });
+        }
+      });
+    });
+  }, [SurveyData, data]);
 
   var months = [
     "January",
@@ -40,18 +63,15 @@ const SurveyApp = () => {
   ];
   var d = new Date();
   var monthName = months[d.getMonth()];
-
   const setTab = (tabId) => {
     setTabActive(tabId + 1);
   };
   let surveydata;
   const setServeyAnswers = (surveyInfo) => {
-    // console.log("setServeyAnswers.......", surveyInfo);
-
-    let mySurveyIndex = data?.surveyData?.surveydata.findIndex(
+    let mySurveyIndex = SurveyData?.surveyData?.surveydata.findIndex(
       (survey) => survey.survey_id === surveyInfo.survey_id
     );
-    let survey = data?.surveyData?.surveydata[mySurveyIndex];
+    let survey = SurveyData?.surveyData?.surveydata[mySurveyIndex];
     survey.comment = surveyInfo.comment;
     surveyInfo.question.map((question) => {
       let questionIndex = survey.question.findIndex(
@@ -59,66 +79,66 @@ const SurveyApp = () => {
       );
       survey.question[questionIndex].ans = question.ans;
     });
-    surveydata = data?.surveyData?.surveydata
+    surveydata = SurveyData?.surveyData?.surveydata;
   };
-
+  
   const submitSurvey = () => {
     dispatch(
       postSurveyDataAction({
         uuid,
-        surveydata
+        surveydata,
       })
     );
   };
-
-  const handleChange = (event) => {
-    let workeruuid = event.target.value;
-    //  console.log(workerUuid);
-    navigate(`/Survey${workeruuid}`);
-    localStorage.setItem('workerUUID', workeruuid);
+  const handleChange = (e) => {
+    let workerData = e.target.value;
+    localStorage.setItem("workerId", workerData);
+    navigate(`/Survey/${workerData}`);
   };
-
-  let users = JSON.parse(localStorage.getItem("WorkerData") || "[]");
-  let userdata = users && users[0];
-
-  // console.log("user",userdata);
-
+  let dm;
+  if (superVisor?.role_id == 2) {
+    dm = LoginData.map((e) => e.map((e) => e.id == null));
+  }
+  
   return (
-    <div>
+    <div className="wrepper">
+      <Header />
       <div className="container">
-        <div className="survey-heading">
-          <div className="survey-date">
+        <div className="date-container">
+          <div className="date">
             <h2>
               {monthName} {new Date().getFullYear()}
             </h2>
           </div>
-          <div className="Dropdown">
-            {
-              LoginRoleid == 2 && (
-                <select
-                  className="worker-select"
-                  onChange={handleChange}
-                //  name="workerdata"
-                //   value={values.uuid}
-                >
-                  <option>Select from Worker</option>
-                  {
-                    userdata.map((e, id) => {
+          {superVisor?.role_id == 2 && (
+            <select
+              className="select-option"
+              onChange={handleChange}
+              name="reporting_person_id"
+              disabled={dm[0] == "true"}
+            >
+              <option>Select from worker</option>
+              {LoginData?.map((data, id) => {
+                return (
+                  <React.Fragment key={id}>
+                    {data.map((e, id) => {
                       return (
-                        <option value={e.id} key={id} >{e.name}</option>
-                      )
-                    })
-                  }
-                </select>
-              )
-            }
-          </div>
+                        <option value={e.id} key={id}>
+                          {e.name}
+                        </option>
+                      );
+                    })}
+                  </React.Fragment>
+                );
+              })}
+            </select>
+          )}
         </div>
-        {data &&
-          data.surveyData &&
-          data.surveyData.surveydata &&
-          data.surveyData.surveydata.map((surveyData, id) => {
-            //  console.log("all data=======" , surveyData.question[id].ans);
+
+        {SurveyData &&
+          SurveyData.surveyData &&
+          SurveyData.surveyData.surveydata &&
+          SurveyData.surveyData.surveydata.map((surveyData, id) => {
             return (
               <div key={id} className="survey-wrapper">
                 <Survey
@@ -129,13 +149,13 @@ const SurveyApp = () => {
                   isActive={tabActive === id}
                   setAnswers={(surveyInfo) => setServeyAnswers(surveyInfo)}
                   submitSurvey={() => submitSurvey()}
-                  newcomments={surveyData.comment}
+                  comments={surveyData.comment}
                 />
               </div>
             );
           })}
       </div>
-      <Footer surveydata={data?.surveyData?.surveydata} />
+      <Footer data={SurveyData?.surveyData?.surveydata} />
     </div>
   );
 };
